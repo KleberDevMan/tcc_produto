@@ -18,5 +18,23 @@ module TccProduto
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Locale
+    config.time_zone = 'Brasilia'
+    Time::DATE_FORMATS[:hora] = "%H:%M"
+    Time::DATE_FORMATS[:default] = "%d/%m/%Y %H:%M"
+    Date::DATE_FORMATS[:default] = "%d/%m/%Y"
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.available_locales = [:en, :"pt-BR"]
+    config.i18n.default_locale = :"pt-BR"
+    I18n.config.enforce_available_locales = true
+    config.encoding = "utf-8"
+
+    config.action_controller.default_protect_from_forgery = true
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      html_tag
+    }
   end
 end
