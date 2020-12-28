@@ -1,0 +1,72 @@
+<%= form_with(model: academic_work) do |form| %>
+  <% if academic_work.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(academic_work.errors.count, "error") %> prohibited this academic_work from being saved:</h2>
+
+      <ul>
+        <% academic_work.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= form.label :summary %>
+    <%= form.text_field :summary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course %>
+    <%= form.text_field :course %>
+  </div>
+
+  <div class="field">
+    <%= form.label :defense_date %>
+    <%= form.date_select :defense_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :document %>
+    <%= form.text_field :document %>
+  </div>
+
+  <div class="field">
+    <%= form.label :document_link %>
+    <%= form.text_field :document_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :keyword %>
+    <%= form.text_field :keyword %>
+  </div>
+
+  <div class="field">
+    <%= form.label :how_to_quote %>
+    <%= form.text_field :how_to_quote %>
+  </div>
+
+  <div class="field">
+    <%= form.label :appraisers %>
+    <%= form.text_field :appraisers %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

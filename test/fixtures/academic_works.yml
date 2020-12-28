@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: academic_works
+#
+#  id            :bigint           not null, primary key
+#  appraisers    :string
+#  author        :string
+#  course        :string
+#  defense_date  :date
+#  document      :string
+#  document_link :string
+#  how_to_quote  :string
+#  keyword       :string
+#  summary       :string
+#  title         :string
+#  type          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  title: MyString
+  author: MyString
+  summary: MyString
+  course: MyString
+  defense_date: 2020-12-28
+  document: MyString
+  document_link: MyString
+  type: 
+  keyword: MyString
+  how_to_quote: MyString
+  appraisers: MyString
+
+two:
+  title: MyString
+  author: MyString
+  summary: MyString
+  course: MyString
+  defense_date: 2020-12-28
+  document: MyString
+  document_link: MyString
+  type: 
+  keyword: MyString
+  how_to_quote: MyString
+  appraisers: MyString

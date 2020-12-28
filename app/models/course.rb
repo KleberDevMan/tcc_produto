@@ -10,7 +10,6 @@
 #
 class Course < ApplicationRecord
   extend Enumerize
-  extend ActiveModel::Naming
 
-  enumerize :status, in: %i[active inative], predicates: true
+  enumerize :status, in: [:active, :inactive], predicates: true, default: :active
 end

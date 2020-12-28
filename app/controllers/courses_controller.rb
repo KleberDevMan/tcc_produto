@@ -1,10 +1,10 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.order('updated_at desc')
   end
 
   # GET /courses/1
@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -58,6 +58,18 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def toggle_status
+    if @course.status.inactive?
+      if @course.update(status: :active)
+        redirect_to courses_url, notice: 'Ativado!'
+      end
+    elsif @course.status.active?
+      if @course.update(status: :inactive)
+        redirect_to courses_url, notice: 'Desativado!'
+      end
     end
   end
 

@@ -1,0 +1,17 @@
+<script src="assets/izitoast/dist/js/iziToast.min"></script>
+<script>
+    <% if notice %>
+    iziToast.show({
+        title: '<%= notice %>',
+        position: 'topRight',
+        color: 'green'
+    });
+    <% end %>
+    <% if alert %>
+    iziToast.show({
+        title: '<%= alert %>',
+        position: 'topRight',
+        color: 'red'
+    });
+    <% end %>
+</script>

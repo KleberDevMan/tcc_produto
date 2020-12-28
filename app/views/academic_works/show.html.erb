@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @academic_work.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @academic_work.author %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @academic_work.summary %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @academic_work.course %>
+</p>
+
+<p>
+  <strong>Defense date:</strong>
+  <%= @academic_work.defense_date %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @academic_work.document %>
+</p>
+
+<p>
+  <strong>Document link:</strong>
+  <%= @academic_work.document_link %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @academic_work.type %>
+</p>
+
+<p>
+  <strong>Keyword:</strong>
+  <%= @academic_work.keyword %>
+</p>
+
+<p>
+  <strong>How to quote:</strong>
+  <%= @academic_work.how_to_quote %>
+</p>
+
+<p>
+  <strong>Appraisers:</strong>
+  <%= @academic_work.appraisers %>
+</p>
+
+<%= link_to 'Edit', edit_academic_work_path(@academic_work) %> |
+<%= link_to 'Back', academic_works_path %>

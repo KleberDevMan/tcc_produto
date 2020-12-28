@@ -11,4 +11,4 @@ pt-BR:
     course:
       status:
         active: Ativo
-        inative: Inativo
+        inactive: Inativo
