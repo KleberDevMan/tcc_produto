@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      course: Curso
+      courses: Cursos
+    attributes:
+      account:
+        name: Nome
+        status: Status
+  enumerize:
+    course:
+      status:
+        active: Ativo
+        inative: Inativo

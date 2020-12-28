@@ -1,27 +1,80 @@
 <%= form_with(model: course) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+  <%# if course.errors.any? %>
+<!--    <div id="error_explanation">-->
+<!--      <h2><%#= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>-->
 
-      <ul>
-        <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<!--      <ul>-->
+        <%# course.errors.each do |error| %>
+<!--          <li><%#= error.full_message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+<!--  <div class="field">-->
+    <%#= form.label :name %>
+    <%#= form.text_field :name %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%# Course.status.options.each do |status| %>
+      <%#= form.radio_button :status, status.last, checked: status.last == 'active' %>
+      <%#= form.label :status, status.first, value: status.last %>
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= form.submit %>
+<!--  </div>-->
+
+
+  <div class="col-md-6 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+
+        <% if course.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+            <ul>
+              <% course.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+        <% if course.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+            <ul>
+              <% course.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div class="field">
+          <% Course.status.options.each do |status| %>
+            <%= form.radio_button :status, status.last, checked: status.last == 'active' %>
+            <%= form.label :status, status.first, value: status.last %>
+          <% end %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+        <%= link_to 'Back', courses_path %>
+
+      </div> <!-- /.card-body -->
+    </div> <!-- /.card -->
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
