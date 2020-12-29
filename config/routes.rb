@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :teachers
   resources :academic_works
   resources :courses do
     member do

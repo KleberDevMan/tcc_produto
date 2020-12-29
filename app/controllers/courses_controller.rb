@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.order('updated_at desc')
+    @courses = Course.order('updated_at desc').page params[:page]
   end
 
   # GET /courses/1

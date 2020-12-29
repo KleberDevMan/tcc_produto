@@ -62,13 +62,24 @@ class AcademicWorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_academic_work
-      @academic_work = AcademicWork.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def academic_work_params
-      params.require(:academic_work).permit(:title, :author, :summary, :course, :defense_date, :document, :document_link, :type, :keyword, :how_to_quote, :appraisers)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_academic_work
+    @academic_work = AcademicWork.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def academic_work_params
+    params.require(:academic_work).permit(:title,
+                                          :author,
+                                          :summary,
+                                          :course,
+                                          :defense_date,
+                                          :document,
+                                          :document_link,
+                                          :work_type,
+                                          :keyword,
+                                          :how_to_quote,
+                                          :appraisers)
+  end
 end

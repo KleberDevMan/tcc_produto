@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_28_200050) do
+ActiveRecord::Schema.define(version: 2020_12_29_220315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,16 @@ ActiveRecord::Schema.define(version: 2020_12_28_200050) do
     t.string "summary"
     t.string "course"
     t.date "defense_date"
-    t.string "document"
     t.string "document_link"
-    t.string "type"
+    t.string "work_type"
     t.string "keyword"
     t.string "how_to_quote"
     t.string "appraisers"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "institution"
+    t.bigint "course_id", null: false
+    t.index ["course_id"], name: "index_academic_works_on_course_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -66,6 +68,12 @@ ActiveRecord::Schema.define(version: 2020_12_28_200050) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -78,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_200050) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "academic_works", "courses"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end

@@ -12,4 +12,8 @@ class Course < ApplicationRecord
   extend Enumerize
 
   enumerize :status, in: [:active, :inactive], predicates: true, default: :active
+
+  def to_s
+    self.name
+  end
 end
