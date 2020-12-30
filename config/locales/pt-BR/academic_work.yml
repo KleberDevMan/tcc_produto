@@ -6,7 +6,7 @@ pt-BR:
     attributes:
       academic_work:
         title: Título
-        author: Autor
+        author: Autor(s)
         summary: Resumo
         course: Curso
         defense_date: Data da defesa
@@ -20,6 +20,7 @@ pt-BR:
         institution: Instituição
         course_id: Curso
         teacher_id: Orientador
+        document: Documento
   enumerize:
     academic_work:
       work_type:

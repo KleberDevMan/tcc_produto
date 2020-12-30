@@ -32,8 +32,8 @@
 class AcademicWork < ApplicationRecord
   extend Enumerize
 
-  has_one :teacher
-  has_one :course
+  belongs_to :teacher
+  belongs_to :course
 
   validates :title, :teacher_id, presence: true
 

@@ -73,13 +73,14 @@ class AcademicWorksController < ApplicationController
     params.require(:academic_work).permit(:title,
                                           :author,
                                           :summary,
-                                          :course,
                                           :defense_date,
                                           :document,
                                           :document_link,
                                           :work_type,
                                           :keyword,
                                           :how_to_quote,
-                                          :appraisers)
+                                          :appraisers,
+                                          :teacher_id,
+                                          :course_id)
   end
 end

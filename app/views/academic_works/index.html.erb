@@ -3,10 +3,10 @@
     <div class="col-12">
       <div class="row align-items-center my-4">
         <div class="col">
-          <h2 class="h3 mb-0 page-title">Contacts</h2>
+          <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.academic_works' %></h2>
         </div>
         <div class="col-auto">
-          <a  class="btn btn-primary" href="<%= new_academic_work_path %>"><span class="fe fe-filter fe-12 mr-2"></span>Create</a>
+          <a  class="btn btn-primary" href="<%= new_academic_work_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %></a>
         </div>
       </div>
       <div class="card shadow">
@@ -16,24 +16,26 @@
             <tr>
               <th>Titulo</th>
               <th>Curso</th>
-              <th>Orientador</th>
+              <th>Autor/Orientador</th>
               <th>Data</th>
               <th>Ação</th>
             </tr>
             </thead>
             <tbody>
             <% @academic_works.each do |academic_work| %>
+
               <tr>
                 <td>
-                  <p class="mb-0 text-muted"><strong><%= truncate academic_work.title %></strong></p>
+                  <p class="mb-0 text-muted"><a href="<%= academic_work_path academic_work %>" class="text-muted"><strong><%= truncate academic_work.title %></strong></a></p>
                   <small class="mb-0 text-muted"><%= truncate academic_work.summary %></small>
                 </td>
                 <td>
-                  <p class="mb-0 text-muted"><%= truncate academic_work.course %></p>
+                  <p class="mb-0 text-muted"><%= truncate academic_work.course.name %></p>
                   <small class="mb-0 text-muted"><%= truncate academic_work.institution %></small>
                 </td>
                 <td>
-                  <p class="mb-0 text-muted"><a href="#" class="text-muted"><%= truncate academic_work.teacher %></a></p>
+                  <p class="mb-0 text-muted"><%= truncate academic_work.author %></p>
+                  <small class="mb-0 text-muted"><%= truncate academic_work.teacher.name %></small>
                 </td>
                 <td class="text-muted"><%= academic_work.defense_date.to_s %></td>
                 <td>
@@ -41,8 +43,9 @@
                     <span class="text-muted sr-only">Action</span>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Editar</a>
-                    <%= link_to 'Excluir', academic_work, method: :delete, data: {confirm: 'Você tem certeza?'}, class:"dropdown-item" %>
+                    <a class="dropdown-item" href="<%= academic_work_path academic_work %>">Visualizar</a>
+                    <a class="dropdown-item" href="<%= edit_academic_work_path academic_work %>">Editar</a>
+                    <%= link_to 'Excluir', academic_work, method: :delete, data: {confirm: 'Você tem certeza?'}, class:"dropdown-item text-danger" %>
                   </div>
                 </td>
               </tr>

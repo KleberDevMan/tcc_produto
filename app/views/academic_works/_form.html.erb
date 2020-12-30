@@ -1,4 +1,4 @@
-<%= form_with(model: academic_work) do |form| %>
+<%= form_with(model: academic_work, multipart: true ) do |form| %>
 
   <% if academic_work.errors.any? %>
     <div id="error_explanation">
@@ -113,6 +113,7 @@
             <div class="form-group col-md-6">
               <%= form.label :author %>
               <%= form.text_field :author, class: 'form-control' %>
+              <small>Use o <strong class="text-primary">;</strong> como separador.</small>
             </div>
           </div>
           <div class="form-row">
@@ -146,6 +147,13 @@
           </div>
 
           <div class="form-row">
+            <div class="form-group col-md-12">
+              <%= form.label :summary %>
+              <%= form.text_area :summary, class: 'form-control', rows: 4 %>
+            </div>
+          </div>
+
+          <div class="form-row">
             <div class="form-group col-md-6">
               <%= form.label :how_to_quote %>
               <%= form.text_area :how_to_quote, class: 'form-control', rows: 3 %>
@@ -154,13 +162,6 @@
               <%= form.label :appraisers %>
               <small>(Nome dos avaliadores)</small>
               <%= form.text_area :appraisers, class: 'form-control', rows: 3 %>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <%= form.label :summary %>
-              <%= form.text_area :summary, class: 'form-control', rows: 4 %>
             </div>
           </div>
 
