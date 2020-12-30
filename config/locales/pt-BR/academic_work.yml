@@ -1,0 +1,28 @@
+pt-BR:
+  activerecord:
+    models:
+      academic_work: Trabalho acadêmico
+      academic_works: Trabalhos acadêmicos
+    attributes:
+      academic_work:
+        title: Título
+        author: Autor
+        summary: Resumo
+        course: Curso
+        defense_date: Data da defesa
+        document_link: Link para documento
+        work_type: Tipo
+        keyword: Palavras-chave
+        how_to_quote: Como citar
+        appraisers: Banca
+        created_at: Criado em
+        updated_at: Atualizado em
+        institution: Instituição
+        course_id: Curso
+        teacher_id: Orientador
+  enumerize:
+    academic_work:
+      work_type:
+        tcc: TCC
+        search: Pesquisa
+        extension: Extenção

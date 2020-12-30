@@ -17,19 +17,29 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  course_id     :bigint           not null
+#  teacher_id    :bigint           not null
 #
 # Indexes
 #
-#  index_academic_works_on_course_id  (course_id)
+#  index_academic_works_on_course_id   (course_id)
+#  index_academic_works_on_teacher_id  (teacher_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (course_id => courses.id)
+#  fk_rails_...  (teacher_id => teachers.id)
 #
 class AcademicWork < ApplicationRecord
   extend Enumerize
 
+  has_one :teacher
+  has_one :course
+
+  validates :title, :teacher_id, presence: true
+
   enumerize :work_type, in: [:tcc, :search, :extension], predicates: true, default: :tcc
 
   has_one_attached :document
+
+
 end

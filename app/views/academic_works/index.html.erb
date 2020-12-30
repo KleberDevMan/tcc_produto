@@ -6,23 +6,14 @@
           <h2 class="h3 mb-0 page-title">Contacts</h2>
         </div>
         <div class="col-auto">
-          <a  class="btn btn-secondary" href="#"><span class="fe fe-trash fe-12 mr-2"></span>Delete</a>
           <a  class="btn btn-primary" href="<%= new_academic_work_path %>"><span class="fe fe-filter fe-12 mr-2"></span>Create</a>
         </div>
       </div>
-      <!-- table -->
       <div class="card shadow">
         <div class="card-body">
           <table class="table table-borderless table-hover">
             <thead>
             <tr>
-              <th>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="all2">
-                  <label class="custom-control-label" for="all2"></label>
-                </div>
-              </th>
-<!--              <th>ID</th>-->
               <th>Titulo</th>
               <th>Curso</th>
               <th>Orientador</th>
@@ -34,17 +25,6 @@
             <% @academic_works.each do |academic_work| %>
               <tr>
                 <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="2474">
-                    <label class="custom-control-label" for="2474"></label>
-                  </div>
-                </td>
-<!--                <td>-->
-<!--                  <div class="avatar avatar-sm">-->
-<!--                    <img src="./assets/avatars/face-3.jpg" alt="..." class="avatar-img rounded-circle">-->
-<!--                  </div>-->
-<!--                </td>-->
-                <td>
                   <p class="mb-0 text-muted"><strong><%= truncate academic_work.title %></strong></p>
                   <small class="mb-0 text-muted"><%= truncate academic_work.summary %></small>
                 </td>
@@ -53,18 +33,16 @@
                   <small class="mb-0 text-muted"><%= truncate academic_work.institution %></small>
                 </td>
                 <td>
-                  <p class="mb-0 text-muted"><a href="#" class="text-muted"><%= truncate academic_work.advisor %></a></p>
-                  <small class="mb-0 text-muted">Nigeria</small>
+                  <p class="mb-0 text-muted"><a href="#" class="text-muted"><%= truncate academic_work.teacher %></a></p>
                 </td>
-                <td class="text-muted">13/09/2020</td>
+                <td class="text-muted"><%= academic_work.defense_date.to_s %></td>
                 <td>
                   <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="text-muted sr-only">Action</span>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Edit</a>
-                    <a class="dropdown-item" href="#">Remove</a>
-                    <a class="dropdown-item" href="#">Assign</a>
+                    <a class="dropdown-item" href="#">Editar</a>
+                    <%= link_to 'Excluir', academic_work, method: :delete, data: {confirm: 'Você tem certeza?'}, class:"dropdown-item" %>
                   </div>
                 </td>
               </tr>
@@ -73,15 +51,8 @@
           </table>
         </div>
       </div>
-      <nav aria-label="Table Paging" class="my-3">
-        <ul class="pagination justify-content-end mb-0">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
-    </div> <!-- .col-12 -->
-  </div> <!-- .row -->
+
+
+    </div>
+  </div>
 </div>

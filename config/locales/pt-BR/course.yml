@@ -4,7 +4,7 @@ pt-BR:
       course: Curso
       courses: Cursos
     attributes:
-      account:
+      course:
         name: Nome
         status: Status
   enumerize:

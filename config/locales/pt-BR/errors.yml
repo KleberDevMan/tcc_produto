@@ -1,0 +1,119 @@
+pt-BR:
+  errors:
+    format: "%{message}"
+    messages:
+      accepted: deve ser aceito.
+      blank: "'%{attribute}' não pode ficar vazio."
+      confirmation: não é igual a %{attribute}.
+      empty: "'%{attribute}' não pode ficar vazio."
+      equal_to: "'%{attribute}' deve ser igual a %{count}."
+      even: "'%{attribute}' deve ser par."
+      exclusion: "'%{attribute}' não está disponível."
+      greater_than: "'%{attribute}' deve ser maior que %{count}."
+      greater_than_or_equal_to: "'%{attribute}' deve ser maior ou igual a %{count}."
+      inclusion: "'%{attribute}' não está incluído na lista."
+      invalid: "'%{attribute}' não é válido."
+      less_than: "'%{attribute}' deve ser menor que %{count}."
+      less_than_or_equal_to: "'%{attribute}' deve ser menor ou igual a %{count}."
+      model_invalid: 'O sistema não conseguiu realizar esta operação: %{errors}'
+      not_a_number: "'%{attribute}' deve ser um número."
+      not_an_integer: "'%{attribute}' deve ser um número inteiro."
+      odd: "'%{attribute}' deve ser ímpar."
+      other_than: "'%{attribute}' deve ser diferente de %{count}."
+      present: "'%{attribute}' deve ficar vazio."
+      required: "'%{attribute}' não pode ficar vazio."
+      taken: "Duplicidade encontrada! Um item já existe com os mesmos dados."
+      expired: 'expirou, por favor, solicite um novo.'
+      not_found: 'não encontrado.'
+      # Upload de arquivos
+      carrierwave_processing_error: "Não foi possível processar o arquivo."
+      carrierwave_integrity_error: "Não é um tipo de arquivo permitido."
+      carrierwave_download_error: "Não pôde ser baixado"
+      extension_whitelist_error: "Apenas arquivos dos tipos: %{allowed_types} são permitidos."
+      extension_blacklist_error: "Não é permitido o envio de arquivos dos tipos: %{prohibited_types}"
+      content_type_whitelist_error: "Não é permitido o envio de arquivos %{content_type}, tipos permitidos: %{allowed_types}"
+      content_type_blacklist_error: "Não é permitido o envio de arquivos %{content_type}"
+      rmagick_processing_error: "Não foi possível processar o arquivo, talvez arquivo não seja uma imagem. Erro original: %{e}"
+      mini_magick_processing_error: "Não foi possível processar o arquivo, talvez arquivo não seja uma imagem. Erro original: %{e}"
+      min_size_error: "'%{attribute}' não pode ser menor que %{min_size}."
+      max_size_error: "'%{attribute}' não pode ser maior que %{max_size}."
+      too_long:
+        one: "'%{attribute}' é muito extenso (máximo: 1 caracter)."
+        other: "'%{attribute}' é muito extenso (máximo: %{count} caracteres)."
+      too_short:
+        one: "'%{attribute}' é muito curto (mínimo: 1 caracter)"
+        other: "'%{attribute}' é muito curto (mínimo: %{count} caracteres)"
+      wrong_length:
+        one: "'%{attribute}' não possui o tamanho esperado de 1 caracter."
+        other: "'%{attribute}' não possui o tamanho esperado de %{count} caracteres."
+    template:
+      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      header:
+        one: 'Um erro impediu o cadastro de %{model}.'
+        other: '%{count} erros impediram o cadastro de %{model}.'
+    helpers:
+      select:
+        prompt: "Selecione"
+      submit:
+        create: "Cadastrar %{model}"
+        submit: "Salvar %{model}"
+        update: "Atualizar %{model}"
+    number:
+      currency:
+        format:
+          delimiter: "."
+          format: "%u %n"
+          precision: 2
+          separator: ","
+          significant: false
+          strip_insignificant_zeros: false
+          unit: R$
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+    storage_units:
+      format: "%n %u"
+      units:
+        byte:
+          one: Byte
+          other: Bytes
+        eb: EB
+        gb: GB
+        kb: KB
+        mb: MB
+        pb: PB
+        tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+    support:
+      array:
+        last_word_connector: " e "
+        two_words_connector: " e "
+        words_connector: ", "
+    time:
+      am: ''
+      formats:
+        default: "%a, %d de %B de %Y, %H:%M:%S %z"
+        long: "%d de %B de %Y, %H:%M"
+        short: "%d de %B, %H:%M"
+      pm: ''
