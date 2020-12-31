@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @idea_category.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @idea_category.status %>
+</p>
+
+<%= link_to 'Edit', edit_idea_category_path(@idea_category) %> |
+<%= link_to 'Back', idea_categories_path %>

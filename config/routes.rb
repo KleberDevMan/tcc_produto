@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :ideas do
+    collection do
+      get 'my_ideas'
+    end
+  end
+  resources :idea_categories
   resources :teachers
   resources :academic_works
   resources :courses do

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @idea.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @idea.description %>
+</p>
+
+<p>
+  <strong>Idea category:</strong>
+  <%= @idea.idea_category_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @idea.status %>
+</p>
+
+<p>
+  <strong>Possibility reward:</strong>
+  <%= @idea.possibility_reward %>
+</p>
+
+<p>
+  <strong>Possibility business:</strong>
+  <%= @idea.possibility_business %>
+</p>
+
+<%= link_to 'Edit', edit_idea_path(@idea) %> |
+<%= link_to 'Back', ideas_path %>

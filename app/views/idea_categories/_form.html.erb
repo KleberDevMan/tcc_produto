@@ -1,0 +1,27 @@
+<%= form_with(model: idea_category) do |form| %>
+  <% if idea_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(idea_category.errors.count, "error") %> prohibited this idea_category from being saved:</h2>
+
+      <ul>
+        <% idea_category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

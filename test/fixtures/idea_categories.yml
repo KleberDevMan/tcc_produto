@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: idea_categories
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  status     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  status: MyString
+
+two:
+  name: MyString
+  status: MyString

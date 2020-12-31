@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_185152) do
+ActiveRecord::Schema.define(version: 2020_12_31_130539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,27 @@ ActiveRecord::Schema.define(version: 2020_12_30_185152) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "idea_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "idea_category_id", null: false
+    t.string "status"
+    t.boolean "possibility_reward"
+    t.boolean "possibility_business"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "ideializer_id", null: false
+    t.index ["idea_category_id"], name: "index_ideas_on_idea_category_id"
+    t.index ["ideializer_id"], name: "index_ideas_on_ideializer_id"
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -92,4 +113,6 @@ ActiveRecord::Schema.define(version: 2020_12_30_185152) do
   add_foreign_key "academic_works", "teachers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ideas", "idea_categories"
+  add_foreign_key "ideas", "users", column: "ideializer_id"
 end
