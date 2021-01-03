@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: menus
+#
+#  id         :bigint           not null, primary key
+#  active     :boolean
+#  ancestry   :string
+#  icon       :string
+#  name       :string
+#  url        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_menus_on_ancestry  (ancestry)
+#
+
+one:
+  active: false
+  icon: MyString
+  name: MyString
+  url: MyString
+  ancestry: MyString
+
+two:
+  active: false
+  icon: MyString
+  name: MyString
+  url: MyString
+  ancestry: MyString

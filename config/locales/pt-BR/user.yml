@@ -1,0 +1,24 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuário
+      users: Usuários
+    attributes:
+      user:
+        email: E-mail
+        name: Nome
+        telephone: Telefone
+        biography: Bibliografia
+        role: Perfil
+        created_at: Criado em
+        updated_at: Atualizado em
+  enumerize:
+    user:
+      role:
+        admin: Administrador
+        archiver: Arquivador
+        ideializer: Idealizador
+        collaborator: Colaborador
+      type_collaborator:
+        developer: Desenvolvedor
+        facilitator: Facilitador

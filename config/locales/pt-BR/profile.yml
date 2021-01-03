@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      profile: Perfil
+      profiles: Perfis
+    attributes:
+      profile:
+        name: Nome
+        active: Ativo
+        description: Description
+        permissions: Permissões
+        namespace: Namespace
+  notice:
+    profile:
+      created: Perfil criado com sucesso
+      updated: Pefil atualizado com sucesso
+      deleted: Pefil deletado com sucesso

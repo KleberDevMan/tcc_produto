@@ -24,6 +24,10 @@
 #  fk_rails_...  (ideializer_id => users.id)
 #
 class Idea < ApplicationRecord
+  extend Enumerize
+
   belongs_to :idea_category
   belongs_to :ideializer, class_name: 'User'
+
+  enumerize :status, in: [:public, :private], predicates: true, default: :public
 end

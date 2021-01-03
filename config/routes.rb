@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :menus
+  resources :profiles
   resources :ideas do
     collection do
       get 'my_ideas'
@@ -13,7 +15,12 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :users do
+    collection do
+      get "alterar_perfil"
+    end
+  end
 
   root "courses#index"
 end

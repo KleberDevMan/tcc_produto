@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      teacher: Docente
+      teachers: Docentes
+    attributes:
+      course:
+        name: Nome
+        status: Status
+  enumerize:
+    course:
+      status:
+        active: Ativo
+        inactive: Inativo

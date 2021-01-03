@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      idea: Ideia
+      ideas: Ideias
+    attributes:
+      idea:
+        title: Titulo
+        description: Descrição
+        idea_category_id: Categoria
+        status: Status
+        possibility_reward: Possibilidade de recompensa
+        possibility_business: Possiblidade de negócio
+        ideializer_id: Idealizador
+        created_at: Criado em
+        updated_at: Atualizado em
+  enumerize:
+    idea:
+      status:
+        public: Pública
+        private: Privada

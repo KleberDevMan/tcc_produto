@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      idea_category: Categoria de ideia
+      idea_categories: Categorias de ideias
+    attributes:
+      idea_category:
+        name: Nome
+        status: Status
+  enumerize:
+    idea_category:
+      status:
+        active: Ativo
+        inactive: Inativo

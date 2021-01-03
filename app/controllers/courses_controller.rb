@@ -1,4 +1,7 @@
 class CoursesController < ApplicationController
+  before_action :authenticate_user!
+  # load_and_authorize_resource
+
   before_action :set_course, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /courses

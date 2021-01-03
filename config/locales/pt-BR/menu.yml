@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      menu: Menu
+      menus: Menus
+    attributes:
+      menu:
+        name: Nome
+        url: Url
+        active: Ativo
+        icon: Íncone
+        position: Posição
+  menu_pai: Menu pai
+  profiles: Perfis
+
+  notice:
+    menu:
+      created: Menu criado com sucesso
+      updated: Menu atualizado com sucesso
+      deleted: Menu deletado com sucesso
+  tooltip:
+    new_child_menu: Novo menu filho

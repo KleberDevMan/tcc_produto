@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_130539) do
+ActiveRecord::Schema.define(version: 2021_01_03_003144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,45 @@ ActiveRecord::Schema.define(version: 2020_12_31_130539) do
     t.index ["ideializer_id"], name: "index_ideas_on_ideializer_id"
   end
 
+  create_table "menus", force: :cascade do |t|
+    t.boolean "active"
+    t.string "icon"
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_menus_on_ancestry"
+  end
+
+  create_table "profile_menus", force: :cascade do |t|
+    t.bigint "menu_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_profile_menus_on_menu_id"
+    t.index ["profile_id"], name: "index_profile_menus_on_profile_id"
+  end
+
+  create_table "profile_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_profile_users_on_profile_id"
+    t.index ["user_id"], name: "index_profile_users_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.boolean "active"
+    t.json "permissions"
+    t.string "namespace"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -105,6 +144,10 @@ ActiveRecord::Schema.define(version: 2020_12_31_130539) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "telephone"
+    t.string "biography"
+    t.string "type_collaborator"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -115,4 +158,8 @@ ActiveRecord::Schema.define(version: 2020_12_31_130539) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ideas", "idea_categories"
   add_foreign_key "ideas", "users", column: "ideializer_id"
+  add_foreign_key "profile_menus", "menus"
+  add_foreign_key "profile_menus", "profiles"
+  add_foreign_key "profile_users", "profiles"
+  add_foreign_key "profile_users", "users"
 end

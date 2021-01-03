@@ -189,3 +189,26 @@ pt-BR:
     list_all: Listar todos
     destroy: Excluir
     delete: Excluir
+  breadcrumb:
+    home: Início
+    show: Visualizar
+    edit: Alterar
+    update: Alterar
+    new: Cadastrar
+    create: Cadastrar
+    index: Listagem
+  # CanCan
+  unauthorized:
+    manage:
+      all: Você não tem acesso a este recurso
+
+  notice:
+    success: Sucesso
+    error: Erro
+    canceled: Cancelado
+    are_you_sure: Você tem certeza?
+    not_save: Não salvo
+    we_have_a_problem: Ocorreu um problema
+    created: Cadastrado!
+    updated: Atualizado!
+    excluded: Excluído!
