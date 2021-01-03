@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Teachers</h1>
+<h1>Users</h1>
 
 <table>
   <thead>
@@ -11,12 +11,12 @@
   </thead>
 
   <tbody>
-    <% @teachers.each do |teacher| %>
+    <% @users.each do |users| %>
       <tr>
-        <td><%= teacher.name %></td>
-        <td><%= link_to 'Show', teacher %></td>
-        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
-        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= users.name %></td>
+        <td><%= link_to 'Show', users %></td>
+        <td><%= link_to 'Edit', edit_user_path(users) %></td>
+        <td><%= link_to 'Destroy', users, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Teacher', new_teacher_path %>
+<%= link_to 'New User', new_user_path %>

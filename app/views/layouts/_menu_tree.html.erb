@@ -1,0 +1,26 @@
+<% if m["children"].size > 0 %>
+    <li class="no-padding">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-light">
+            <i class="material-icons"><%= m["icon"] %></i>
+            <span class="menu-title"><%= m["name"] %></span>
+          </a>
+          <div class="collapsible-body" >
+            <ul class="collapsible" data-collapsible="accordion">
+              <% m["children"].sort_by{|a| a["position"] || 0 }.each do |mm| %>
+                  <%= render partial: "layouts/menu_tree", locals: {m: mm},cached: true %>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+<% else %>
+    <li class="bold">
+      <a href="<%= m["url"] %>" target="_self" >
+        <i class="material-icons"><%= m["icon"] %></i>
+        <span class="menu-title"><%= m["name"] %></span>
+      </a>
+    </li>
+<% end %>

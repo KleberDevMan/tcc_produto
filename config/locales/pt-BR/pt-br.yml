@@ -189,6 +189,8 @@ pt-BR:
     list_all: Listar todos
     destroy: Excluir
     delete: Excluir
+    save: Salvar
+
   breadcrumb:
     home: Início
     show: Visualizar
@@ -212,3 +214,7 @@ pt-BR:
     created: Cadastrado!
     updated: Atualizado!
     excluded: Excluído!
+
+  # texts/labels/titles generics
+  texts:
+    register: Cadastro

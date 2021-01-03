@@ -143,3 +143,9 @@ pt-BR:
       not_saved:
         one: 'Não foi possível salvar %{resource}: 1 erro'
         other: 'Não foi possível salvar %{resource}: %{count} erros.'
+
+  texts:
+    devise:
+      password_requirements: Requisitos de senha
+      requirements_to_create_password: Para criar uma nova senha, você deve atender a todos os seguintes requisitos
+      biography_description: Conte-nos um pouco sobre você. Sua profissão, escolaridade, habilidades...

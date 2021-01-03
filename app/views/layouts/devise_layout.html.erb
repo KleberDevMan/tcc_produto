@@ -26,17 +26,17 @@
   <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application' %>
   <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">
-  <%#= render partial: 'layouts/css_validations' %>
+  <%= render partial: 'layouts/css_validations' %>
   <%= yield :header %>
 </head>
 
 <body class="vertical  light  ">
 <div class="wrapper">
 
-  <%= render partial: 'layouts/topbar' %>
-  <%= render partial: 'layouts/sidebar_left' %>
+  <%#= render partial: 'layouts/topbar' %>
+  <%#= render partial: 'layouts/sidebar_left' %>
 
-  <main role="main" class="main-content">
+  <main>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12">
@@ -127,7 +127,7 @@
 <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'application' %>
 <%= render partial: 'layouts/js_notification' %>
-<%#= render partial: 'layouts/js_validations' %>
+<%= render partial: 'layouts/js_validations' %>
 <%= yield(:footer) %>
 </body>
 </html>

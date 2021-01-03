@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   add_breadcrumb I18n.t('breadcrumb.home'), '/'
   before_action :set_default_breadcrumbs, only: [:index, :show, :edit, :update, :new, :create]
 
+  layout :set_layout
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }
@@ -65,5 +67,12 @@ class ApplicationController < ActionController::Base
   # Retorna nome da ultima action
   def last_action
     Rails.application.routes.recognize_path(request.referrer)[:action]
+  end
+
+  # Define o layout da tela de login/cadastro
+  def set_layout
+    if devise_controller? #&& resource_class == Admin
+      "devise_layout"
+    end
   end
 end
