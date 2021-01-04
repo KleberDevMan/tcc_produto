@@ -1,26 +1,79 @@
-<h2>Log in</h2>
+<!--<h2>Log inK</h2>-->
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<!--  <div class="field">-->
+<!--    <%#= f.label :email %><br />-->
+<%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :password %><br />-->
+<%#= f.password_field :password, autocomplete: "current-password" %>
+<!--  </div>-->
+
+<%# if devise_mapping.rememberable? %>
+<!--  <div class="field">-->
+    <%#= f.check_box :remember_me %>
+    <%#= f.label :remember_me %>
+<!--  </div>-->
+<%# end %>
+
+<!--  <div class="actions">-->
+<%#= f.submit "Log in" %>
+<!--  </div>-->
+<%# end %>
+
+<%#= render "devise/shared/links" %>
+
+<div class="wrapper vh-100">
+  <div class="row align-items-center h-100">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "col-lg-3 col-md-4 col-10 mx-auto text-center needs-validation", novalidate: '' }) do |f| %>
+      <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="<%= root_path %>">
+        <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+          <g>
+            <polygon class="st0" points="78,105 15,105 24,87 87,87 	"></polygon>
+            <polygon class="st0" points="96,69 33,69 42,51 105,51 	"></polygon>
+            <polygon class="st0" points="78,33 15,33 24,15 87,15 	"></polygon>
+          </g>
+        </svg>
+      </a>
+      <h1 class="h6 mb-3">Sign in</h1>
+
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :email, class: 'sr-only' %>
+        <%= f.email_field :email, class: 'form-control form-control-lg', required: true, placeholder: "Endereço de email" %>
+        <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, class: 'sr-only' %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg', required: true, minlength: 6, placeholder: "Senha" %>
+        <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+        <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="checkbox mb-3">
+          <label>
+            <%= f.check_box :remember_me %>
+            <%= t 'activerecord.attributes.user.remember_me' %>
+          </label>
+        </div>
+      <% end %>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit"><%= t 'buttons.enter' %></button>
+
+      <hr class="mt-4">
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <a href="<%= new_password_path(resource_name) %>">Esqueceu a senha?</a>
+        </div>
+        <div class="col-md-6">
+          <a href="<%= new_registration_path(resource_name) %>">Primeiro acesso?</a>
+        </div>
+      </div>
+
+      <p class="mt-5 mb-3 text-muted">© 2021</p>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   add_breadcrumb I18n.t('breadcrumb.home'), '/'
   before_action :set_default_breadcrumbs, only: [:index, :show, :edit, :update, :new, :create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   layout :set_layout
 
@@ -74,5 +75,9 @@ class ApplicationController < ActionController::Base
     if devise_controller? #&& resource_class == Admin
       "devise_layout"
     end
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :telephone, :biography])
   end
 end

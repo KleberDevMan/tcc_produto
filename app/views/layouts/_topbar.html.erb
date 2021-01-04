@@ -25,8 +25,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item" href="#">Profile</a>
-<!--        <a class="dropdown-item" href="#">Settings</a>-->
-        <a class="dropdown-item text-danger" href="#">Sair</a>
+        <%= link_to 'Sair', destroy_user_session_path, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item text-danger' %>
       </div>
     </li>
   </ul>

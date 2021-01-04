@@ -190,6 +190,7 @@ pt-BR:
     destroy: Excluir
     delete: Excluir
     save: Salvar
+    enter: Entrar
 
   breadcrumb:
     home: Início
@@ -199,6 +200,7 @@ pt-BR:
     new: Cadastrar
     create: Cadastrar
     index: Listagem
+
   # CanCan
   unauthorized:
     manage:
@@ -218,3 +220,6 @@ pt-BR:
   # texts/labels/titles generics
   texts:
     register: Cadastro
+    fill_this_field: Preencha este campo por favor
+    looks_good: Parece bom!
+    solve_the_following_problems: Resolva os problemas a seguir
