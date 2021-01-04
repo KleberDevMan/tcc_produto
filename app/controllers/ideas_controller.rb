@@ -1,4 +1,7 @@
 class IdeasController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   # GET /ideas

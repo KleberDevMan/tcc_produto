@@ -68,7 +68,7 @@ ActiveRecord::Base.transaction do
 
     ProfileUser.destroy_all
     ActiveRecord::Base.connection.reset_pk_sequence!('profile_users')
-    ProfileUser.create([profile_id: 1, user_id: 1])
+    ProfileUser.create({ profile_id: 1, user_id: User.first.id })
 
     puts "success"
   rescue => error

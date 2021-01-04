@@ -1,4 +1,7 @@
 class MenusController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   # load_and_authorize_resource
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
   before_action :set_combos, only: [:new, :edit, :update, :create]
