@@ -23,13 +23,13 @@ class Menu < ApplicationRecord
 
   validates :name, :icon, :url, presence: true
 
-  before_create :set_status
+  before_create :set_active
 
   def to_s
     self.name
   end
 
-  def set_status
+  def set_active
     self.active = true
   end
 end

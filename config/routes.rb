@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'msg_errors/denied'
   resources :menus
   resources :profiles
 

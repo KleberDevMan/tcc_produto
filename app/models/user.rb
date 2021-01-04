@@ -28,7 +28,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :ideas, foreign_key: :ideializer_id
+  has_many :profile_users
+  has_many :profiles, through: :profile_users
+  has_many :profile_menus, through: :profiles
+  has_many :menus, through: :profile_menus
 
-  enumerize :role, in: [:admin, :archiver, :ideializer, :collaborator], predicates: true, default: :ideializer
   enumerize :type_collaborator, in: [:developer, :facilitator], predicates: true
 end

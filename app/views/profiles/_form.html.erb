@@ -21,22 +21,74 @@
     <%= form.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.check_box :active %>
-  </div>
-
-  <div class="field">
-    <%= form.label :permissions %>
-    <%= form.text_field :permissions %>
-  </div>
+<!--  <div class="field">-->
+    <%#= form.label :active %>
+    <%#= form.check_box :active %>
+<!--  </div>-->
 
   <div class="field">
     <%= form.label :namespace %>
     <%= form.text_field :namespace %>
   </div>
 
+  <!--  <div class="field">-->
+  <%#= form.label :permissions %>
+  <%#= form.text_field :permissions %>
+  <!--  </div>-->
+
+  <div class="row">
+    <div class="col-sm-12">
+      <a id="check-all" href="javascript:void(0);"><%= t 'texts.check_all' %></a>
+      <a id="uncheck-all" style='display: none' href="javascript:void(0);"><%= t 'texts.uncheck_all' %></a>
+    </div>
+  </div>
+
+  <% @controllers.each do |c| %>
+    <div class="col-md-12 mb-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <strong class="card-title mb-0"><%= c[:controller] %></strong> <br> <br>
+          <div class="custom-control custom-checkbox mb-2">
+            <div class="row">
+              <% c[:metodos].sort.each do |m| %>
+                <div class="col-sm-6 col-md-2">
+                  <% if @profile.permissions.present? %>
+                    <label><%= check_box_tag "permissoes[#{c[:controller]}][#{m}]", true, @profile.permissions["#{c[:controller]}"].present? ? @profile.permissions["#{c[:controller]}"]["#{m}"].present? ? true : false : false %>
+                      <span><%= t m %></span>
+                    </label>
+                  <% else %>
+                    <label><%= check_box_tag "permissoes[#{c[:controller]}][#{m}]", true, false %>
+                      <span><%= t m %></span>
+                    </label>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+<% end %>
+
+<% content_for :footer do %>
+  <script>
+      $(document).ready(function() {
+          $('#check-all').click(function(){
+              $(this).hide();
+              $('#uncheck-all').show();
+              $("input:checkbox").attr('checked', true);
+          });
+          $('#uncheck-all').click(function(){
+              $(this).hide();
+              $('#check-all').show();
+              $("input:checkbox").attr('checked', false);
+          });
+      });
+  </script>
 <% end %>

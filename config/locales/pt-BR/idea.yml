@@ -19,3 +19,7 @@ pt-BR:
       status:
         public: Pública
         private: Privada
+  texts:
+    idea:
+      my_ideas: Minhas ideias
+      wall_of_ideas: Minhas ideias

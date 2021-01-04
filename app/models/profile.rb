@@ -18,10 +18,10 @@ class Profile < ApplicationRecord
 
   validates :name, presence: true
 
-  before_create :set_status
+  before_create :set_active
 
-  def set_status
-    self.status = true
+  def set_active
+    self.active = true
   end
 
   def to_s
