@@ -4,11 +4,11 @@ pt-BR:
       teacher: Docente
       teachers: Docentes
     attributes:
-      course:
+      teacher:
         name: Nome
         status: Status
   enumerize:
-    course:
+    teacher:
       status:
         active: Ativo
         inactive: Inativo

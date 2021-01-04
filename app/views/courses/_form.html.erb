@@ -1,50 +1,39 @@
-<div class="col-12">
-  <h2 class="page-title">Curso</h2>
+<%= form_with(model: course, html: { class: "needs-validation", novalidate: '' }) do |form| %>
 
-  <div class="card-deck">
-    <div class="card shadow mb-4">
-      <% if course.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
-          <ul>
-            <% course.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="card-deck">
-    <div class="card shadow mb-4">
-      <div class="card-body">
-        <%= form_with(model: course) do |form| %>
-          <div class="form-group row">
-            <%= form.label :name, class: 'col-sm-3 col-form-label' %>
-            <div class="col-sm-9">
-              <%= form.text_field :name, class: 'form-control', placeholder: "Sistemas de Informação" %>
-            </div>
-          </div>
-<!--          <fieldset class="form-group">-->
-<!--            <div class="row">-->
-<!--              <label class="col-form-label col-sm-3 pt-0">Status</label>-->
-<!--              <div class="col-sm-9">-->
-                <%# Course.status.options.each do |status| %>
-                  <%#= form.radio_button :status, status.last, class: 'form-check form-check-inline', checked: status.last == 'active', disabled: (course.new_record? and status.last == 'inative') %>
-                  <%#= form.label :status, status.first, value: status.last, class: 'mr-3' %>
-                <%# end %>
-<!--              </div>-->
-<!--            </div>-->
-<!--          </fieldset>-->
-<!--          <div class="col-md-6 text-right">-->
-<!--            <button type="button" class="btn btn-primary">Save Change</button>-->
-<!--          </div>-->
-          <div class="form-group mb-2 text-right">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-          </div>
+  <% if course.errors.any? %>
+    <div id="error_explanation">
+      <h5>
+        <%= t 'texts.solve_the_following_problems' %>:
+      </h5>
+      <ul>
+        <% course.errors.each do |error| %>
+          <li class="text-danger"><%= error.full_message %></li>
         <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h2 class="mb-2 mt-4"><%= t 'activerecord.models.courses' %></h2>
+        <p class="mb-4">Lista de cursos que irá aparecer no momento de cadastrar trabalhos acadêmicos.</p>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: 'form-control', required: true %>
+            <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="form-row">
+          <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary">Savar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

@@ -1,10 +1,10 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.order('updated_at desc').page params[:page]
   end
 
   # GET /teachers/1
@@ -28,7 +28,7 @@ class TeachersController < ApplicationController
 
     respond_to do |format|
       if @teacher.save
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
+        format.html { redirect_to teachers_path, notice: 'Teacher was successfully created.' }
         format.json { render :show, status: :created, location: @teacher }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TeachersController < ApplicationController
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
+        format.html { redirect_to teachers_path, notice: 'Teacher was successfully updated.' }
         format.json { render :show, status: :ok, location: @teacher }
       else
         format.html { render :edit }
@@ -56,8 +56,20 @@ class TeachersController < ApplicationController
   def destroy
     @teacher.destroy
     respond_to do |format|
-      format.html { redirect_to teachers_url, notice: 'Teacher was successfully destroyed.' }
+      format.html { redirect_to teachers_path, notice: 'Teacher was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def toggle_status
+    if @teacher.status.inactive?
+      if @teacher.update(status: :active)
+        redirect_to teachers_path, notice: t('notice.activated')
+      end
+    elsif @teacher.status.active?
+      if @teacher.update(status: :inactive)
+        redirect_to teachers_path, notice: t('notice.disabled')
+      end
     end
   end
 

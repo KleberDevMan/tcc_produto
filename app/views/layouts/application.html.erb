@@ -26,7 +26,7 @@
   <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application' %>
   <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">
-  <%#= render partial: 'layouts/css_validations' %>
+  <%= render partial: 'layouts/css_validations' %>
   <%= yield :header %>
 </head>
 
@@ -122,12 +122,12 @@
 <script src='/templates/tinydash/light/js/jquery.stickOnScroll.js'></script>
 <script src="/templates/tinydash/light/js/tinycolor-min.js"></script>
 <script src="/templates/tinydash/light/js/config.js"></script>
-<script src="/templates/tinydash/light/js/apps.js"></script>
+<!--<script src="/templates/tinydash/light/js/apps.js"></script>-->
 
 <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'application' %>
 <%= render partial: 'layouts/js_notification' %>
-<%#= render partial: 'layouts/js_validations' %>
+<%= render partial: 'layouts/js_validations' %>
 <%= yield(:footer) %>
 </body>
 </html>

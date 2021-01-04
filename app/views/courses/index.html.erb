@@ -69,20 +69,18 @@
 
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-12">
+    <div class="col-sm-12 col-md-10">
       <div class="row align-items-center my-4">
         <div class="col">
           <h2 class="h3 mb-0 page-title">Cursos</h2>
         </div>
         <div class="col-auto">
-<!--          <button type="button" class="btn btn-secondary"><span class="fe fe-trash fe-12 mr-2"></span>Delete</button>-->
           <a href="<%= new_course_path %>" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-2"></span>Adicionar</a>
         </div>
       </div>
-      <!-- table -->
       <div class="card shadow">
         <div class="card-body">
-          <table class="table table-borderless table-hover table-sm">
+          <table class="table table-hover table-sm">
             <thead>
             <tr>
               <th>Nome</th>
@@ -91,22 +89,21 @@
             </tr>
             </thead>
             <tbody>
-<!--            <tr>-->
               <% @courses.each do |course| %>
               <tr>
-                <td class="text-muted"><strong><%= course.name %></strong></td>
-                <td class="text-muted">
+                <td><strong><%= course.name %></strong></td>
+                <td>
                   <% if course.status.active? %>
                     <!--                  <span class="text-primary">Ativo</span>-->
-                    <span class="badge badge-pill badge-primary">Ativo</span>
+                    <span class="text-success">Ativo</span>
                   <% else %>
-                    <span class="badge badge-pill badge-danger">Inativo</span>
+                    <span class="text-danger">Inativo</span>
                     <!--                  <span class="text-danger">Inativo</span>-->
                   <% end %>
                 </td>
                 <td>
                   <div class="dropdown">
-                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="text-muted sr-only">Action</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr<%= course.id %>">
@@ -115,30 +112,30 @@
                         <% if course.status.active? %>
                           <span class="text-danger">Inativar</span>
                         <% else %>
-                          <span class="text-primary">Ativar</span>
+                          <span class="text-success">Ativar</span>
                         <% end %>
                       </a>
+                      <% if course.academic_works_count == 0 %>
+                        <%= link_to 'Excluir', course, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
+                      <% end %>
                     </div>
                   </div>
                 </td>
               </tr>
             <% end %>
 
-<!--              <td class="text-muted">13/09/2020</td>-->
-
-<!--              <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                <span class="text-muted sr-only">Action</span>-->
-<!--              </button>-->
-<!--                <div class="dropdown-menu dropdown-menu-right">-->
-<!--                  <a class="dropdown-item" href="#">Edit</a>-->
-<!--                  <a class="dropdown-item" href="#">Remove</a>-->
-<!--                  <a class="dropdown-item" href="#">Assign</a>-->
-<!--                </div>-->
-<!--              </td>-->
             </tr>
 
             </tbody>
           </table>
+
+
+
+
+
+
+
+
         </div>
       </div>
 
@@ -159,3 +156,5 @@
     </div>
   </div>
 </div>
+
+

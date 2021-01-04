@@ -32,8 +32,8 @@
 class AcademicWork < ApplicationRecord
   extend Enumerize
 
-  belongs_to :teacher
-  belongs_to :course
+  belongs_to :teacher, counter_cache: true
+  belongs_to :course, counter_cache: true
 
   validates :title, :teacher_id, presence: true
 

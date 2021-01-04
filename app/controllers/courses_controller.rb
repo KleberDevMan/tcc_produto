@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to courses_path, notice: 'Course was successfully created.' }
+        format.html { redirect_to courses_path, notice: t('notice.created') }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to courses_path, notice: 'Course was successfully updated.' }
+        format.html { redirect_to courses_path, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      format.html { redirect_to courses_url, notice: t('notice.excluded') }
       format.json { head :no_content }
     end
   end
@@ -67,11 +67,11 @@ class CoursesController < ApplicationController
   def toggle_status
     if @course.status.inactive?
       if @course.update(status: :active)
-        redirect_to courses_url, notice: 'Ativado!'
+        redirect_to courses_url, notice: t('notice.activated')
       end
     elsif @course.status.active?
       if @course.update(status: :inactive)
-        redirect_to courses_url, notice: 'Desativado!'
+        redirect_to courses_url, notice: t('notice.disabled')
       end
     end
   end

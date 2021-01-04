@@ -20,6 +20,7 @@ pt-BR:
         institution: Instituição
         course_id: Curso
         teacher_id: Orientador
+#        teacher: Orientador
         document: Documento
   enumerize:
     academic_work:

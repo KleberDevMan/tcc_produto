@@ -1,22 +1,39 @@
-<%= form_with(model: teacher) do |form| %>
+<%= form_with(model: teacher, html: { class: "needs-validation", novalidate: '' }) do |form| %>
+
   <% if teacher.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
-
+      <h5>
+        <%= t 'texts.solve_the_following_problems' %>:
+      </h5>
       <ul>
         <% teacher.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li class="text-danger"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h2 class="mb-2 mt-4"><%= t 'activerecord.models.teachers' %></h2>
+        <p class="mb-4">Lista de docentes que irá aparecer no momento de cadastrar trabalhos acadêmicos.</p>
 
-  <div class="actions">
-    <%= form.submit %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: 'form-control', required: true %>
+            <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="form-row">
+          <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary">Savar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

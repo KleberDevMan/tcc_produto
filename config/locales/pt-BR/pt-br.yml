@@ -216,6 +216,8 @@ pt-BR:
     created: Cadastrado!
     updated: Atualizado!
     excluded: Excluído!
+    activated: Ativado!
+    disabled: Desativado!
 
   # texts/labels/titles generics
   texts:
