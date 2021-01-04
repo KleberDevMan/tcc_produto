@@ -2,9 +2,12 @@
   <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
     <i class="fe fe-menu navbar-toggler-icon"></i>
   </button>
-  <form class="form-inline mr-auto searchform text-muted">
-    <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Type something..." aria-label="Search">
-  </form>
+  <% if @profiles_s.include? 'admin' or @profiles_s.include? 'collaborator' %>
+    <form class="form-inline mr-auto searchform text-muted">
+      <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Buscar uma ideia..." aria-label="Search">
+    </form>
+  <% end %>
+
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
@@ -24,7 +27,7 @@
               </span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" href="<%= settings_users_path %>">Configurações</a>
         <%= link_to 'Sair', destroy_user_session_path, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item text-danger' %>
       </div>
     </li>

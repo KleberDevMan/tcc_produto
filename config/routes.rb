@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'msg_errors/denied'
+  get 'pages/denied'
+  get 'pages/homepage'
+
   resources :menus
   resources :profiles
 
@@ -32,9 +34,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users do
     collection do
-      get "alterar_perfil"
+      get 'settings'
     end
   end
 
-  root "courses#index"
+  root 'pages#homepage'
 end

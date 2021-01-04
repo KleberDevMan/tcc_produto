@@ -5,13 +5,14 @@ class ApplicationController < ActionController::Base
   add_breadcrumb I18n.t('breadcrumb.home'), '/'
   before_action :set_default_breadcrumbs, only: [:index, :show, :edit, :update, :new, :create]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_profiles_s
 
   layout :set_layout
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden }
-      format.html { render "/msg_errors/denied", layout: 'devise_layout', alert: I18n.t('unauthorized.manage.all') }
+      format.html { render "/pages/denied", layout: 'devise_layout', alert: I18n.t('unauthorized.manage.all') }
     end
   end
 
@@ -78,5 +79,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :telephone, :biography])
+  end
+
+  def set_profiles_s
+    @profiles_s = current_user.present? ? current_user.profiles.map(&:namespace) : []
   end
 end

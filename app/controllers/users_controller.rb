@@ -68,6 +68,10 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: t('notice.excluded')
   end
 
+  def settings
+    @user = current_user
+  end
+
   private
 
   def set_combos
