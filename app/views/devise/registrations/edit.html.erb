@@ -131,7 +131,8 @@
                   <% end %>
 
                   <div class="form-group">
-                    <%= f.label :password %> <i>(Deixe em branco se não quiser alterá-lo)</i><br/>
+                    <%= f.label :password %>
+                    <div class="small text-muted">Deixe em branco se não quiser alterá-lo</div>
                     <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', minlength: 6 %>
                     <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
                     <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
@@ -144,7 +145,7 @@
                   </div>
                   <div class="form-group">
                     <%= f.label :current_password %>
-                    <i>(Precisamos de sua senha atual para confirmar suas alterações)</i><br/>
+                    <div class="small text-muted">Precisamos de sua senha atual para confirmar suas alterações</div>
                     <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control', required: true, minlength: 6 %>
                     <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
                     <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
@@ -183,7 +184,7 @@
 
                       </div>
                       <div class="col mb-2">
-                        <%= link_to "Apagar minha conta", registration_path(resource_name), data: { confirm: t('notice.are_you_sure') }, method: :delete, class: 'btn mb-2 btn-outline-light' %>
+                        <%= link_to "Apagar minha conta", registration_path(resource_name), data: { confirm: t('notice.are_you_sure') }, method: :delete, class: 'btn mb-2 btn-outline-danger' %>
                       </div>
                     </div>
 
