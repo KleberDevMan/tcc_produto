@@ -34,4 +34,14 @@ class User < ApplicationRecord
   has_many :menus, through: :profile_menus, dependent: :destroy
 
   enumerize :type_collaborator, in: [:developer, :facilitator], predicates: true
+
+  after_create :set_profile_idealize
+
+  def set_profile_idealize
+    profile_idealizer = Profile.find_by namespace: 'ideializer'
+
+    if profile_idealizer
+      ProfileUser.create user_id: self.id, profile_id: profile_idealizer.id
+    end
+  end
 end

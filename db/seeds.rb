@@ -31,22 +31,22 @@ ActiveRecord::Base.transaction do
                        description: 'Administrador do sistema',
                        active: true,
                        namespace: 'admin',
-                       permissions: {} },
+                       permissions: {"AcademicWorksController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","update":"true"},"CoursesController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","toggle_status":"true","update":"true"},"IdeasController":{"create":"true","destroy":"true","edit":"true","index":"true","my_ideas":"true","new":"true","show":"true","update":"true"},"IdeaCategoriesController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","update":"true"},"TeachersController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","toggle_status":"true","update":"true"},"MenusController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","update":"true"},"ProfilesController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","update":"true"},"UsersController":{"alterar_perfil":"true","create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","update":"true"}} },
                      { name: 'Arquivador',
                        description: 'Gerencia os trabalhos acadêmicos',
                        active: true,
                        namespace: 'archiver',
-                       permissions: {} },
+                       permissions: {"AcademicWorksController":{"create":"true","destroy":"true","edit":"true","index":"true","new":"true","show":"true","update":"true"}} },
                      { name: 'Idealizador',
                        description: 'Compartilha ideias',
                        active: true,
                        namespace: 'ideializer',
-                       permissions: {} },
+                       permissions: {"IdeasController":{"create":"true","destroy":"true","edit":"true","index":"true","my_ideas":"true","new":"true","show":"true","update":"true"},"UsersController":{"alterar_perfil":"true","destroy":"true","edit":"true","show":"true","update":"true"}} },
                      { name: 'Colaborador',
                        description: 'Colabora com o desenvolvimento de ideias',
                        active: true,
                        namespace: 'collaborator',
-                       permissions: {} },
+                       permissions: {"IdeasController":{"create":"true","destroy":"true","edit":"true","index":"true","my_ideas":"true","new":"true","show":"true","update":"true"}} },
                    ])
 
     ProfileMenu.destroy_all
@@ -66,9 +66,9 @@ ActiveRecord::Base.transaction do
       ]
     )
 
-    ProfileUser.destroy_all
-    ActiveRecord::Base.connection.reset_pk_sequence!('profile_users')
-    ProfileUser.create({ profile_id: 1, user_id: User.first.id })
+    # ProfileUser.destroy_all
+    # ActiveRecord::Base.connection.reset_pk_sequence!('profile_users')
+    # ProfileUser.create({ profile_id: 1, user_id: User.first.id })
 
     puts "success"
   rescue => error
