@@ -23,7 +23,7 @@
         <div class="col-md-6">
           <div class="row align-items-center my-2">
             <div class="col">
-              <strong>Completed</strong><br/>
+              <strong>TCC</strong><br/>
               <span class="my-0 text-muted small">+85%</span>
             </div>
             <div class="col-auto">
@@ -37,7 +37,7 @@
           </div>
           <div class="row align-items-center my-2">
             <div class="col">
-              <strong>Processing</strong><br/>
+              <strong>Pesquisa</strong><br/>
               <span class="my-0 text-muted small">+60%</span>
             </div>
             <div class="col-auto">
@@ -51,7 +51,7 @@
           </div>
           <div class="row align-items-center my-2">
             <div class="col">
-              <strong>Assigned</strong>
+              <strong>Extensão</strong>
               <div class="my-0 text-muted small">+2%</div>
             </div>
             <div class="col-auto">
@@ -63,39 +63,25 @@
               </div>
             </div>
           </div>
-          <div class="row align-items-center my-2">
-            <div class="col">
-              <strong>Pending</strong>
-              <div class="my-0 text-muted small">+6%</div>
-            </div>
-            <div class="col-auto">
-              <strong>26</strong>
-            </div>
-            <div class="col-3">
-              <div class="progress" style="height: 4px;">
-                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div> <!-- .col-md-12 -->
+        </div>
       </div>
       <div class="row items-align-center my-4  d-none d-lg-flex">
         <div class="col-md">
           <ul class="nav nav-pills justify-content-start">
             <li class="nav-item">
-              <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">All
+              <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Todos
                 <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-muted px-2" href="#">Pending
+              <a class="nav-link text-muted px-2" href="#">TCC
                 <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-muted px-2" href="#">Processing
+              <a class="nav-link text-muted px-2" href="#">Pesquisa
                 <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-muted px-2" href="#">Completed
+              <a class="nav-link text-muted px-2" href="#">Extensão
                 <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
             </li>
           </ul>
@@ -193,5 +179,7 @@
   <script src="/templates/tinydash/light/js/jquery.sparkline.min.js"></script>
   <script src="/templates/tinydash/light/js/apexcharts.min.js"></script>
   <script src="/templates/tinydash/light/js/apexcharts.custom.js"></script>
+<!--  <script src="/templates/tinydash/light/js/graphic_academic_works.js"></script>-->
+  <%= javascript_pack_tag 'graphic_academic_works' %>
   <!--  <script src="/templates/tinydash/light/js/apps.js"></script>-->
 <% end %>
