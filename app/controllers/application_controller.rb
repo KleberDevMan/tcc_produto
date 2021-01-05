@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
+  protected
 
   # Breadcrumbs generic
   def set_default_breadcrumbs
@@ -73,12 +73,17 @@ class ApplicationController < ActionController::Base
   # Define o layout da tela de login/cadastro
   def set_layout
     if devise_controller? #&& resource_class == Admin
-      "devise_layout"
+      if params[:controller] == 'devise/registrations' and params[:action] == 'edit'
+        "application"
+      else
+        "devise_layout"
+      end
     end
   end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :telephone, :biography])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :telephone, :biography])
   end
 
   def set_profiles_s

@@ -32,11 +32,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :users do
-    collection do
-      get 'settings'
-    end
-  end
+  resources :users
 
   root 'pages#homepage'
 end

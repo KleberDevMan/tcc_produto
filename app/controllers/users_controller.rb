@@ -34,8 +34,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    add_breadcrumb "Visualizar", user_path(@user) if last_action.eql? 'show'
-    add_breadcrumb "Alterar", edit_user_path(@user)
+    redirect_to edit_user_registration_path, layout
+    # add_breadcrumb "Visualizar", user_path(@user) if last_action.eql? 'show'
+    # add_breadcrumb "Alterar", edit_user_path(@user)
   end
 
   # POST /users
@@ -67,10 +68,10 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_url, notice: t('notice.excluded')
   end
-
-  def settings
-    @user = current_user
-  end
+  #
+  # def security
+  #   @user = current_user
+  # end
 
   private
 

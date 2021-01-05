@@ -1,43 +1,205 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!--<h2>Edit <%#= resource_name.to_s.humanize %></h2>-->
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<!--  <div class="field">-->
+<!--    <%#= f.label :email %><br/>-->
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<!--  </div>-->
+
+  <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+<!--    <div>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></div>-->
+  <%# end %>
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>-->
+    <%#= f.password_field :password, autocomplete: "new-password" %>
+    <%# if @minimum_password_length %>
+<!--      <br/>-->
+<!--      <em><%#= @minimum_password_length %> characters minimum</em>-->
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :password_confirmation %><br/>-->
+    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>-->
+    <%#= f.password_field :current_password, autocomplete: "current-password" %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= f.submit "Update" %>
+<!--  </div>-->
+<%# end %>
+
+<!--<h3>Cancel my account</h3>-->
+
+<!--<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
+
+<%#= link_to "Back", :back %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-8">
+      <h2 class="h3 mb-4 page-title">Configurações</h2>
+      <div class="my-4">
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home" aria-selected="true">Perfil</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#security" role="tab" aria-controls="profile" aria-selected="false">Avançadas</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "needs-validation", novalidate: '' }) do |f| %>
+              <div class="row mt-5 align-items-center">
+                <div class="col-md-3 text-center mb-5">
+                  <div class="avatar avatar-xl">
+                    <img src="/templates/tinydash/light/assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row align-items-center">
+                    <div class="col-md-7">
+                      <h4 class="mb-1"><%= resource.name %></h4>
+                      <!--                  <p class="small mb-3"><span class="badge badge-dark">New York, USA</span></p>-->
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-md-7">
+                      <p class="text-muted"> <%= resource.biography %> </p>
+                    </div>
+                    <div class="col">
+                      <p class="small mb-0 text-muted"> <%= resource.email %> </p>
+                      <!--                  <p class="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>-->
+                      <p class="small mb-0 text-muted"> <%= resource.telephone %> </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control', required: true %>
+                <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, class: 'form-control', required: true %>
+                  <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <%= f.label :telephone %>
+                  <%= f.text_field :telephone, class: 'form-control', maxlength: 14, required: true, "data-placeholder": "(__) _ ____-____", "data-mask": "(00) 0 0000-0000", autocomplete: "off", placeholder: "(__) _ ____-____" %>
+                  <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                </div>
+              </div>
+
+              <!--          <div class="form-group">-->
+              <!--            <label for="inputAddress5">Address</label>-->
+              <!--            <input type="text" class="form-control" id="inputAddress5" placeholder="P.O. Box 464, 5975 Eget Avenue">-->
+              <!--          </div>-->
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <%= f.label :biography %>
+                  <p class="small text-muted mb-2"> <%= t 'texts.devise.biography_description' %> </p>
+                  <%= f.text_area :biography, class: 'form-control', rows: 4, required: true %>
+                  <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                </div>
+              </div>
+
+
+              <hr class="my-4">
+              <div class="row mb-4 ">
+                <div class="col-md-6">
+
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Atualmente aguardando confirmação para: <%= resource.unconfirmed_email %></div>
+                  <% end %>
+
+                  <div class="form-group">
+                    <%= f.label :password %> <i>(Deixe em branco se não quiser alterá-lo)</i><br/>
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', minlength: 6 %>
+                    <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                    <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :password_confirmation %>
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', minlength: 6 %>
+                    <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                    <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :current_password %>
+                    <i>(Precisamos de sua senha atual para confirmar suas alterações)</i><br/>
+                    <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control', required: true, minlength: 6 %>
+                    <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                    <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <p class="mb-2"><%= t 'texts.devise.password_requirements' %></p>
+                  <p class="small text-muted mb-2"> <%= t 'texts.devise.requirements_to_create_password' %>: </p>
+                  <ul class="small text-muted pl-4 mb-0">
+                    <% if @minimum_password_length %>
+                      <li> Minimum <%= @minimum_password_length %> characters</li>
+                    <% end %><br/>
+                  </ul>
+
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            <% end %>
+          </div>
+          <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row mb-4">
+              <div class="col-md-12">
+                <div class="card shadow mb-3 h-auto">
+                  <div class="card-body py-3">
+
+                    <div class="row align-items-center">
+                      <div class="col-md-7 mb-2">
+
+                        <p class="text-muted mb-2"> Apagar minha conta </p>
+                        <ul class="small text-muted pl-4 mb-0">
+                          <li>Todas os seus dados, incluído ideias cadastradas, serão permanetemente apagados</li>
+                          <li>Essa é uma ação irreversível</li>
+                        </ul>
+
+                      </div>
+                      <div class="col mb-2">
+                        <%= link_to "Apagar minha conta", registration_path(resource_name), data: { confirm: t('notice.are_you_sure') }, method: :delete, class: 'btn mb-2 btn-outline-light' %>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--        <form>-->
+
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
