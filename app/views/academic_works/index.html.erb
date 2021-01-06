@@ -14,159 +14,204 @@
         </div>
       </div>
 
-      <div class="row align-items-center my-4">
-        <div class="col-md-6">
-          <!--          <div id="chart-box">-->
-          <!--            <div id="donutChartWidget"></div>-->
-          <!--          </div>-->
-          <canvas id="chart"></canvas>
-        </div>
-        <div class="col-md-6">
-          <div class="row align-items-center my-2">
-            <div class="col">
-              <strong>TCC</strong><br/>
-              <span class="my-0 text-muted small">+63%</span>
-            </div>
-            <div class="col-auto">
-              <strong class="my-0">1200</strong>
-            </div>
-            <div class="col-3">
-              <div class="progress" style="height: 4px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 63%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row align-items-center my-2">
-            <div class="col">
-              <strong>Pesquisa</strong><br/>
-              <span class="my-0 text-muted small">+20%</span>
-            </div>
-            <div class="col-auto">
-              <strong>80</strong>
-            </div>
-            <div class="col-3">
-              <div class="progress" style="height: 4px;">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row align-items-center my-2">
-            <div class="col">
-              <strong>Extensão</strong>
-              <div class="my-0 text-muted small">+17%</div>
-            </div>
-            <div class="col-auto">
-              <strong>262</strong>
-            </div>
-            <div class="col-3">
-              <div class="progress" style="height: 4px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+      <% if @academic_works.length == 0 and !params[:q].present? %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card shadow">
+              <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+                <h6 class="">Não há itens cadastrados.</h6>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row items-align-center my-4  d-none d-lg-flex">
-        <div class="col-md">
-          <ul class="nav nav-pills justify-content-start">
-            <li class="nav-item">
-              <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Todos
-                <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-muted px-2" href="#">TCC
-                <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-muted px-2" href="#">Pesquisa
-                <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-muted px-2" href="#">Extensão
-                <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
-            </li>
-          </ul>
+      <% else %>
+        <div class="row align-items-center my-4">
+          <div class="col-md-6">
+            <!--          <div id="chart-box">-->
+            <!--            <div id="donutChartWidget"></div>-->
+            <!--          </div>-->
+            <canvas id="chart"></canvas>
+          </div>
+          <div class="col-md-6">
+            <div class="row align-items-center my-2">
+              <div class="col">
+                <strong>TCC</strong><br/>
+                <span class="my-0 text-muted small">+63%</span>
+              </div>
+              <div class="col-auto">
+                <strong class="my-0">1200</strong>
+              </div>
+              <div class="col-3">
+                <div class="progress" style="height: 4px;">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 63%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-center my-2">
+              <div class="col">
+                <strong>Pesquisa</strong><br/>
+                <span class="my-0 text-muted small">+20%</span>
+              </div>
+              <div class="col-auto">
+                <strong>80</strong>
+              </div>
+              <div class="col-3">
+                <div class="progress" style="height: 4px;">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-center my-2">
+              <div class="col">
+                <strong>Extensão</strong>
+                <div class="my-0 text-muted small">+17%</div>
+              </div>
+              <div class="col-auto">
+                <strong>262</strong>
+              </div>
+              <div class="col-3">
+                <div class="progress" style="height: 4px;">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-auto ml-auto text-right">
-<!--                  <span class="small bg-white border py-1 px-2 rounded mr-2">-->
-<!--                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>-->
-<!--                    <span class="text-muted">Status : <strong>Pending</strong></span>-->
-<!--                  </span>-->
-          <span class="small bg-white border py-1 px-2 rounded mr-2">
+
+        <%= search_form_for @q do |f| %>
+          <%= f.hidden_field :work_type_eq %>
+<!--          <div class="search_index">-->
+<!--            <div class="input-field">-->
+              <%#= f.label :nome_cont, "Buscar" %>
+              <%#= f.search_field :nome_cont %>
+<!--              <%#= button_tag( :class => "btn azul-to white-text") do %> <i class="material-icons">search</i><span>Buscar</span><%# end %>-->
+<!--            </div>-->
+<!--            <div class="other-field">-->
+              <%#= link_to "Limpar busca", tipo_folgas_path, {class: "btn white waves-effect grey-text text-darken-3"} %>
+<!--            </div>-->
+<!--          </div>-->
+
+          <div class="row items-align-center my-4  d-none d-lg-flex">
+          <div class="col-md">
+            <ul class="nav nav-pills justify-content-start">
+              <li class="nav-item">
+                <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Todos
+                  <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-muted px-2" href="#">TCC
+                  <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-muted px-2" href="#">Pesquisa
+                  <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-muted px-2" href="#">Extensão
+                  <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-auto ml-auto text-right">
+            <span class="small bg-white border py-1 px-2 rounded mr-2">
                     <a href="<%= academic_works_path %>" class="text-muted"><i class="fe fe-x mx-1"></i></a>
                     <span class="text-muted">Filtrado</span>
                   </span>
-          <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
-            <span class="fe fe-filter fe-16 text-muted"></span>
-          </button>
-<!--          <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>-->
+            <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
+              <span class="fe fe-filter fe-16 text-muted"></span>
+            </button>
+            <!--          <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>-->
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <!-- table -->
-          <table class="table border table-hover bg-white">
-            <thead>
-            <tr role="row">
-              <th><%= t 'activerecord.attributes.academic_work.title' %></th>
-              <th><%= t 'activerecord.attributes.academic_work.course' %></th>
-              <th><%= t 'activerecord.attributes.academic_work.author' %></th>
-              <th><%= t 'activerecord.attributes.academic_work.teacher_id' %></th>
-              <th><%= t 'activerecord.attributes.academic_work.defense_date' %></th>
-              <th><%= t 'activerecord.attributes.academic_work.work_type' %></th>
-              <th>Ação</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @academic_works.each do |academic_work| %>
-              <tr>
-                <td>
-                  <a href="<%= academic_work_path academic_work %>"><strong><%= truncate academic_work.title %></strong></a>
-                </td>
-                <td><%= truncate academic_work.course.name %></td>
-                <td><%= truncate academic_work.author %></td>
-                <td><%= truncate academic_work.teacher.name %></td>
-                <td><%= academic_work.defense_date %></td>
-                <td>
-                  <% if academic_work.work_type.tcc? %>
-                    <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
-                  <% elsif academic_work.work_type.tcc? %>
-                    <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
-                  <% else %>
-                    <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
-                  <% end %>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="text-muted sr-only">Action</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" style="">
-                      <a class="dropdown-item" href="<%= academic_work_path academic_work %>">Visualizar</a>
-                      <a class="dropdown-item" href="<%= edit_academic_work_path academic_work %>">Editar</a>
-                      <%= link_to 'Excluir', academic_work, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
-                    </div>
-                  </div>
-                </td>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- table -->
+            <table class="table border table-hover bg-white">
+              <thead>
+              <tr role="row">
+                <th><%= t 'activerecord.attributes.academic_work.title' %></th>
+                <th><%= t 'activerecord.attributes.academic_work.course' %></th>
+                <th><%= t 'activerecord.attributes.academic_work.author' %></th>
+                <th><%= t 'activerecord.attributes.academic_work.teacher_id' %></th>
+                <th><%= t 'activerecord.attributes.academic_work.defense_date' %></th>
+                <th><%= t 'activerecord.attributes.academic_work.work_type' %></th>
+                <th>Ação</th>
               </tr>
-            <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+              <% @academic_works.each do |academic_work| %>
+                <tr>
+                  <td>
+                    <a href="<%= academic_work_path academic_work %>"><strong><%= truncate academic_work.title %></strong></a>
+                  </td>
+                  <td><%= truncate academic_work.course.name %></td>
+                  <td><%= truncate academic_work.author %></td>
+                  <td><%= truncate academic_work.teacher.name %></td>
+                  <td><%= academic_work.defense_date %></td>
+                  <td>
+                    <% if academic_work.work_type.tcc? %>
+                      <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
+                    <% elsif academic_work.work_type.tcc? %>
+                      <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
+                    <% else %>
+                      <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="text-muted sr-only">Action</span>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" style="">
+                        <a class="dropdown-item" href="<%= academic_work_path academic_work %>">Visualizar</a>
+                        <a class="dropdown-item" href="<%= edit_academic_work_path academic_work %>">Editar</a>
+                        <%= link_to 'Excluir', academic_work, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
 
-          <!--          <nav aria-label="Table Paging" class="my-3">-->
-          <!--            <ul class="pagination justify-content-end mb-0">-->
-          <!--              <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-          <!--              <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
-          <!--              <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-          <!--              <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-          <!--              <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
-          <!--            </ul>-->
-          <!--          </nav>-->
+            <!--          <nav aria-label="Table Paging" class="my-3">-->
+            <!--            <ul class="pagination justify-content-end mb-0">-->
+            <!--              <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+            <!--              <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+            <!--              <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+            <!--              <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+            <!--              <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+            <!--            </ul>-->
+            <!--          </nav>-->
 
-          <%= paginate @academic_works %>
+            <%= paginate @academic_works %>
 
+          </div>
         </div>
-      </div>
+
+        <% content_for :busca do %>
+          <%= search_form_for @q do |f| %>
+
+<!--            <div class="form-row">-->
+<!--              <div class="form-group col-md-4">-->
+<!--                <%#= f.label :work_type %> <br>-->
+                <%# AcademicWork.work_type.options.each do |type| %>
+                  <%#= f.radio_button :work_type, type.last, class: 'form-check form-check-inline', checked: type.last == 'tcc', id: type.last %>
+                  <%#= f.label :work_type, type.first, value: type.last, class: 'mr-3', for: type.last %>
+                <%# end %>
+<!--              </div>-->
+<!--            </div>-->
+
+<!--              <div class="col s12">-->
+                <%#= f.submit "Buscar", class: "search-adv-btn azul-to" %>
+<!--              </div>-->
+
+
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

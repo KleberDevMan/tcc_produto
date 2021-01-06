@@ -5,19 +5,23 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
-  <!-- Simple bar CSS -->
+
+<!--  CSS generic from template-->
   <link rel="stylesheet" href="/templates/tinydash/light/css/simplebar.css">
-  <!-- Fonts CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <!-- Icons CSS -->
   <link rel="stylesheet" href="/templates/tinydash/light/css/feather.css">
-  <!-- Date Range Picker CSS -->
   <link rel="stylesheet" href="/templates/tinydash/light/css/daterangepicker.css">
-  <!-- App CSS -->
   <link rel="stylesheet" href="/templates/tinydash/light/css/app-light.css" id="lightTheme">
   <link rel="stylesheet" href="/templates/tinydash/light/css/app-dark.css" id="darkTheme" disabled>
-
+<!--  CSS specific toast-->
   <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">
+<!--  CSS especifico validations-->
+  <link rel="stylesheet" href="/templates/tinydash/light/css/select2.css">
+  <link rel="stylesheet" href="/templates/tinydash/light/css/dropzone.css">
+  <link rel="stylesheet" href="/templates/tinydash/light/css/uppy.min.css">
+  <link rel="stylesheet" href="/templates/tinydash/light/css/jquery.steps.css">
+  <link rel="stylesheet" href="/templates/tinydash/light/css/jquery.timepicker.css">
+  <link rel="stylesheet" href="/templates/tinydash/light/css/quill.snow.css">
 
   <title>TccProduto</title>
   <%= csrf_meta_tags %>
@@ -25,8 +29,8 @@
 
   <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application' %>
-  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">
-  <%= render partial: 'layouts/css_validations' %>
+<!--  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">-->
+  <%#= render partial: 'layouts/css_validations' %>
   <%= yield :header %>
 </head>
 
@@ -41,13 +45,15 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <%= yield %>
+
+          <%= render partial: 'layouts/sidenav-right' %>
         </div>
       </div>
     </div>
-    <%= render partial: 'layouts/modal_notification' %>
   </main>
 
 </div>
+<!--JS generic from template-->
 <script src="/templates/tinydash/light/js/jquery.min.js"></script>
 <script src="/templates/tinydash/light/js/popper.min.js"></script>
 <script src="/templates/tinydash/light/js/moment.min.js"></script>
@@ -59,10 +65,17 @@
 <script src="/templates/tinydash/light/js/config.js"></script>
 <!--<script src="/templates/tinydash/light/js/apps.js"></script>-->
 
+<!--JS specific js_notification-->
+<%= render partial: 'layouts/js_notification' %>
+
+<!--JS specific validations-->
+<%= render partial: 'layouts/js_validations' %>
+
+<!--JS specific sidenav-right-->
+
+
 <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'application' %>
-<%= render partial: 'layouts/js_notification' %>
-<%= render partial: 'layouts/js_validations' %>
 <%= yield(:footer) %>
 </body>
 </html>
