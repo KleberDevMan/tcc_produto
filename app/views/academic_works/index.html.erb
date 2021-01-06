@@ -16,9 +16,9 @@
 
       <div class="row align-items-center my-4">
         <div class="col-md-6">
-<!--          <div id="chart-box">-->
-<!--            <div id="donutChartWidget"></div>-->
-<!--          </div>-->
+          <!--          <div id="chart-box">-->
+          <!--            <div id="donutChartWidget"></div>-->
+          <!--          </div>-->
           <canvas id="chart"></canvas>
         </div>
         <div class="col-md-6">
@@ -88,17 +88,18 @@
           </ul>
         </div>
         <div class="col-md-auto ml-auto text-right">
-                  <span class="small bg-white border py-1 px-2 rounded mr-2">
-                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>
-                    <span class="text-muted">Status : <strong>Pending</strong></span>
-                  </span>
+<!--                  <span class="small bg-white border py-1 px-2 rounded mr-2">-->
+<!--                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>-->
+<!--                    <span class="text-muted">Status : <strong>Pending</strong></span>-->
+<!--                  </span>-->
           <span class="small bg-white border py-1 px-2 rounded mr-2">
-                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>
-                    <span class="text-muted">April 14, 2020 - May 13, 2020</span>
+                    <a href="<%= academic_works_path %>" class="text-muted"><i class="fe fe-x mx-1"></i></a>
+                    <span class="text-muted">Filtrado</span>
                   </span>
           <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
-            <span class="fe fe-filter fe-16 text-muted"></span></button>
-          <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
+            <span class="fe fe-filter fe-16 text-muted"></span>
+          </button>
+<!--          <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>-->
         </div>
       </div>
       <div class="row">
@@ -119,7 +120,9 @@
             <tbody>
             <% @academic_works.each do |academic_work| %>
               <tr>
-                <td><a href="<%= academic_work_path academic_work %>"><strong><%= truncate academic_work.title %></strong></a></td>
+                <td>
+                  <a href="<%= academic_work_path academic_work %>"><strong><%= truncate academic_work.title %></strong></a>
+                </td>
                 <td><%= truncate academic_work.course.name %></td>
                 <td><%= truncate academic_work.author %></td>
                 <td><%= truncate academic_work.teacher.name %></td>
@@ -150,15 +153,15 @@
             </tbody>
           </table>
 
-<!--          <nav aria-label="Table Paging" class="my-3">-->
-<!--            <ul class="pagination justify-content-end mb-0">-->
-<!--              <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-<!--              <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
-<!--              <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--              <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--              <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
-<!--            </ul>-->
-<!--          </nav>-->
+          <!--          <nav aria-label="Table Paging" class="my-3">-->
+          <!--            <ul class="pagination justify-content-end mb-0">-->
+          <!--              <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+          <!--              <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+          <!--              <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+          <!--              <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+          <!--              <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+          <!--            </ul>-->
+          <!--          </nav>-->
 
           <%= paginate @academic_works %>
 
@@ -183,8 +186,8 @@
   <script src="/templates/tinydash/light/js/gauge.min.js"></script>
   <script src="/templates/tinydash/light/js/jquery.sparkline.min.js"></script>
   <script src="/templates/tinydash/light/js/apexcharts.min.js"></script>
-<!--  <script src="/templates/tinydash/light/js/apexcharts.custom.js"></script>-->
-<!--  <script src="/templates/tinydash/light/js/graphic_academic_works.js"></script>-->
+  <!--  <script src="/templates/tinydash/light/js/apexcharts.custom.js"></script>-->
+  <!--  <script src="/templates/tinydash/light/js/graphic_academic_works.js"></script>-->
   <%= javascript_pack_tag 'graphic_academic_works' %>
   <!--  <script src="/templates/tinydash/light/js/apps.js"></script>-->
 <% end %>

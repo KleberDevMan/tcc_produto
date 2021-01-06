@@ -7,7 +7,8 @@ class AcademicWorksController < ApplicationController
   # GET /academic_works
   # GET /academic_works.json
   def index
-    @academic_works = AcademicWork.order('updated_at desc').page(params[:page]).per(3)
+    @q = AcademicWork.ransack(params[:q], default_order: { updated_at: :desc })
+    @academic_works = @q.result.page(params[:page]).per(6)
   end
 
   # GET /academic_works/1
