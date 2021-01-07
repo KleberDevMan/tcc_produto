@@ -7,7 +7,20 @@ class AcademicWorksController < ApplicationController
   # GET /academic_works
   # GET /academic_works.json
   def index
+    all = AcademicWork.all
+    @qtd_all = all.count
+
+    @qtd_tcc = all.select {|aw| aw.work_type == 'tcc'}.count
+    @persent_tcc = @qtd_tcc*100/@qtd_all
+
+    @qtd_search = all.select {|aw| aw.work_type == 'search'}.count
+    @persent_search = @qtd_search*100/@qtd_all
+
+    @qtd_extension = all.select {|aw| aw.work_type == 'extension'}.count
+    @persent_extention = @qtd_extension*100/@qtd_all
+
     @q = AcademicWork.ransack(params[:q], default_order: { updated_at: :desc })
+
     @academic_works = @q.result.page(params[:page]).per(6)
   end
 

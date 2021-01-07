@@ -36,42 +36,42 @@
             <div class="row align-items-center my-2">
               <div class="col">
                 <strong>TCC</strong><br/>
-                <span class="my-0 text-muted small">+63%</span>
+                <span class="my-0 text-muted small"><%= @persent_tcc %>%</span>
               </div>
               <div class="col-auto">
-                <strong class="my-0">1200</strong>
+                <strong class="my-0"><%= @qtd_tcc %></strong>
               </div>
               <div class="col-3">
                 <div class="progress" style="height: 4px;">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 63%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-success" role="progressbar" style="width: <%= @persent_tcc %>%" aria-valuenow="<%= @persent_tcc %>" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
             <div class="row align-items-center my-2">
               <div class="col">
                 <strong>Pesquisa</strong><br/>
-                <span class="my-0 text-muted small">+20%</span>
+                <span class="my-0 text-muted small"><%= @persent_search %>%</span>
               </div>
               <div class="col-auto">
-                <strong>80</strong>
+                <strong><%= @qtd_search %></strong>
               </div>
               <div class="col-3">
                 <div class="progress" style="height: 4px;">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: <%= @persent_search %>%" aria-valuenow="<%= @persent_search %>" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
             <div class="row align-items-center my-2">
               <div class="col">
                 <strong>Extensão</strong>
-                <div class="my-0 text-muted small">+17%</div>
+                <div class="my-0 text-muted small"><%= @persent_extention %>%</div>
               </div>
               <div class="col-auto">
-                <strong>262</strong>
+                <strong><%= @qtd_extension %></strong>
               </div>
               <div class="col-3">
                 <div class="progress" style="height: 4px;">
-                  <div class="progress-bar bg-warning" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= @persent_extention %>%" aria-valuenow="<%= @persent_extention %>" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -80,49 +80,66 @@
 
         <%= search_form_for @q do |f| %>
           <%= f.hidden_field :work_type_eq %>
-<!--          <div class="search_index">-->
-<!--            <div class="input-field">-->
-              <%#= f.label :nome_cont, "Buscar" %>
-              <%#= f.search_field :nome_cont %>
-<!--              <%#= button_tag( :class => "btn azul-to white-text") do %> <i class="material-icons">search</i><span>Buscar</span><%# end %>-->
-<!--            </div>-->
-<!--            <div class="other-field">-->
-              <%#= link_to "Limpar busca", tipo_folgas_path, {class: "btn white waves-effect grey-text text-darken-3"} %>
-<!--            </div>-->
-<!--          </div>-->
+          <!--          <div class="search_index">-->
+          <!--            <div class="input-field">-->
+          <%#= f.label :nome_cont, "Buscar" %>
+          <%#= f.search_field :nome_cont %>
+          <!--              <%#= button_tag( :class => "btn azul-to white-text") do %> <i class="material-icons">search</i><span>Buscar</span><%# end %>-->
+          <!--            </div>-->
+          <!--            <div class="other-field">-->
+          <%#= link_to "Limpar busca", tipo_folgas_path, {class: "btn white waves-effect grey-text text-darken-3"} %>
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="row items-align-center my-4  d-none d-lg-flex">
-          <div class="col-md">
-            <ul class="nav nav-pills justify-content-start">
-              <li class="nav-item">
-                <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Todos
-                  <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-muted px-2" href="#">TCC
-                  <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-muted px-2" href="#">Pesquisa
-                  <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-muted px-2" href="#">Extensão
-                  <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-auto ml-auto text-right">
-            <span class="small bg-white border py-1 px-2 rounded mr-2">
-                    <a href="<%= academic_works_path %>" class="text-muted"><i class="fe fe-x mx-1"></i></a>
-                    <span class="text-muted">Filtrado</span>
+          <div class="row items-align-center my-4">
+            <div class="col-md">
+              <ul class="nav nav-pills justify-content-start">
+                <%#= link_to '?q%5Bfolga_tipo_folga_id_eq%5D=&q%5Bstatus_eq%5D=solicitada', class: 'btn orange notification' do %>
+<!--                  <span>Pendências</span>-->
+                  <%# if @usufruir_folgas.select {|s| s.status.solicitada?}.count > 0 %>
+<!--                    <span class="badge"><%#= @usufruir_folgas.select {|s| s.status.solicitada?}.count %></span>-->
+                  <%# end %>
+                <%# end %>
+                <%#= link_to 'Todas', '/usufruir_folgas/index_chefe', class: 'btn blue' %>
+                <%#= link_to '#', class: 'sidenav-trigger btn azul-to', data: {target: "slide-out-right"} do %>
+<!--                  <i class="material-icons left">search</i>Filtro avançado-->
+                <%# end %>
+
+                <li class="nav-item">
+                  <% item_selected = (params[:q].nil? or !params[:q][:work_type_eq].present?) %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path %>">Todos
+                    <span class="badge badge-pill bg-primary text-white ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_all %></span></a>
+                </li>
+                <li class="nav-item">
+                  <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'tcc') %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: {work_type_eq: 'tcc' }) %>">TCC
+                    <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_tcc %></span></a>
+                </li>
+                <li class="nav-item">
+                  <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'search') %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: {work_type_eq: 'search' }) %>">Pesquisa
+                    <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_search %></span></a>
+                </li>
+                <li class="nav-item">
+                  <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'extension') %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: {work_type_eq: 'extension' }) %>">Extensão
+                    <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_extension %></span></a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-auto ml-auto text-right">
+            <% if params[:q].present? %>
+              <span class="small bg-white border py-1 px-2 rounded mr-2">
+                    <a href="<%= academic_works_path %>" class="text-muted"><i class="fe fe-x mx-1"> </i></a>
+                    <a href="#" data-toggle="modal" data-target=".modal-slide" class="text-muted ml-2"><span class="">Filtrado</span></a>
                   </span>
-            <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
-              <span class="fe fe-filter fe-16 text-muted"></span>
-            </button>
-            <!--          <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>-->
+                <% end %>
+              <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
+                <span class="fe fe-filter fe-16 text-muted"></span>
+              </button>
+              <!--          <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>-->
+            </div>
           </div>
-        </div>
         <% end %>
 
         <div class="row">
@@ -152,11 +169,11 @@
                   <td><%= academic_work.defense_date %></td>
                   <td>
                     <% if academic_work.work_type.tcc? %>
-                      <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
-                    <% elsif academic_work.work_type.tcc? %>
-                      <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
+                      <span class="dot dot-lg mr-2" style="background-color: #3AD29F;"></span><%= academic_work.work_type_text %>
+                  <% elsif academic_work.work_type.search? %>
+                      <span class="dot dot-lg mr-2" style="background-color: #2C67FF;"></span><%= academic_work.work_type_text %>
                     <% else %>
-                      <span class="dot dot-lg bg-success mr-2"></span><%= academic_work.work_type_text %>
+                      <span class="dot dot-lg mr-2" style="background-color: #EFA302;"></span><%= academic_work.work_type_text %>
                     <% end %>
                   </td>
                   <td>
@@ -194,20 +211,26 @@
         <% content_for :busca do %>
           <%= search_form_for @q do |f| %>
 
-<!--            <div class="form-row">-->
-<!--              <div class="form-group col-md-4">-->
-<!--                <%#= f.label :work_type %> <br>-->
-                <%# AcademicWork.work_type.options.each do |type| %>
-                  <%#= f.radio_button :work_type, type.last, class: 'form-check form-check-inline', checked: type.last == 'tcc', id: type.last %>
-                  <%#= f.label :work_type, type.first, value: type.last, class: 'mr-3', for: type.last %>
-                <%# end %>
-<!--              </div>-->
+            <div class="form-group my-4">
+              <p class="mb-2">
+                <strong>Pesquisa por termos</strong>
+              </p>
+              <div class="">
+                <%= f.text_field :title_or_author_or_summary_or_keyword_or_course_name_or_teacher_name_cont, class: 'form-control', placeholder: "Título, author, palavras-chave, resumo..." %>
+              </div>
+            </div>
+
+<!--            <div class="form-group my-4">-->
+<!--              <p class="mb-2">-->
+<!--                <strong>Tipo</strong>-->
+<!--              </p>-->
+              <%# AcademicWork.work_type.options.each do |type| %>
+<!--                <div class="custom-control custom-checkbox">-->
+                  <%#= f.check_box :work_type, { class: 'custom-control-input', id: type.last }, type.last, '' %>
+                  <%#= f.label :work_type, type.first, class: 'custom-control-label', for: type.last %>
+<!--                </div>-->
+              <%# end %>
 <!--            </div>-->
-
-<!--              <div class="col s12">-->
-                <%#= f.submit "Buscar", class: "search-adv-btn azul-to" %>
-<!--              </div>-->
-
 
           <% end %>
         <% end %>
@@ -246,7 +269,7 @@
               labels: ['TCC', 'Pesquisa', 'Extensão'],
               datasets: [{
                   // label: '# of Votes',
-                  data: [63, 20, 17],
+                  data: [<%= (@qtd_tcc*100)/@qtd_all %>, <%= (@qtd_search*100)/@qtd_all %>, <%= (@qtd_extension*100)/@qtd_all %>],
                   backgroundColor: [
                       '#3AD29F',
                       '#2C67FF',
