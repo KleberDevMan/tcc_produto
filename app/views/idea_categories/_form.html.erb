@@ -1,27 +1,39 @@
-<%= form_with(model: idea_category) do |form| %>
+<%= form_with(model: idea_category, html: { class: "needs-validation", novalidate: '' }) do |form| %>
+
   <% if idea_category.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(idea_category.errors.count, "error") %> prohibited this idea_category from being saved:</h2>
-
+      <h5>
+        <%= t 'texts.solve_the_following_problems' %>:
+      </h5>
       <ul>
         <% idea_category.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li class="text-danger"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h2 class="mb-2 mt-4"><%= t 'activerecord.models.idea_categories' %></h2>
+        <p class="mb-4">Lista de categorias que irá aparecer no momento de cadastrar uma ideia.</p>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: 'form-control', required: true %>
+            <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+          </div>
+        </div>
 
-  <div class="actions">
-    <%= form.submit %>
+        <hr class="my-4">
+        <div class="form-row">
+          <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary">Savar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

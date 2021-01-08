@@ -95,14 +95,14 @@
             <div class="col-md">
               <ul class="nav nav-pills justify-content-start">
                 <%#= link_to '?q%5Bfolga_tipo_folga_id_eq%5D=&q%5Bstatus_eq%5D=solicitada', class: 'btn orange notification' do %>
-<!--                  <span>Pendências</span>-->
-                  <%# if @usufruir_folgas.select {|s| s.status.solicitada?}.count > 0 %>
-<!--                    <span class="badge"><%#= @usufruir_folgas.select {|s| s.status.solicitada?}.count %></span>-->
-                  <%# end %>
+                <!--                  <span>Pendências</span>-->
+                <%# if @usufruir_folgas.select {|s| s.status.solicitada?}.count > 0 %>
+                <!--                    <span class="badge"><%#= @usufruir_folgas.select {|s| s.status.solicitada?}.count %></span>-->
+                <%# end %>
                 <%# end %>
                 <%#= link_to 'Todas', '/usufruir_folgas/index_chefe', class: 'btn blue' %>
                 <%#= link_to '#', class: 'sidenav-trigger btn azul-to', data: {target: "slide-out-right"} do %>
-<!--                  <i class="material-icons left">search</i>Filtro avançado-->
+                <!--                  <i class="material-icons left">search</i>Filtro avançado-->
                 <%# end %>
 
                 <li class="nav-item">
@@ -112,28 +112,28 @@
                 </li>
                 <li class="nav-item">
                   <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'tcc') %>
-                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: {work_type_eq: 'tcc' }) %>">TCC
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: { work_type_eq: 'tcc' }) %>">TCC
                     <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_tcc %></span></a>
                 </li>
                 <li class="nav-item">
                   <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'search') %>
-                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: {work_type_eq: 'search' }) %>">Pesquisa
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: { work_type_eq: 'search' }) %>">Pesquisa
                     <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_search %></span></a>
                 </li>
                 <li class="nav-item">
                   <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'extension') %>
-                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: {work_type_eq: 'extension' }) %>">Extensão
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= academic_works_path(q: { work_type_eq: 'extension' }) %>">Extensão
                     <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_extension %></span></a>
                 </li>
               </ul>
             </div>
             <div class="col-md-auto ml-auto text-right">
-            <% if params[:q].present? %>
+              <% if params[:q].present? %>
               <span class="small bg-white border py-1 px-2 rounded mr-2">
-                    <a href="<%= academic_works_path %>" class="text-muted"><i class="fe fe-x mx-1"> </i></a>
+                    <a href="<%= academic_works_path %>" class="text-muted"><i class="fe fe-x"></i></a>
                     <a href="#" data-toggle="modal" data-target=".modal-slide" class="text-muted ml-2"><span class="">Filtrado</span></a>
                   </span>
-                <% end %>
+              <% end %>
               <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
                 <span class="fe fe-filter fe-16 text-muted"></span>
               </button>
@@ -170,7 +170,7 @@
                   <td>
                     <% if academic_work.work_type.tcc? %>
                       <span class="dot dot-lg mr-2" style="background-color: #3AD29F;"></span><%= academic_work.work_type_text %>
-                  <% elsif academic_work.work_type.search? %>
+                    <% elsif academic_work.work_type.search? %>
                       <span class="dot dot-lg mr-2" style="background-color: #2C67FF;"></span><%= academic_work.work_type_text %>
                     <% else %>
                       <span class="dot dot-lg mr-2" style="background-color: #EFA302;"></span><%= academic_work.work_type_text %>
@@ -210,29 +210,40 @@
 
         <% content_for :busca do %>
           <%= search_form_for @q do |f| %>
+            <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Filtros</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <i class="fe fe-x fe-12"></i>
+                    </button>
+                  </div>
 
-            <div class="form-group my-4">
-              <p class="mb-2">
-                <strong>Pesquisa por termos</strong>
-              </p>
-              <div class="">
-                <%= f.text_field :title_or_author_or_summary_or_keyword_or_course_name_or_teacher_name_cont, class: 'form-control', placeholder: "Título, author, palavras-chave, resumo..." %>
+                  <div class="modal-body">
+                    <div class="p-2">
+                      <div class="form-group my-4">
+                        <p class="mb-2">
+                          <strong>Pesquisa por termos</strong>
+                        </p>
+                        <div class="">
+                          <%= f.text_field :title_or_author_or_summary_or_keyword_or_course_name_or_teacher_name_cont, class: 'form-control', placeholder: "Título, author, palavras-chave, resumo..." %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn mb-2 btn-primary btn-block">Filtrar</button>
+                    <a href="<%= academic_works_path %>" class="btn mb-2 btn-secondary btn-block">Limpar</a>
+                  </div>
+                </div>
               </div>
             </div>
 
-<!--            <div class="form-group my-4">-->
-<!--              <p class="mb-2">-->
-<!--                <strong>Tipo</strong>-->
-<!--              </p>-->
-              <%# AcademicWork.work_type.options.each do |type| %>
-<!--                <div class="custom-control custom-checkbox">-->
-                  <%#= f.check_box :work_type, { class: 'custom-control-input', id: type.last }, type.last, '' %>
-                  <%#= f.label :work_type, type.first, class: 'custom-control-label', for: type.last %>
-<!--                </div>-->
-              <%# end %>
-<!--            </div>-->
 
           <% end %>
+
         <% end %>
       <% end %>
     </div>

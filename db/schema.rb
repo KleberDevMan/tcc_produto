@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_173321) do
+ActiveRecord::Schema.define(version: 2021_01_08_183848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 2021_01_04_173321) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "collaborations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "idea_id", null: false
+    t.boolean "quit"
+    t.datetime "collaboration_date"
+    t.datetime "withdrawal_date"
+    t.string "reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id"], name: "index_collaborations_on_idea_id"
+    t.index ["user_id"], name: "index_collaborations_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.string "status"
@@ -76,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_173321) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "ideas_count", default: 0
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -159,6 +173,8 @@ ActiveRecord::Schema.define(version: 2021_01_04_173321) do
   add_foreign_key "academic_works", "teachers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "collaborations", "ideas"
+  add_foreign_key "collaborations", "users"
   add_foreign_key "ideas", "idea_categories"
   add_foreign_key "ideas", "users", column: "ideializer_id"
   add_foreign_key "profile_menus", "menus"

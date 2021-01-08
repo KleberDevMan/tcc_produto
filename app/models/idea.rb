@@ -26,8 +26,10 @@
 class Idea < ApplicationRecord
   extend Enumerize
 
-  belongs_to :idea_category
+  belongs_to :idea_category, counter_cache: true
   belongs_to :ideializer, class_name: 'User'
+
+  has_many :collaborations
 
   enumerize :status, in: [:public, :private], predicates: true, default: :public
 end

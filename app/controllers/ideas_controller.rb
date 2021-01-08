@@ -65,17 +65,18 @@ class IdeasController < ApplicationController
   end
 
   def my_ideas
-
+    @ideas = Idea.includes(:collaborations).order(updated_at: :desc).page params[:page]
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_idea
-      @idea = Idea.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def idea_params
-      params.require(:idea).permit(:title, :description, :idea_category_id, :status, :possibility_reward, :possibility_business)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_idea
+    @idea = Idea.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def idea_params
+    params.require(:idea).permit(:title, :description, :idea_category_id, :status, :possibility_reward, :possibility_business)
+  end
 end

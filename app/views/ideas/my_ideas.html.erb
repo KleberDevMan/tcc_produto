@@ -1,1 +1,246 @@
-my ideias
+<% content_for :header do %>
+<% end %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row align-items-center my-4">
+        <div class="col">
+          <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.ideas' %></h2>
+        </div>
+        <div class="col-auto">
+          <a class="btn btn-primary" href="<%= new_idea_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %>
+          </a>
+        </div>
+      </div>
+
+      <% if @ideas.length == 0 and !params[:q].present? %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card shadow">
+              <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+                <h6 class="">Não há itens cadastrados.</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="row">
+          <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow bg-primary text-white">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-3 text-center">
+                          <span class="circle circle-sm bg-primary-light">
+                            <i class="fe fe-16 fe-shopping-bag text-white mb-0"></i>
+                          </span>
+                  </div>
+                  <div class="col pr-0">
+                    <p class="small text-light mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vendas mensais</font></font></p>
+                    <span class="h3 mb-0 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 1250 </font></font></span>
+                    <span class="small text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+ 5,5%</font></font></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-3 text-center">
+                          <span class="circle circle-sm bg-primary">
+                            <i class="fe fe-16 fe-shopping-cart text-white mb-0"></i>
+                          </span>
+                  </div>
+                  <div class="col pr-0">
+                    <p class="small text-muted mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pedidos</font></font></p>
+                    <span class="h3 mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1.869 </font></font></span>
+                    <span class="small text-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+ 16,5%</font></font></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-3 text-center">
+                          <span class="circle circle-sm bg-primary">
+                            <i class="fe fe-16 fe-filter text-white mb-0"></i>
+                          </span>
+                  </div>
+                  <div class="col">
+                    <p class="small text-muted mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Conversão</font></font></p>
+                    <div class="row align-items-center no-gutters">
+                      <div class="col-auto">
+                        <span class="h3 mr-2 mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 86,6% </font></font></span>
+                      </div>
+                      <div class="col-md-12 col-lg">
+                        <div class="progress progress-sm mt-2" style="height:3px">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-3 text-center">
+                          <span class="circle circle-sm bg-primary">
+                            <i class="fe fe-16 fe-activity text-white mb-0"></i>
+                          </span>
+                  </div>
+                  <div class="col">
+                    <p class="small text-muted mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pedidos AVG</font></font></p>
+                    <span class="h3 mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 80</font></font></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%= search_form_for @q do |f| %>
+          <div class="row items-align-center my-4">
+            <div class="col-md">
+              <ul class="nav nav-pills justify-content-start">
+                <li class="nav-item">
+                  <% item_selected = (params[:q].nil? or !params[:q][:work_type_eq].present?) %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path %>">Todos
+                    <span class="badge badge-pill bg-primary text-white ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_all %></span></a>
+                </li>
+                <li class="nav-item">
+                  <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'tcc') %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path(q: { work_type_eq: 'tcc' }) %>">TCC
+                    <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_tcc %></span></a>
+                </li>
+                <li class="nav-item">
+                  <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'search') %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path(q: { work_type_eq: 'search' }) %>">Pesquisa
+                    <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_search %></span></a>
+                </li>
+                <li class="nav-item">
+                  <% item_selected = (params[:q].present? and params[:q][:work_type_eq].present? and params[:q][:work_type_eq].eql? 'extension') %>
+                  <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path(q: { work_type_eq: 'extension' }) %>">Extensão
+                    <span class="badge badge-pill ml-2 <%= item_selected ? 'bg-primary text-white' : 'bg-white text-muted' %>"><%= @qtd_extension %></span></a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-auto ml-auto text-right">
+              <% if params[:q].present? %>
+              <span class="small bg-white border py-1 px-2 rounded mr-2">
+                    <a href="<%= ideas_path %>" class="text-muted"><i class="fe fe-x"></i></a>
+                    <a href="#" data-toggle="modal" data-target=".modal-slide" class="text-muted ml-2"><span class="">Filtrado</span></a>
+                  </span>
+              <% end %>
+              <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
+                <span class="fe fe-filter fe-16 text-muted"></span>
+              </button>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table border table-hover bg-white">
+              <thead>
+              <tr role="row">
+                <th><%= t 'activerecord.attributes.idea.title' %></th>
+                <th><%= t 'activerecord.attributes.idea.description' %></th>
+                <th><%= t 'activerecord.attributes.idea.idea_category_id' %></th>
+                <th><%= t 'activerecord.attributes.idea.possibility_business' %></th>
+                <th><%= t 'activerecord.attributes.idea.possibility_reward' %></th>
+                <th><%= t 'activerecord.attributes.idea.status' %></th>
+                <th>Ação</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @ideas.each do |idea| %>
+                <tr>
+                  <td>
+                    <a href="<%= idea_path idea %>"><strong><%= truncate idea.title %></strong></a>
+                  </td>
+                  <td><%= truncate idea.description %></td>
+                  <td><%= truncate idea.idea_category.name %></td>
+                  <td><%= idea.possibility_business %></td>
+                  <td><%= idea.possibility_reward %></td>
+                  <td>
+                    <% if idea.status.public? %>
+                      <span class="dot dot-lg mr-2" style="background-color: #3AD29F;"></span><%= idea.status_text %>
+                    <% elsif idea.status.private? %>
+                      <span class="dot dot-lg mr-2" style="background-color: #2C67FF;"></span><%= idea.status_text %>
+                    <% else %>
+                      <span class="dot dot-lg mr-2" style="background-color: #EFA302;"></span><%= idea.status_text %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="text-muted sr-only">Action</span>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" style="">
+                        <a class="dropdown-item" href="<%= idea_path idea %>">Visualizar</a>
+                        <a class="dropdown-item" href="<%= edit_idea_path idea %>">Editar</a>
+                        <%= link_to_if idea.collaborations.any?, 'Excluir', idea, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+            <%= paginate @ideas %>
+
+          </div>
+        </div>
+
+        <% content_for :busca do %>
+          <%= search_form_for @q do |f| %>
+            <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Filtros</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <i class="fe fe-x fe-12"></i>
+                    </button>
+                  </div>
+
+                  <div class="modal-body">
+                    <div class="p-2">
+                      <div class="form-group my-4">
+                        <p class="mb-2">
+                          <strong>Pesquisa por termos</strong>
+                        </p>
+                        <div class="">
+                          <%= f.text_field :title_or_author_or_summary_or_keyword_or_course_name_or_teacher_name_cont, class: 'form-control', placeholder: "Título, author, palavras-chave, resumo..." %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn mb-2 btn-primary btn-block">Filtrar</button>
+                    <a href="<%= ideas_path %>" class="btn mb-2 btn-secondary btn-block">Limpar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          <% end %>
+
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
