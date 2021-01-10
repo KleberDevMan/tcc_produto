@@ -12,7 +12,7 @@
 
 <p>
   <strong>Idea category:</strong>
-  <%= @idea.idea_category_id %>
+  <%= @idea.categories.map{|c| c.name} %>
 </p>
 
 <p>
@@ -29,6 +29,3 @@
   <strong>Possibility business:</strong>
   <%= @idea.possibility_business %>
 </p>
-
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>

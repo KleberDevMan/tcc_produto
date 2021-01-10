@@ -14,6 +14,7 @@ pt-BR:
         ideializer_id: Idealizador
         created_at: Criado em
         updated_at: Atualizado em
+        idea_category_idea_ids: Categorias
   enumerize:
     idea:
       status:

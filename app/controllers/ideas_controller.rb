@@ -7,7 +7,8 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @q = Idea.ransack(params[:q], default_order: { updated_at: :desc })
+    @ideas = @q.result.page(params[:page]).per(6)
   end
 
   # GET /ideas/1
@@ -31,7 +32,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+        format.html { redirect_to my_ideas_ideas_path, notice: t('notice.created') }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new }
@@ -45,7 +46,7 @@ class IdeasController < ApplicationController
   def update
     respond_to do |format|
       if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
+        format.html { redirect_to my_ideas_ideas_path, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @idea }
       else
         format.html { render :edit }
@@ -59,13 +60,16 @@ class IdeasController < ApplicationController
   def destroy
     @idea.destroy
     respond_to do |format|
-      format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
+      format.html { redirect_to my_ideas_ideas_path, notice: t('notice.excluded') }
       format.json { head :no_content }
     end
   end
 
   def my_ideas
-    @ideas = Idea.includes(:collaborations).order(updated_at: :desc).page params[:page]
+    # @ideas = Idea.includes(:collaborations).order(updated_at: :desc).page params[:page]
+
+    @q = Idea.includes(:collaborations).ransack(params[:q], default_order: { updated_at: :desc })
+    @ideas = @q.result.page(params[:page]).per(6)
   end
 
   private
@@ -77,6 +81,11 @@ class IdeasController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def idea_params
-    params.require(:idea).permit(:title, :description, :idea_category_id, :status, :possibility_reward, :possibility_business)
+    params.require(:idea).permit(:title,
+                                 :description,
+                                 :ideializer_id,
+                                 :idea_category_idea_ids,
+                                 :possibility_reward,
+                                 :possibility_business)
   end
 end

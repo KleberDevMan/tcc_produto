@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_183848) do
+ActiveRecord::Schema.define(version: 2021_01_10_153733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,20 +89,26 @@ ActiveRecord::Schema.define(version: 2021_01_08_183848) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "ideas_count", default: 0
+  end
+
+  create_table "idea_category_ideas", force: :cascade do |t|
+    t.bigint "idea_id", null: false
+    t.bigint "idea_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_category_id"], name: "index_idea_category_ideas_on_idea_category_id"
+    t.index ["idea_id"], name: "index_idea_category_ideas_on_idea_id"
   end
 
   create_table "ideas", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.bigint "idea_category_id", null: false
     t.string "status"
     t.boolean "possibility_reward"
     t.boolean "possibility_business"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "ideializer_id", null: false
-    t.index ["idea_category_id"], name: "index_ideas_on_idea_category_id"
     t.index ["ideializer_id"], name: "index_ideas_on_ideializer_id"
   end
 
@@ -175,7 +181,8 @@ ActiveRecord::Schema.define(version: 2021_01_08_183848) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "collaborations", "ideas"
   add_foreign_key "collaborations", "users"
-  add_foreign_key "ideas", "idea_categories"
+  add_foreign_key "idea_category_ideas", "idea_categories"
+  add_foreign_key "idea_category_ideas", "ideas"
   add_foreign_key "ideas", "users", column: "ideializer_id"
   add_foreign_key "profile_menus", "menus"
   add_foreign_key "profile_menus", "profiles"

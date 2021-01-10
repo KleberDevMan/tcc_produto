@@ -2,17 +2,17 @@
 #
 # Table name: idea_categories
 #
-#  id          :bigint           not null, primary key
-#  ideas_count :integer          default(0)
-#  name        :string
-#  status      :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :bigint           not null, primary key
+#  name       :string
+#  status     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 class IdeaCategory < ApplicationRecord
   extend Enumerize
 
-  has_many :ideas
+  has_many :idea_category_ideas
+  has_many :ideas, through: :idea_category_ideas
 
   validates :name, presence: true
 
