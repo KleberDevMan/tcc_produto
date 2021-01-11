@@ -1,5 +1,59 @@
 <% content_for :header do %>
+
 <% end %>
+
+<!--<div id="chart_3"></div>-->
+<!-- widgets -->
+<div class="row">
+  <div class="col-md-4 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            <small class="text-muted mb-1">Total (públicas e privadas)</small>
+            <h3 class="card-title mb-0">108</h3>
+          </div>
+          <div class="col-4 text-right">
+            <div id="chart1"></div>
+          </div>
+        </div> <!-- /. row -->
+      </div> <!-- /. card-body -->
+    </div> <!-- /. card -->
+  </div> <!-- /. col -->
+  <div class="col-md-4 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            <small class="text-muted mb-1">Visualizações</small>
+            <h3 class="card-title mb-0">1168</h3>
+            <p class="small text-muted mb-0"><span>Última semana</span></p>
+          </div>
+          <div class="col-4 text-right">
+            <div id="chart2"></div>
+          </div>
+        </div> <!-- /. row -->
+      </div> <!-- /. card-body -->
+    </div> <!-- /. card -->
+  </div> <!-- /. col -->
+  <div class="col-md-4 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            <small class="text-muted mb-1">Conversion</small>
+            <h3 class="card-title mb-0">68</h3>
+            <p class="small text-muted mb-0"><span class="fe fe-arrow-up fe-12 text-warning"></span><span>+1.9% Last week</span>
+            </p>
+          </div>
+          <div class="col-4 text-right">
+            <span class="inlinepie"></span>
+          </div>
+        </div> <!-- /. row -->
+      </div> <!-- /. card-body -->
+    </div> <!-- /. card -->
+  </div> <!-- /. col -->
+</div>
 
 <div class="container-fluid">
   <div class="row justify-content-center">
@@ -25,95 +79,7 @@
           </div>
         </div>
       <% else %>
-        <div class="row">
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow bg-primary text-white">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-3 text-center">
-                          <span class="circle circle-sm bg-primary-light">
-                            <i class="fe fe-16 fe-shopping-bag text-white mb-0"></i>
-                          </span>
-                  </div>
-                  <div class="col pr-0">
-                    <p class="small text-light mb-0">
-                      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vendas
-                        mensais</font></font></p>
-                    <span class="h3 mb-0 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 1250 </font></font></span>
-                    <span class="small text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+ 5,5%</font></font></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-3 text-center">
-                          <span class="circle circle-sm bg-primary">
-                            <i class="fe fe-16 fe-shopping-cart text-white mb-0"></i>
-                          </span>
-                  </div>
-                  <div class="col pr-0">
-                    <p class="small text-muted mb-0">
-                      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pedidos</font></font>
-                    </p>
-                    <span class="h3 mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1.869 </font></font></span>
-                    <span class="small text-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+ 16,5%</font></font></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-3 text-center">
-                          <span class="circle circle-sm bg-primary">
-                            <i class="fe fe-16 fe-filter text-white mb-0"></i>
-                          </span>
-                  </div>
-                  <div class="col">
-                    <p class="small text-muted mb-0">
-                      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Conversão</font></font>
-                    </p>
-                    <div class="row align-items-center no-gutters">
-                      <div class="col-auto">
-                        <span class="h3 mr-2 mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 86,6% </font></font></span>
-                      </div>
-                      <div class="col-md-12 col-lg">
-                        <div class="progress progress-sm mt-2" style="height:3px">
-                          <div class="progress-bar bg-success" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-3 text-center">
-                          <span class="circle circle-sm bg-primary">
-                            <i class="fe fe-16 fe-activity text-white mb-0"></i>
-                          </span>
-                  </div>
-                  <div class="col">
-                    <p class="small text-muted mb-0">
-                      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pedidos
-                        AVG</font></font></p>
-                    <span class="h3 mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 80</font></font></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         <%= search_form_for @q, url: my_ideas_ideas_path do |f| %>
           <div class="row my-4">
@@ -137,9 +103,9 @@
                     <a href="#" class="text-muted ml-2"><span class="">Filtrado</span></a>
                   </span>
               <% end %>
-<!--              <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">-->
-<!--                <span class="fe fe-filter fe-16 text-muted"></span>-->
-<!--              </button>-->
+              <!--              <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">-->
+              <!--                <span class="fe fe-filter fe-16 text-muted"></span>-->
+              <!--              </button>-->
             </div>
           </div>
         <% end %>
@@ -147,108 +113,203 @@
         <div class="row">
           <div class="col-md-12">
             <% if @ideas.count == 0 %>
-<!--              <div class="row">-->
-<!--                <div class="col-sm-12">-->
-                  <div class="card shadow">
-                    <div class="card-body my-4 align-items-center h-100 row justify-content-center">
-                      <h6 class="">Nenhum item correspondente encontrado.</h6>
-                    </div>
-                  </div>
-<!--                </div>-->
-<!--              </div>-->
+              <!--              <div class="row">-->
+              <!--                <div class="col-sm-12">-->
+              <div class="card shadow">
+                <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+                  <h6 class="">Nenhum item correspondente encontrado.</h6>
+                </div>
+              </div>
+              <!--                </div>-->
+              <!--              </div>-->
             <% else %>
-            <table class="table border table-hover bg-white">
-              <thead>
-              <tr role="row">
-                <th><%= t 'activerecord.attributes.idea.title' %></th>
-                <th><%= t 'activerecord.attributes.idea.description' %></th>
-                <th><%= t 'activerecord.attributes.idea.idea_category_id' %></th>
-                <th><%= t 'activerecord.attributes.idea.possibility_business' %></th>
-                <th><%= t 'activerecord.attributes.idea.possibility_reward' %></th>
-                <th><%= t 'activerecord.attributes.idea.status' %></th>
-                <th>Ação</th>
-              </tr>
-              </thead>
-              <tbody>
-              <% @ideas.each do |idea| %>
-                <tr>
-                  <td>
-                    <a href="<%= idea_path idea %>"><strong><%= truncate idea.title %></strong></a>
-                  </td>
-                  <td><%= truncate idea.description %></td>
-                  <td><%= idea.categories.map(&:name) %></td>
-                  <td><%= idea.possibility_business %></td>
-                  <td><%= idea.possibility_reward %></td>
-                  <td>
-                    <% if idea.status.public? %>
-                      <span class="dot dot-lg mr-2" style="background-color: #3AD29F;"></span><%= idea.status_text %>
-                    <% elsif idea.status.private? %>
-                      <span class="dot dot-lg mr-2" style="background-color: #2C67FF;"></span><%= idea.status_text %>
-                    <% else %>
-                      <span class="dot dot-lg mr-2" style="background-color: #EFA302;"></span><%= idea.status_text %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <div class="dropdown">
-                      <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="text-muted sr-only">Action</span>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" style="">
-                        <a class="dropdown-item" href="<%= idea_path idea %>">Visualizar</a>
-                        <a class="dropdown-item" href="<%= edit_idea_path idea %>">Editar</a>
-                        <%= link_to_if idea.collaborations.any?, 'Excluir', idea, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
-                      </div>
-                    </div>
-                  </td>
+              <table class="table border table-hover bg-white">
+                <thead>
+                <tr role="row">
+                  <th><%= t 'activerecord.attributes.idea.title' %></th>
+                  <th><%= t 'activerecord.attributes.idea.description' %></th>
+                  <th><%= t 'activerecord.attributes.idea.idea_category_id' %></th>
+                  <th><%= t 'activerecord.attributes.idea.possibility_business' %></th>
+                  <th><%= t 'activerecord.attributes.idea.possibility_reward' %></th>
+                  <th><%= t 'activerecord.attributes.idea.status' %></th>
+                  <th>Ação</th>
                 </tr>
-              <% end %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                <% @ideas.each do |idea| %>
+                  <tr>
+                    <td>
+                      <a href="<%= idea_path idea %>"><strong><%= truncate idea.title %></strong></a>
+                    </td>
+                    <td><%= truncate idea.description %></td>
+                    <td><%= idea.categories.map(&:name) %></td>
+                    <td><%= idea.possibility_business %></td>
+                    <td><%= idea.possibility_reward %></td>
+                    <td>
+                      <% if idea.status.public? %>
+                        <span class="dot dot-lg mr-2" style="background-color: #3AD29F;"></span><%= idea.status_text %>
+                      <% elsif idea.status.private? %>
+                        <span class="dot dot-lg mr-2" style="background-color: #2C67FF;"></span><%= idea.status_text %>
+                      <% else %>
+                        <span class="dot dot-lg mr-2" style="background-color: #EFA302;"></span><%= idea.status_text %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="text-muted sr-only">Action</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" style="">
+                          <a class="dropdown-item" href="<%= idea_path idea %>">Visualizar</a>
+                          <a class="dropdown-item" href="<%= edit_idea_path idea %>">Editar</a>
+                          <%= link_to_if idea.collaborations.any?, 'Excluir', idea, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
 
-            <%= paginate @ideas %>
+              <%= paginate @ideas %>
 
             <% end %>
           </div>
         </div>
 
         <%# content_for :busca do %>
-          <%#= search_form_for @q do |f| %>
-<!--            <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">-->
-<!--              <div class="modal-dialog" role="document">-->
-<!--                <div class="modal-content">-->
-<!--                  <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="defaultModalLabel">Filtros</h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                      <i class="fe fe-x fe-12"></i>-->
-<!--                    </button>-->
-<!--                  </div>-->
+        <%#= search_form_for @q do |f| %>
+        <!--            <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">-->
+        <!--              <div class="modal-dialog" role="document">-->
+        <!--                <div class="modal-content">-->
+        <!--                  <div class="modal-header">-->
+        <!--                    <h5 class="modal-title" id="defaultModalLabel">Filtros</h5>-->
+        <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+        <!--                      <i class="fe fe-x fe-12"></i>-->
+        <!--                    </button>-->
+        <!--                  </div>-->
 
-<!--                  <div class="modal-body">-->
-<!--                    <div class="p-2">-->
-<!--                      <div class="form-group my-4">-->
-<!--                        <p class="mb-2">-->
-<!--                          <strong>Pesquisa por termos</strong>-->
-<!--                        </p>-->
-<!--                        <div class="">-->
-                          <%#= f.text_field :title_or_description_or_categories_name_cont, class: 'form-control', placeholder: "Título, descrição, categoria..." %>
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
+        <!--                  <div class="modal-body">-->
+        <!--                    <div class="p-2">-->
+        <!--                      <div class="form-group my-4">-->
+        <!--                        <p class="mb-2">-->
+        <!--                          <strong>Pesquisa por termos</strong>-->
+        <!--                        </p>-->
+        <!--                        <div class="">-->
+        <%#= f.text_field :title_or_description_or_categories_name_cont, class: 'form-control', placeholder: "Título, descrição, categoria..." %>
+        <!--                        </div>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
 
-<!--                  <div class="modal-footer">-->
-<!--                    <button type="submit" class="btn mb-2 btn-primary btn-block">Filtrar</button>-->
-<!--                    <a href="<%#= ideas_path %>" class="btn mb-2 btn-secondary btn-block">Limpar</a>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
+        <!--                  <div class="modal-footer">-->
+        <!--                    <button type="submit" class="btn mb-2 btn-primary btn-block">Filtrar</button>-->
+        <!--                    <a href="<%#= ideas_path %>" class="btn mb-2 btn-secondary btn-block">Limpar</a>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </div>-->
 
 
-          <%# end %>
+        <%# end %>
 
         <%# end %>
       <% end %>
     </div>
   </div>
 </div>
+
+<% content_for :footer do %>
+  <script src="/templates/tinydash/light/js/jquery.min.js"></script>
+  <script src="/templates/tinydash/light/js/popper.min.js"></script>
+  <script src="/templates/tinydash/light/js/moment.min.js"></script>
+  <script src="/templates/tinydash/light/js/bootstrap.min.js"></script>
+  <script src="/templates/tinydash/light/js/simplebar.min.js"></script>
+  <script src='/templates/tinydash/light/js/daterangepicker.js'></script>
+  <script src='/templates/tinydash/light/js/jquery.stickOnScroll.js'></script>
+  <script src="/templates/tinydash/light/js/tinycolor-min.js"></script>
+  <script src="/templates/tinydash/light/js/config.js"></script>
+  <script src="/templates/tinydash/light/js/d3.min.js"></script>
+  <script src="/templates/tinydash/light/js/topojson.min.js"></script>
+  <script src="/templates/tinydash/light/js/datamaps.all.min.js"></script>
+  <script src="/templates/tinydash/light/js/datamaps-zoomto.js"></script>
+  <script src="/templates/tinydash/light/js/datamaps.custom.js"></script>
+  <script src="/templates/tinydash/light/js/Chart.min.js"></script>
+  <script>
+      /* defind global options */
+      Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
+      Chart.defaults.global.defaultFontColor = colors.mutedColor;
+  </script>
+  <script src="/templates/tinydash/light/js/gauge.min.js"></script>
+  <script src="/templates/tinydash/light/js/jquery.sparkline.min.js"></script>
+  <script src="/templates/tinydash/light/js/apexcharts.min.js"></script>
+  <script src="/templates/tinydash/light/js/apexcharts.custom.js"></script>
+<!--  <script src="/templates/tinydash/light/js/apps.js"></script>-->
+<% end %>
+
+<% content_for :footer do %>
+  <script type="text/javascript" charset="utf-8">
+      var options1 = {
+          series: [67, 33],
+          labels: ['Públicas', 'Privadas'],
+          chart: {
+              type: 'pie',
+              width: 80,
+              // height: 80,
+              sparkline: {
+                  enabled: true
+              },
+              expandOnClick: false
+          },
+          stroke: {
+              width: 0
+          },
+          tooltip: {
+              enabled: true,
+          },
+              plotOptions: {
+                  pie: {
+                      expandOnClick: false
+                  }
+              }
+
+      };
+      var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+      chart1.render();
+
+      var options2 = {
+          series: [{
+              name: "Series 1",
+              data: [0, 1, 3, 0, 0, 1, 3]
+          }],
+          chart: {
+              type: 'line',
+              width: 50,
+              height: 35,
+              sparkline: {
+                  enabled: true
+              }
+          },
+          tooltip: {
+              fixed: {
+                  enabled: false
+              },
+              x: {
+                  show: false
+              },
+              y: {
+                  title: {
+                      formatter: function (seriesName) {
+                          return ''
+                      }
+                  }
+              },
+              marker: {
+                  show: false
+              }
+          }
+      };
+      var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+      chart2.render();
+  </script>
+<% end %>
