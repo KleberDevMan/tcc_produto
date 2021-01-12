@@ -31,4 +31,12 @@ class Idea < ApplicationRecord
   has_many :categories, through: :idea_category_ideas, source: :idea_category, class_name: "IdeaCategory"
 
   enumerize :status, in: [:public, :private], predicates: true, default: :public
+
+  def status_value_default
+    if status.nil?
+      'tcc'
+    else
+      status
+    end
+  end
 end

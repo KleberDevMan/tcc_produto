@@ -46,7 +46,7 @@
                           <span class="text-success">Ativar</span>
                         <% end %>
                       </a>
-                      <% if idea_category.ideas_count == 0 %>
+                      <% if idea_category.ideas.count == 0 %>
                         <%= link_to 'Excluir', idea_category, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
                       <% end %>
                     </div>

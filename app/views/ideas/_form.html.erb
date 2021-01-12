@@ -25,49 +25,77 @@
             <%= form.text_field :title, class: 'form-control', required: true %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
-          <div class="form-group col-md-6">
-            <%= form.label :idea_category_idea_ids %>
-<!--            <label for="multi-select2" class="">Regioes</label>-->
-<!--            <select class="form-control select2-multi" id="multi-select2">-->
-<!--              <optgroup label="Mountain Time Zone">-->
-<!--                <option value="AZ">Arizona</option>-->
-<!--                <option value="CO">Colorado</option>-->
-<!--                <option value="ID">Idaho</option>-->
-<!--                <option value="MT">Montana</option>-->
-<!--                <option value="NE">Nebraska</option>-->
-<!--                <option value="NM">New Mexico</option>-->
-<!--                <option value="ND">North Dakota</option>-->
-<!--                <option value="UT">Utah</option>-->
-<!--                <option value="WY">Wyoming</option>-->
-<!--              </optgroup>-->
-<!--              <optgroup label="Central Time Zone">-->
-<!--                <option value="AL">Alabama</option>-->
-<!--                <option value="AR">Arkansas</option>-->
-<!--                <option value="IL">Illinois</option>-->
-<!--                <option value="IA">Iowa</option>-->
-<!--                <option value="KS">Kansas</option>-->
-<!--                <option value="KY">Kentucky</option>-->
-<!--                <option value="LA">Louisiana</option>-->
-<!--                <option value="MN">Minnesota</option>-->
-<!--                <option value="MS">Mississippi</option>-->
-<!--                <option value="MO">Missouri</option>-->
-<!--                <option value="OK">Oklahoma</option>-->
-<!--                <option value="SD">South Dakota</option>-->
-<!--                <option value="TX">Texas</option>-->
-<!--                <option value="TN">Tennessee</option>-->
-<!--                <option value="WI">Wisconsin</option>-->
-<!--              </optgroup>-->
-<!--            </select>-->
-            <%= form.select :idea_category_idea_ids,
-                         options_for_select(IdeaCategory.active.map{|c| [c.name, c.id]}, idea.idea_category_idea_ids),
-                         {},
-                         {class: 'form-control select2-multi', multiple: "multiple"} %>
+          <div class="form-group col-md-6 col-sm-12">
+            <%= form.label :category_ids %>
+            <!--            <label for="multi-select2" class="">Regioes</label>-->
+            <!--            <select class="form-control select2-multi" id="multi-select2">-->
+            <!--              <optgroup label="Mountain Time Zone">-->
+            <!--                <option value="AZ">Arizona</option>-->
+            <!--                <option value="CO">Colorado</option>-->
+            <!--                <option value="ID">Idaho</option>-->
+            <!--                <option value="MT">Montana</option>-->
+            <!--                <option value="NE">Nebraska</option>-->
+            <!--                <option value="NM">New Mexico</option>-->
+            <!--                <option value="ND">North Dakota</option>-->
+            <!--                <option value="UT">Utah</option>-->
+            <!--                <option value="WY">Wyoming</option>-->
+            <!--              </optgroup>-->
+            <!--              <optgroup label="Central Time Zone">-->
+            <!--                <option value="AL">Alabama</option>-->
+            <!--                <option value="AR">Arkansas</option>-->
+            <!--                <option value="IL">Illinois</option>-->
+            <!--                <option value="IA">Iowa</option>-->
+            <!--                <option value="KS">Kansas</option>-->
+            <!--                <option value="KY">Kentucky</option>-->
+            <!--                <option value="LA">Louisiana</option>-->
+            <!--                <option value="MN">Minnesota</option>-->
+            <!--                <option value="MS">Mississippi</option>-->
+            <!--                <option value="MO">Missouri</option>-->
+            <!--                <option value="OK">Oklahoma</option>-->
+            <!--                <option value="SD">South Dakota</option>-->
+            <!--                <option value="TX">Texas</option>-->
+            <!--                <option value="TN">Tennessee</option>-->
+            <!--                <option value="WI">Wisconsin</option>-->
+            <!--              </optgroup>-->
+            <!--            </select>-->
+            <%= form.select :category_ids,
+                            options_for_select(IdeaCategory.active.map { |c| [c.name, c.id] }, idea.category_ids),
+                            {},
+                            { class: 'form-control select2-multi', multiple: "multiple" } %>
           </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-12">
             <%= form.label :description %>
             <%= form.text_area :description, class: 'form-control', rows: 4, required: true %>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="form-row form-check-inline col-md-12">
+            <div class=" col-md-6">
+              <%= form.check_box :possibility_business, class: 'form-check-input' %>
+              <%= form.label :possibility_business %>
+              <p class="text-muted"> Marque se você considerá que está ideia pode se tornar um empreendimento, algo
+                vendável ou até mesmo uma patente. </p>
+            </div>
+            <div class=" col-md-6">
+              <%= form.check_box :possibility_reward, class: 'form-check-input' %>
+              <%= form.label :possibility_reward %>
+              <p class="text-muted"> Marque se existe a possíbilidade de você recompensar monetariamente as pessoas que
+                desejam colaborar. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <%= form.label :status %> <br>
+            <% Idea.status.options.each do |type| %>
+              <%= form.radio_button :status, type.last, class: 'form-check form-check-inline', checked: type.last == idea.status_value_default, id: type.last %>
+              <%= form.label :status, type.first, value: type.last, class: 'mr-3', for: type.last %>
+            <% end %>
           </div>
         </div>
 
