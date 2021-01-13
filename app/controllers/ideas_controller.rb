@@ -69,11 +69,11 @@ class IdeasController < ApplicationController
     all = Idea.all
     @qtd_all = all.count
 
-    @qtd_publics = all.select {|aw| aw.status == 'public'}.count
-    @persent_publics = @qtd_publics*100/@qtd_all
+    @qtd_publics = all.select { |aw| aw.status == 'public' }.count
+    @persent_publics = @qtd_publics * 100 / @qtd_all
 
-    @qtd_privates = all.select {|aw| aw.status == 'private'}.count
-    @persent_privates = @qtd_privates*100/@qtd_all
+    @qtd_privates = all.select { |aw| aw.status == 'private' }.count
+    @persent_privates = @qtd_privates * 100 / @qtd_all
 
     @qtd_views = 1168 #
     @last_week = [3, 2, 7, 5, 4, 6, 8]
@@ -96,10 +96,14 @@ class IdeasController < ApplicationController
   def idea_params
     params.require(:idea).permit(:title,
                                  :description,
+                                 { category_ids: [] },
                                  :ideializer_id,
                                  :possibility_reward,
                                  :possibility_business,
                                  :status,
-                                 category_ids: [])
+                                 :problem_to_solve,
+                                 :suffering_people,
+                                 :proposed_solution,
+                                 :differential)
   end
 end

@@ -15,6 +15,10 @@ pt-BR:
         created_at: Criado em
         updated_at: Atualizado em
         category_ids: Categorias
+        problem_to_solve: O problema que se propõe a resolver
+        suffering_people: As pessoas que sofrem com esse problema
+        proposed_solution: A solução proposta
+        differential: Seu diferencial
   enumerize:
     idea:
       status:
