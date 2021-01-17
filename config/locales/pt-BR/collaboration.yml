@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      collaboration: Colaboração
+      collaborations: Colaborações
+    attributes:
+      collaboration:
+        user_id: Colaborador
+        idea_id: Ideia
+        quit: Desistiu
+        collaboration_date: Data início
+        withdrawal_date: Data fim
+        reason: Motivo
+        created_at: Criado em
+        updated_at: Atualizado em

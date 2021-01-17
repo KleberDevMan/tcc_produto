@@ -41,5 +41,11 @@ class AcademicWork < ApplicationRecord
 
   has_one_attached :document
 
-
+  def work_type_value_default
+    if work_type.nil?
+      'tcc'
+    else
+      work_type
+    end
+  end
 end

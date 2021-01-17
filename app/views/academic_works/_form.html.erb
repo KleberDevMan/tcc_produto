@@ -53,7 +53,7 @@
           <div class="form-group col-md-4">
             <%= form.label :work_type %> <br>
             <% AcademicWork.work_type.options.each do |type| %>
-              <%= form.radio_button :work_type, type.last, class: 'form-check form-check-inline', checked: type.last == 'tcc', id: type.last %>
+              <%= form.radio_button :work_type, type.last, class: 'form-check form-check-inline', checked: type.last == academic_work.work_type_value_default, id: type.last %>
               <%= form.label :work_type, type.first, value: type.last, class: 'mr-3', for: type.last %>
             <% end %>
           </div>

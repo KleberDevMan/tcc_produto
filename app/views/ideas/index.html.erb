@@ -1,39 +1,158 @@
-MURAL DE IDEAS
+<% content_for :header do %>
+<% end %>
 
-<!--<p id="notice"><%#= notice %></p>-->
+<!--<div class="container-fluid">-->
+<!--  <div class="row justify-content-center">-->
+<div class="col-12">
+  <div class="row align-items-center my-4">
+    <div class="col">
+      <h2 class="h3 mb-0 page-title" style="padding-left: 0.5rem;"><%= t 'activerecord.models.ideas' %></h2>
+    </div>
+    <div class="col-auto">
+      <a class="" href="<%= new_idea_path %>">Área administrativa</a>
+    </div>
+  </div>
 
-<!--<h1>Ideas</h1>-->
+  <% if @ideas.length == 0 and !params[:q].present? %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card shadow">
+          <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+            <h6 class="">Não há itens cadastrados.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <%= search_form_for @q do |f| %>
+      <div class="row items-align-center my-4">
+        <div class="col-md">
+          <ul class="nav nav-pills justify-content-start">
+            <li class="nav-item">
+              <% item_selected = (params[:q].nil? and !params[:quick_filter].present?) %>
+              <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path %>">Todas</a>
+            </li>
 
-<!--<table>-->
-<!--  <thead>-->
-<!--    <tr>-->
-<!--      <th>Title</th>-->
-<!--      <th>Description</th>-->
-<!--      <th>Idea category</th>-->
-<!--      <th>Status</th>-->
-<!--      <th>Possibility reward</th>-->
-<!--      <th>Possibility business</th>-->
-<!--      <th colspan="3"></th>-->
-<!--    </tr>-->
-<!--  </thead>-->
+            <li class="nav-item">
+              <% item_selected = (params[:quick_filter].eql? 'my_collaborations') %>
+              <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path(quick_filter: 'my_collaborations') %>">Minhas
+                colaborações</a>
+            </li>
 
-<!--  <tbody>-->
-    <%# @ideas.each do |idea| %>
-<!--      <tr>-->
-<!--        <td><%#= idea.title %></td>-->
-<!--        <td><%#= idea.description %></td>-->
-<!--        <td><%#= idea.idea_category_id %></td>-->
-<!--        <td><%#= idea.status %></td>-->
-<!--        <td><%#= idea.possibility_reward %></td>-->
-<!--        <td><%#= idea.possibility_business %></td>-->
-<!--        <td><%#= link_to 'Show', idea %></td>-->
-<!--        <td><%#= link_to 'Edit', edit_idea_path(idea) %></td>-->
-<!--        <td><%#= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-<!--      </tr>-->
-    <%# end %>
-<!--  </tbody>-->
-<!--</table>-->
+            <li class="nav-item">
+              <% item_selected = (params[:quick_filter].eql? 'my_ideas') %>
+              <a class="nav-link <%= item_selected ? 'bg-transparent px-2 text-primary' : 'text-muted px-2' %>" href="<%= ideas_path(quick_filter: 'my_ideas') %>">Minhas
+                ideias</a>
+            </li>
+          </ul>
+        </div>
 
-<!--<br>-->
+        <div class="col-md-auto ml-auto text-right">
+          <% if params[:q].present? %>
+              <span class="small bg-white border py-1 px-2 rounded mr-2">
+                    <a href="<%= ideas_path %>" class="text-muted"><i class="fe fe-x"></i></a>
+                    <a href="#" data-toggle="modal" data-target=".modal-slide" class="text-muted ml-2"><span class="">Filtrado</span></a>
+                  </span>
+          <% end %>
+          <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide">
+            <span class="fe fe-filter fe-16 text-muted"></span>
+          </button>
+        </div>
+      </div>
+    <% end %>
 
-<%#= link_to 'New Idea', new_idea_path %>
+    <div class="row">
+      <% if @ideas.count == 0 %>
+        <div class="col-md-12">
+          <div class="card shadow">
+            <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+              <h6 class="">Nenhum item correspondente encontrado.</h6>
+            </div>
+          </div>
+        </div>
+      <% else %>
+
+        <% @ideas.each do |idea| %>
+          <div class="col-md-6 col-sm-12 col-lg-3 my-2">
+            <div class="card shadow h-100">
+              <div class="card-body text-center">
+                <div class="avatar avatar-lg">
+                  <a href="">
+                    <img src="https://static.thenounproject.com/png/134479-200.png" style="background-color: white" alt="..." class="avatar-img rounded-circle">
+                  </a>
+                </div>
+                <div class="card-text mt-2">
+                  <strong class="card-title my-0"><%= truncate idea.title, length: 80 %></strong>
+                  <p class="small text-muted mb-0"><%= truncate idea.ideializer.name %></p>
+                  <p class="small mb-0">
+                    <span class="badge badge-light text-muted">Palmas, TO</span>
+                    <span class="badge badge-light text-muted">2021/1</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="col-sm-12">
+          <%= paginate @ideas %>
+        </div>
+      <% end %>
+    </div>
+    </div>
+
+    <% content_for :busca do %>
+      <%= search_form_for @q do |f| %>
+        <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Filtros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="fe fe-x fe-12"></i>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <div class="p-2">
+
+                  <div class="form-group my-4">
+                    <p class="mb-2">
+                      <strong>Pesquisa por termos</strong>
+                    </p>
+                    <div class="">
+                      <%= f.text_field :title_or_description_or_categories_name_cont, class: 'form-control', placeholder: "Título, descrição ou categoria" %>
+                    </div>
+                  </div>
+
+                  <div class="form-group my-4">
+                    <div class="custom-control custom-checkbox mb-2">
+                      <%= f.check_box :possibility_business_eq, class: 'custom-control-input' %>
+                      <%= f.label :possibility_business_eq, 'Ideias com possibilidade de negócio', class: 'custom-control-label' %>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <%= f.check_box :possibility_reward_eq, class: 'custom-control-input' %>
+                      <%= f.label :possibility_reward_eq, 'Ideias com possibilidade de recompensa', class: 'custom-control-label' %>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit" class="btn mb-2 btn-primary btn-block">Filtrar</button>
+                <a href="<%= ideas_path %>" class="btn mb-2 btn-secondary btn-block">Limpar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <% end %>
+
+    <% end %>
+  <% end %>
+  </div>
+  <!--  </div>-->
+  <!--</div>-->
