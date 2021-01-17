@@ -15,6 +15,7 @@
             <thead>
             <tr>
               <th>Nome</th>
+              <th>Imagem</th>
               <th>Status</th>
               <th>Ação</th>
             </tr>
@@ -23,6 +24,19 @@
             <% @idea_categories.each do |idea_category| %>
               <tr>
                 <td><strong><%= idea_category.name %></strong></td>
+                <td>
+                  <% if idea_category.link_or_image == 'img' and idea_category.img %>
+                    <a href="<%= url_for(idea_category.img) %>" target="_blank">
+                      <%= image_tag url_for(idea_category.img), class: 'avatar-img rounded-circle', width: 50, height: 50 %>
+                    </a>
+                  <% elsif idea_category.link_or_image == 'link' and idea_category.img_link %>
+                    <a href="<%= idea_category.img_link %>" target="_blank">
+                      <%= image_tag idea_category.img_link, class: 'avatar-img rounded-circle', width: 50, height: 50 %>
+                    </a>
+                    <% else %>
+                    <%= image_tag 'https://piotrkowalski.pw/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png', class: 'avatar-img rounded-circle', width: 50, height: 50 %>
+                  <% end %>
+                </td>
                 <td>
                   <% if idea_category.status.active? %>
                     <!--                  <span class="text-primary">Ativo</span>-->
@@ -59,12 +73,6 @@
 
             </tbody>
           </table>
-
-
-
-
-
-
 
 
         </div>
