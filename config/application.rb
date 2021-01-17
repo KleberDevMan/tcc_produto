@@ -20,7 +20,7 @@ module TccProduto
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Locale
-    config.time_zone = 'Brasilia'
+    config.time_zone = 'America/Sao_Paulo'
     Time::DATE_FORMATS[:hora] = "%H:%M"
     Time::DATE_FORMATS[:default] = "%d/%m/%Y %H:%M"
     Date::DATE_FORMATS[:default] = "%d/%m/%Y"

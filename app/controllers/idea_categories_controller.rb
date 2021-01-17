@@ -77,13 +77,18 @@ class IdeaCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_idea_category
-      @idea_category = IdeaCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def idea_category_params
-      params.require(:idea_category).permit(:name, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_idea_category
+    @idea_category = IdeaCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def idea_category_params
+    params.require(:idea_category).permit(:name,
+                                          :status,
+                                          :img_link,
+                                          :img,
+                                          :link_or_image)
+  end
 end

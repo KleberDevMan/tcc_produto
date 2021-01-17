@@ -27,6 +27,33 @@
           </div>
         </div>
 
+        <!--          <hr class="my-4">-->
+        <div class="form-row">
+<!--          <p class="mb-4">Link ou imagem?</p>-->
+          <div class="form-group col-md-12">
+          <h5 class="mb-2 mt-5">Imagem representativa</h5>
+            <%= form.label :link_or_image, class: 'mr-2' %>
+
+            <% IdeaCategory.link_or_image.options.each do |type| %>
+              <%= form.radio_button :link_or_image, type.last, class: 'form-check form-check-inline mr-0', checked: type.last == idea_category.link_or_img_value_default, id: type.last %>
+              <%= form.label :link_or_image, type.first, value: type.last, class: 'mr-3', for: type.last %>
+            <% end %>
+
+            <div id="div-link">
+              <%= form.label :img_link %>
+              <%= form.text_field :img_link, class: 'form-control', placeholder: 'http://www.sefaz2.to.gov.br/...' %>
+            </div>
+            <div id="div-img" style="display: none">
+              <%= form.label :img %>
+              <div class="custom-file">
+                <input name="idea_category[img]" type="image" class="custom-file-input" id="customImg">
+                <label class="custom-file-label" for="customImg">Selecione a imagem</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         <hr class="my-4">
         <div class="form-row">
           <div class="col-md-12 text-right">
@@ -36,4 +63,22 @@
       </div>
     </div>
   </div>
+<% end %>
+<% content_for :footer do %>
+  <script>
+      $(document).ready(function () {
+          // $('#div-img').hide()
+
+          $('input[name="idea_category[link_or_image]"]').click(function () {
+              const valor = $('input[name="idea_category[link_or_image]"]:checked').val()
+              if (valor === 'link') {
+                  $('#div-img').hide()
+                  $('#div-link').fadeIn(500)
+              } else {
+                  $('#div-link').hide()
+                  $('#div-img').fadeIn(500)
+              }
+          })
+      })
+  </script>
 <% end %>

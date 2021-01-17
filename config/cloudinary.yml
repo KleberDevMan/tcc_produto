@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: kleberdevmen
+  api_key: '972363225789568'
+  api_secret: 0y9ZyQMJx2L3VTgztbWptiR0Wlo
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: kleberdevmen
+  api_key: '972363225789568'
+  api_secret: 0y9ZyQMJx2L3VTgztbWptiR0Wlo
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: kleberdevmen
+  api_key: '972363225789568'
+  api_secret: 0y9ZyQMJx2L3VTgztbWptiR0Wlo
+  enhance_image_tag: true
+  static_file_support: false

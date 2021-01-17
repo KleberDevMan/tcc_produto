@@ -6,9 +6,14 @@ pt-BR:
     attributes:
       idea_category:
         name: Nome
-        status: Status
+        img_link: Link
+        img: Imagem
+        link_or_image: Link ou imagem?
   enumerize:
     idea_category:
       status:
         active: Ativo
         inactive: Inativo
+      link_or_image:
+        link: Link
+        img: Imagem

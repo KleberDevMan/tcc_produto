@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_182515) do
+ActiveRecord::Schema.define(version: 2021_01_17_170052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(version: 2021_01_13_182515) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "img_link"
+    t.string "img"
+    t.string "link_or_image"
   end
 
   create_table "idea_category_ideas", force: :cascade do |t|
