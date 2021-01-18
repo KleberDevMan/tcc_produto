@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_170052) do
+ActiveRecord::Schema.define(version: 2021_01_18_194302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(version: 2021_01_17_170052) do
     t.string "suffering_people"
     t.string "proposed_solution"
     t.string "differential"
+    t.bigint "idea_category_id", null: false
+    t.string "locality"
+    t.index ["idea_category_id"], name: "index_ideas_on_idea_category_id"
     t.index ["ideializer_id"], name: "index_ideas_on_ideializer_id"
   end
 
@@ -190,6 +193,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_170052) do
   add_foreign_key "collaborations", "users"
   add_foreign_key "idea_category_ideas", "idea_categories"
   add_foreign_key "idea_category_ideas", "ideas"
+  add_foreign_key "ideas", "idea_categories"
   add_foreign_key "ideas", "users", column: "ideializer_id"
   add_foreign_key "profile_menus", "menus"
   add_foreign_key "profile_menus", "profiles"

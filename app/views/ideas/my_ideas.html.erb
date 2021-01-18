@@ -96,7 +96,7 @@
             <div class="col-md-6">
 
               <div class="input-group mb-3">
-                <%= f.text_field :title_or_description_or_categories_name_cont, class: 'form-control', placeholder: "Título, descrição, categoria..." %>
+                <%= f.text_field :title_or_description_or_idea_category_name_cont, class: 'form-control', placeholder: "Título, descrição, categoria..." %>
                 <div class="input-group-append">
                   <button class="btn btn-light" type="submit">
                     <span class="fe fe-search fe-16 text-muted"></span>
@@ -152,7 +152,8 @@
                       <a href="<%= idea_path idea %>"><strong><%= truncate idea.title %></strong></a>
                     </td>
                     <td><%= truncate idea.description %></td>
-                    <td><%= truncate idea.categories.map(&:name).join(', ') %></td>
+<!--                    <td><%#= truncate idea.categories.map(&:name).join(', ') %></td>-->
+                    <td><%= truncate idea.idea_category.name %></td>
                     <td><%= bool_s idea.possibility_business %></td>
                     <td><%= bool_s idea.possibility_reward %></td>
                     <td>

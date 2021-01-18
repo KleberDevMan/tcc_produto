@@ -27,9 +27,7 @@
           </div>
         </div>
 
-        <!--          <hr class="my-4">-->
         <div class="form-row">
-<!--          <p class="mb-4">Link ou imagem?</p>-->
           <div class="form-group col-md-12">
           <h5 class="mb-2 mt-5">Imagem representativa</h5>
             <%= form.label :link_or_image, class: 'mr-2' %>
@@ -40,17 +38,12 @@
             <% end %>
 
             <div id="div-link">
-              <%#= form.label :img_link %>
               <%= form.text_field :img_link, class: 'form-control', placeholder: 'http://www.sefaz2.to.gov.br/...' %>
             </div>
             <div id="div-img" style="display: none">
-              <%#= form.label :img %>
               <div class="custom-file">
                 <%= form.file_field :img, class: "custom-file-input", direct_upload: true %>
-              <%#= form.label :img, idea_category.img.blob ? idea_category.img.blob.filename : 'Selecione a imagem', class: 'custom-file-label' %>
-              <%= form.label :img, class: 'custom-file-label' %>
-<!--                <input name="idea_category[img]" type="file" class="custom-file-input" id="customImg">-->
-<!--                <label class="custom-file-label" for="customImg">Selecione a imagem</label>-->
+                <%= form.label :img, idea_category.img.blob ? idea_category.img.blob.filename : 'Selecione a imagem', class: 'custom-file-label' %>
               </div>
             </div>
           </div>

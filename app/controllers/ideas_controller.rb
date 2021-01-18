@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+  layout :resolve_layout
   before_action :authenticate_user!
   load_and_authorize_resource
 
@@ -70,10 +71,10 @@ class IdeasController < ApplicationController
     @qtd_all = all.count
 
     @qtd_publics = all.select { |aw| aw.status == 'public' }.count
-    @persent_publics = @qtd_publics * 100 / @qtd_all
+    @persent_publics = @qtd_all > 0 ? @qtd_publics * 100 / @qtd_all : @qtd_all
 
     @qtd_privates = all.select { |aw| aw.status == 'private' }.count
-    @persent_privates = @qtd_privates * 100 / @qtd_all
+    @persent_privates = @qtd_all > 0 ? @qtd_privates * 100 / @qtd_all : @qtd_all
 
     @qtd_views = 1168 #
     @last_week = [3, 2, 7, 5, 4, 6, 8]
@@ -96,8 +97,10 @@ class IdeasController < ApplicationController
   def idea_params
     params.require(:idea).permit(:title,
                                  :description,
-                                 { category_ids: [] },
+                                 # { category_ids: [] },
                                  :ideializer_id,
+                                 :locality,
+                                 :idea_category_id,
                                  :possibility_reward,
                                  :possibility_business,
                                  :status,
@@ -105,5 +108,15 @@ class IdeasController < ApplicationController
                                  :suffering_people,
                                  :proposed_solution,
                                  :differential)
+  end
+
+  def resolve_layout
+    case action_name
+    when 'index'
+      # 'devise_layout'
+      'application'
+    else
+      'application'
+    end
   end
 end

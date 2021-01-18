@@ -12,7 +12,8 @@
 
 <p>
   <strong>Idea category:</strong>
-  <%= @idea.categories.map{|c| c.name} %>
+  <%#= @idea.categories.map{|c| c.name} %>
+  <%= @idea.idea_category.name %>
 </p>
 
 <p>
