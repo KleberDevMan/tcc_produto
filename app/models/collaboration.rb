@@ -6,6 +6,7 @@
 #  collaboration_date :datetime
 #  quit               :boolean
 #  reason             :string
+#  type_collaboration :string
 #  withdrawal_date    :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -23,6 +24,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Collaboration < ApplicationRecord
+  extend Enumerize
+
   belongs_to :user
   belongs_to :idea
+
+  enumerize :type_collaboration, in: [:developer, :facilitator], predicates: true, default: :developer
 end

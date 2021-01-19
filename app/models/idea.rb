@@ -35,7 +35,13 @@ class Idea < ApplicationRecord
   belongs_to :ideializer, class_name: 'User'
 
   has_many :collaborations
-  has_many :collaborators, through: :collaborators, source: :user, class_name: "User"
+  has_many :collaborators, through: :collaborations, source: :user, class_name: "User"
+
+  has_many :collaboration_devs,-> { where(type_collaboration: :developer) }, class_name: "Collaboration"
+  has_many :devs, through: :collaboration_devs, source: :user, class_name: "User"
+
+  has_many :collaboration_facs,-> { where(type_collaboration: :facilitator) }, class_name: "Collaboration"
+  has_many :facilitators, through: :collaboration_facs, source: :user, class_name: "User"
 
   # has_many :idea_category_ideas
   # has_many :categories, through: :idea_category_ideas, source: :idea_category, class_name: "IdeaCategory"

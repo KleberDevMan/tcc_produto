@@ -6,16 +6,16 @@
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
 
-<!--  CSS generic from template-->
+  <!--  CSS generic from template-->
   <link rel="stylesheet" href="/templates/tinydash/light/css/simplebar.css">
   <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/templates/tinydash/light/css/feather.css">
   <link rel="stylesheet" href="/templates/tinydash/light/css/daterangepicker.css">
   <link rel="stylesheet" href="/templates/tinydash/light/css/app-light.css" id="lightTheme">
   <link rel="stylesheet" href="/templates/tinydash/light/css/app-dark.css" id="darkTheme" disabled>
-<!--  CSS specific toast-->
-<!--  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">-->
-<!--  CSS especifico validations-->
+  <!--  CSS specific toast-->
+  <!--  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">-->
+  <!--  CSS especifico validations-->
   <link rel="stylesheet" href="/templates/tinydash/light/css/select2.css">
   <link rel="stylesheet" href="/templates/tinydash/light/css/dropzone.css">
   <link rel="stylesheet" href="/templates/tinydash/light/css/uppy.min.css">
@@ -29,7 +29,7 @@
 
   <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application' %>
-<!--  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">-->
+  <!--  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">-->
   <%#= render partial: 'layouts/css_validations' %>
   <%= yield :header %>
 </head>
@@ -76,6 +76,14 @@
 
 <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'application' %>
+
+<script type="text/javascript" charset="utf-8">
+    // init tolltip bootstrap
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
 <%= yield(:footer) %>
 </body>
 </html>
