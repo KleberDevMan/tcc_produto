@@ -103,7 +103,20 @@ class IdeasController < ApplicationController
   # end
 
   def create_callaboration
-    a = 2
+    collaboration = Collaboration.new
+    collaboration.idea_id = params[:id]
+    collaboration.type_collaboration = params[:type_collaboration]
+    collaboration.user_id = params[:user_id]
+
+    respond_to do |format|
+      if collaboration.save
+        format.html { redirect_to @idea, status: :ok }
+        format.json { render :show, status: :ok, location: @idea }
+      else
+        format.html { render :edit }
+        format.json { render json: @idea.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 
