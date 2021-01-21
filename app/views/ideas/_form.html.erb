@@ -44,7 +44,7 @@
             <%#= form.label :category_ids %>
             <%#= form.select :category_ids, options_for_select(IdeaCategory.active.map { |c| [c.name, c.id] }, idea.category_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", required: true } %>
             <%= form.label :idea_category_id %>
-            <%= form.select :idea_category_id, IdeaCategory.all.map { |r| [r.name, r.id] }, { include_blank: 'Selecione...' }, { class: 'form-control', required: true } %>
+            <%= form.select :idea_category_id, IdeaCategory.all.map { |r| [r.name, r.id] }, { include_blank: 'Selecione...' }, { class: 'form-control custom-select', required: true } %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
 

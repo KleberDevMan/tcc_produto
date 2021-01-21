@@ -1,44 +1,38 @@
-<!--<p id="notice"><%#= notice %></p>-->
+<% content_for :header do %>
+  <style>
+      .big {
 
-<!--<p>-->
-<!--  <strong>Title:</strong>-->
-<%#= @idea.title %>
-<!--</p>-->
+          /*width:100px;*/
+          /*height:100px;*/
+          /*background-color:red;*/
+          cursor: pointer;
 
-<!--<p>-->
-<!--  <strong>Description:</strong>-->
-<%#= @idea.description %>
-<!--</p>-->
+      }
 
-<!--<p>-->
-<!--  <strong>Idea category:</strong>-->
-<%#= @idea.categories.map{|c| c.name} %>
-<%#= @idea.idea_category.name %>
-<!--</p>-->
+      .hli {
 
-<!--<p>-->
-<!--  <strong>Status:</strong>-->
-<%#= @idea.status %>
-<!--</p>-->
+          border: 2px solid blue;
 
-<!--<p>-->
-<!--  <strong>Possibility reward:</strong>-->
-<%#= @idea.possibility_reward %>
-<!--</p>-->
-
-<!--<p>-->
-<!--  <strong>Possibility business:</strong>-->
-<%#= @idea.possibility_business %>
-<!--</p>-->
-
+      }
+  </style>
+<% end %>
 <div class="row align-items-center mb-4">
   <div class="col">
     <h2 class="h4 page-title"><%= @idea.title %></h2>
   </div>
   <div class="col-auto">
-    <button type="button" class="btn btn-secondary">Gerenciar colaboradores</button>
-    <button type="button" class="btn btn-success">Colaborar</button>
-    <button type="button" class="btn btn-warning">Desistir colaboração</button>
+    <% profiles_s = current_user.profiles.map(&:namespace) %>
+    <% if profiles_s.include? 'admin' %>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#gerenciar-colaboradores">Gerenciar
+        colaboradores
+      </button>
+    <% elsif profiles_s.include? 'collaborator' %>
+      <% if @idea.collaborators.map(&:id).include? current_user.id %>
+        <button type="button" class="btn btn-warning">Desistir colaboração</button>
+      <% else %>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-colaborar">Colaborar</button>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <div class="row my-4">
@@ -99,26 +93,33 @@
         <h3 class="h5 mb-1">Destaques</h3>
         <p class="text-muted mb-4">Informações que podem te motivar a ser um colaborador.</p>
         <ul class="list-unstyled">
-          <li class="my-3">
-            <i class="fe fe-dollar-sign mr-2 text-muted"></i>
-            <%= t 'activerecord.attributes.idea.possibility_reward' %>
-            <span class="text-muted fe fe-24 fe-info" style="font-size: 18px" data-toggle="tooltip" data-placement="bottom" title="Possibilidade de ser remunerado ou recompensado finaceiramente pela ajuda prestada"></span>
+          <li class="my-2">
+            <i class="fe fe-globe mr-2 text-muted"></i>
+            <span class="text-muted"><%= t 'activerecord.attributes.idea.locality' %></span>
+            <span class="text-muted fe fe-24 fe-info" style="font-size: 12px" data-toggle="tooltip" data-placement="bottom" title="Múnicipio e estado onde pretende-se desenvolver a idea."></span>
+            <br>
+            <strong><%= @idea.locality %></strong>
+          </li>
+          <li class="my-2">
+            <i class="fe fe-dollar-sign text-muted"></i>
+            <span class="text-muted"><%= t 'activerecord.attributes.idea.possibility_reward' %></span>
+            <span class="text-muted fe fe-24 fe-info" style="font-size: 12px" data-toggle="tooltip" data-placement="bottom" title="Possibilidade de ser remunerado ou recompensado finaceiramente pela ajuda prestada"></span>
             <br>
             <% if @idea.possibility_reward %>
               <span><strong><mark>Sim</mark></strong></span>
             <% else %>
-              <span>Não</span>
+              <span><strong>Não</strong></span>
             <% end %>
           </li>
           <li class="my-2">
             <i class="fe fe-briefcase mr-2 text-muted"></i>
-            <%= t 'activerecord.attributes.idea.possibility_business' %>
-            <span class="text-muted fe fe-24 fe-info" style="font-size: 18px" data-toggle="tooltip" data-placement="bottom" title="Uma ideia que pode se tornar um empreendimento, algo vendável ou até mesmo uma patente"></span>
+            <span class="text-muted"><%= t 'activerecord.attributes.idea.possibility_business' %></span>
+            <span class="text-muted fe fe-24 fe-info" style="font-size: 12px" data-toggle="tooltip" data-placement="bottom" title="Uma ideia que pode se tornar um empreendimento, algo vendável ou até mesmo uma patente"></span>
             <br>
             <% if @idea.possibility_business %>
               <span><strong><mark>Sim</mark></strong></span>
             <% else %>
-              <span>Não</span>
+              <span><strong>Não</strong></span>
             <% end %>
           </li>
         </ul>
@@ -140,7 +141,7 @@
         <strong class="card-title"><i class="fe fe-coffee mr-2 text-muted"></i> Desenvolvedores</strong>
       </div>
       <div class="card-body">
-        <dl class="row align-items-center mb-0 justify-content-center">
+        <dl class="align-items-center mb-0">
           <% if @idea.devs.any? %>
             <table class="table table-hover table-sm">
               <tbody>
@@ -166,7 +167,7 @@
               </tbody>
             </table>
           <% else %>
-            <div>
+            <div class="text-center">
               <dd>Não há nenhum desenvolvedor ainda.</dd>
             </div>
           <% end %>
@@ -180,7 +181,7 @@
         <strong class="card-title"><i class="fe fe-dollar-sign mr-2 text-muted"></i> Facilitadores</strong>
       </div>
       <div class="card-body">
-        <dl class="row align-items-center mb-0 justify-content-center">
+        <dl class="align-items-center mb-0">
           <% if @idea.facilitators.any? %>
             <table class="table table-hover table-sm">
               <tbody>
@@ -206,8 +207,8 @@
               </tbody>
             </table>
           <% else %>
-            <div>
-              <dd>Não nenhum facilitador ainda.</dd>
+            <div class="text-center">
+              <dd>Não há nenhum facilitador ainda.</dd>
             </div>
           <% end %>
         </dl>
@@ -215,3 +216,167 @@
     </div>
   </div>
 </div>
+
+
+<div id="gerenciar-colaboradores" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="defaultModalLabel">Gerenciar colaboradores</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <%= form_with(model: @idea, url: update_colaborators_ideas_path, method: :post, html: { class: "needs-validation", novalidate: '' }) do |form| %>
+        <%= form.hidden_field :id, value: @idea.id %>
+        <div class="modal-body">
+
+          <div class="form-row">
+            <div class="form-group col-sm-12">
+              <%= form.label :dev_ids, class: 'col-form-label' %> <br>
+              <%= form.select :dev_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.dev_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
+            </div>
+            <div class="form-group col-sm-12">
+              <%= form.label :facilitator_ids %> <br>
+              <%= form.select :facilitator_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.facilitator_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn mb-2 btn-primary">Salvar</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="modal-colaborar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <!--      <div class="modal-header">-->
+      <!--        <h5 class="modal-title" id="defaultModalLabel">Nova colaboração</h5>-->
+      <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+      <!--          <span aria-hidden="true">&times;</span>-->
+      <!--        </button>-->
+      <!--      </div>-->
+
+      <%= form_with(url: create_callaboration_ideas_path, method: :post, html: { class: "needs-validation", novalidate: '' }) do |form| %>
+        <%= form.hidden_field :id, value: @idea.id %>
+        <%= form.hidden_field :type_collaboration %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <div class="modal-body">
+
+          <!--          <div class="text-center">-->
+          <!--            <h6>Muito obrigado por desejar colaborar com minha ideia!</h6>-->
+          <!--            <img height="200" width="200" class="img-thumbnail" src="https://media.giphy.com/media/DhstvI3zZ598Nb1rFf/giphy.gif" alt="">-->
+          <!--          </div>-->
+          <!--          <br>-->
+
+          <!--              <h6>O que faz um colaborador?</h6>-->
+          <!--              <p>Colaboradores são aqueles responsáveis por ajudar o Idealizador (dono da ideia) a desenvolvê-la, colocá-la-->
+          <!--                para funcionar.</p>-->
+          <!--              <p>O legal é que você é que escolhe como deseja colaborar, se como Desenvolvedor, ou como Facilitador. </p>-->
+
+          <h6>Que tipo de colaborador você deseja ser?</h6>
+
+
+<!--          <div class="card shadow mb-4">-->
+<!--            <div id="card-dev" class="card-body option big">-->
+<!--              <div class="form-row">-->
+<!--                <div class="custom-control custom-radio col-sm-12">-->
+                  <%#= form.radio_button :type_collaboration, 'developer', class: 'form-check form-check-inline', requered: true %>
+                  <%#= form.label :type_collaboration, 'Desenvolvedor', value: 'developer', class: 'mr-3' %>
+<!--                  <p class="text-muted"> Colaborar intelectualmente para o desenvolvimento de ideias. Opçõs indicada-->
+<!--                    para-->
+<!--                    <span class="badge badge-secondary">Coordenadores</span> e-->
+<!--                    <span class="badge badge-secondary">Professores</span>. </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="card shadow mb-4">-->
+<!--            <div id="card-fac" class="card-body option big">-->
+<!--              <div class="form-row">-->
+<!--                <div class="custom-control custom-radio col-sd-12">-->
+                  <%#= form.radio_button :type_collaboration, 'facilitator', class: 'form-check form-check-inline', requered: true %>
+                  <%#= form.label :type_collaboration, 'Facilitador', value: 'facilitator', class: 'mr-3' %>
+<!--                  <p class="text-muted"> Colaborar por meio de aportes físicos, financeiros, logístico, etc. Opçõs-->
+<!--                    indicada para-->
+<!--                    <span class="badge badge-secondary">Sebrae</span>,-->
+<!--                    <span class="badge badge-secondary">incubadoras</span>,-->
+<!--                    <span class="badge badge-secondary">investidores</span>,-->
+<!--                    <span class="badge badge-secondary">bancos</span>, etc. </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+          <div class="card shadow mb-4">
+            <div class="card-body big">
+              <div class="custom-control custom-radio">
+                <%= form.radio_button :type_collaboration, 'developer', class: 'custom-control-input', required: true %>
+                <%= form.label :type_collaboration, 'Desenvolvedor', value: 'developer', class: 'custom-control-label' %>
+<!--                <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>-->
+<!--                <label class="custom-control-label" for="customControlValidation2">Desenvolvedor</label>-->
+                <p class="text-muted"> Colaborar intelectualmente para o desenvolvimento de ideias. Opçõs indicada
+                  para
+                  <span class="badge badge-secondary">Coordenadores</span> e
+                  <span class="badge badge-secondary">Professores</span>. </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card shadow">
+            <div class="card-body big">
+
+              <div class="custom-control custom-radio mb-3">
+                <%= form.radio_button :type_collaboration, 'facilitator', class: 'custom-control-input', required: true %>
+                <%= form.label :type_collaboration, 'Facilitador', value: 'facilitator', class: 'custom-control-label' %>
+<!--                <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>-->
+<!--                <label class="custom-control-label" for="customControlValidation3">Facilitador</label>-->
+                <p class="text-muted"> Colabora por meio de aportes físicos, financeiros, logístico, etc. Opçõs
+                  indicada para
+                  <span class="badge badge-secondary">Sebrae</span>,
+                  <span class="badge badge-secondary">incubadoras</span>,
+                  <span class="badge badge-secondary">investidores</span>,
+                  <span class="badge badge-secondary">bancos</span>, etc. </p>
+                <div class="invalid-feedback">Selecione um para continuar</div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!--        </div>-->
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn mb-2 btn-primary">Salvar</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :footer do %>
+  <script>
+      $('.big').click(function () {
+          $(this).find('input:radio')[0].checked = true;
+          $('.hli').toggleClass('hli');
+          $(this).toggleClass('hli');
+      });
+
+  </script>
+<% end %>

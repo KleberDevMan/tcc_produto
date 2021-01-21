@@ -20,6 +20,8 @@ pt-BR:
         proposed_solution: A solução proposta
         differential: Seu diferencial
         locality: Localização
+        dev_ids: Desenvolvedores
+        facilitator_ids: Facilitadores
   enumerize:
     idea:
       status:

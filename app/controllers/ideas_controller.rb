@@ -8,8 +8,8 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @q = Idea.ransack(params[:q], default_order: { updated_at: :desc })
-    @ideas = @q.result.page(params[:page]).per(6)
+    @q = Idea.includes(:collaborations, :idea_category).ransack(params[:q], default_order: { updated_at: :desc })
+    @ideas = @q.result.page(params[:page]).per(12)
   end
 
   # GET /ideas/1
@@ -56,6 +56,19 @@ class IdeasController < ApplicationController
     end
   end
 
+  def update_colaborators
+    @idea = Idea.find_by id: idea_params[:id]
+    respond_to do |format|
+      if @idea.update(idea_params)
+        format.html { redirect_to @idea, notice: t('notice.updated') }
+        format.json { render :show, status: :ok, location: @idea }
+      else
+        format.html { render :edit }
+        format.json { render json: @idea.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
@@ -86,6 +99,14 @@ class IdeasController < ApplicationController
     @ideas = @q.result.page(params[:page]).per(9)
   end
 
+  # def manage_collaborators
+  # end
+
+  def create_callaboration
+    a = 2
+  end
+
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -96,11 +117,14 @@ class IdeasController < ApplicationController
   # Only allow a list of trusted parameters through.
   def idea_params
     params.require(:idea).permit(:title,
+                                 :id,
                                  :description,
                                  # { category_ids: [] },
                                  :ideializer_id,
                                  :locality,
                                  :idea_category_id,
+                                 { dev_ids: [] },
+                                 { facilitator_ids: [] },
                                  :possibility_reward,
                                  :possibility_business,
                                  :status,
@@ -108,6 +132,10 @@ class IdeasController < ApplicationController
                                  :suffering_people,
                                  :proposed_solution,
                                  :differential)
+  end
+
+  def idea_params2
+    params.require(:idea).permit!
   end
 
   def resolve_layout

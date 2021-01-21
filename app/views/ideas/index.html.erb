@@ -98,6 +98,11 @@
                       <span class="badge badge-light text-muted"><%= truncate idea.locality %></span>
                       <span class="badge badge-light text-muted"><%= idea.get_semester %></span>
                     </p>
+                    <% if idea.collaborations.map(&:user_id).include? current_user.id %>
+                      <p class="small mb-0">
+                        <span class="badge badge-warning">Colaborando</span>
+                      </p>
+                    <% end %>
                   </div>
                 </div>
               </div>
