@@ -15,7 +15,7 @@
 #  title                :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  idea_category_id     :bigint           not null
+#  idea_category_id     :bigint
 #  ideializer_id        :bigint           not null
 #
 # Indexes

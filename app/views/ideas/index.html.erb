@@ -85,12 +85,15 @@
             <a href="<%= idea_path idea %>" style="text-decoration: none">
               <div class="card shadow h-100">
                 <div class="card-body text-center">
+
+<!--                  <div class="center-cropped"-->
+<!--                       style="background-image: url('<%#= idea.idea_category.get_url_img %>');">-->
+<!--                  </div>-->
+
                   <div class="avatar avatar-lg">
-                    <!--                  <a href="<%#= idea_path idea %>">-->
-                    <!--                    <img src="<%#= idea.categories.first.get_url_img %>" style="background-color: white;" alt="..." class="avatar-img rounded-circle">-->
-                    <img src="<%= idea.idea_category.get_url_img %>" style="background-color: white;" alt="..." class="avatar-img rounded-circle">
-                    <!--                  </a>-->
+                    <img src="<%= idea.idea_category.get_url_img %>" style="background-color: white;" height="50" width="50" alt="..." class="avatar-img rounded-circle">
                   </div>
+
                   <div class="card-text mt-2">
                     <strong class="card-title my-0"><%= truncate idea.title, length: 80 %></strong>
                     <p class="small text-muted mb-0"><%= truncate idea.ideializer.name %></p>

@@ -1,6 +1,6 @@
 Software desenvolvido com Ruby on Rails para o TCC do curso de Sistemas de Informação.
 
-* Contruído usando:
+* Construído usando:
     * Ruby on rails 6
     * Postgres
     * Botstrap (template: [TinyDash](https://usebootstrap.com/theme/tinydash))

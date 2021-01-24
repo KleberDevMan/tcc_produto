@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_215957) do
     t.string "suffering_people"
     t.string "proposed_solution"
     t.string "differential"
-    t.bigint "idea_category_id", null: false
+    t.bigint "idea_category_id"
     t.string "locality"
     t.index ["idea_category_id"], name: "index_ideas_on_idea_category_id"
     t.index ["ideializer_id"], name: "index_ideas_on_ideializer_id"

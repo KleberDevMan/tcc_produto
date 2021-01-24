@@ -3,6 +3,8 @@ class IdeasController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
+  skip_forgery_protection
+
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   # GET /ideas
@@ -102,23 +104,39 @@ class IdeasController < ApplicationController
   # def manage_collaborators
   # end
 
-  def create_callaboration
+  def create_collaboration
     collaboration = Collaboration.new
     collaboration.idea_id = params[:id]
     collaboration.type_collaboration = params[:type_collaboration]
     collaboration.user_id = params[:user_id]
 
+    @result = collaboration.save
+
     respond_to do |format|
       if collaboration.save
-        format.html { redirect_to @idea, status: :ok }
-        format.json { render :show, status: :ok, location: @idea }
+        flash[:success_colaborar] = true
+        format.html { redirect_to idea_path @idea.id }
       else
-        format.html { render :edit }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
+        flash[:fail_colaborar] = true
+        format.html { redirect_to idea_path @idea.id }
+      end
+    end
+
+  end
+
+  def destroy_collaboration
+    # binding.pry
+    collaborations = Collaboration.where(user_id: params[:user_id], idea_id: params[:idea_id])
+
+    respond_to do |format|
+      result = collaborations.destroy_all
+      if result.any?
+        format.json { render json: result.to_json, status: :ok }
+      else
+        format.json { render json: result.to_json, status: :internal_server_error }
       end
     end
   end
-
 
   private
 
@@ -145,10 +163,6 @@ class IdeasController < ApplicationController
                                  :suffering_people,
                                  :proposed_solution,
                                  :differential)
-  end
-
-  def idea_params2
-    params.require(:idea).permit!
   end
 
   def resolve_layout

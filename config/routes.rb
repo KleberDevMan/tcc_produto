@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     collection do
       get 'my_ideas'
       post 'update_colaborators'
-      post 'create_callaboration'
-      delete 'destroy_callaboration'
+      post 'create_collaboration'
+      delete 'destroy_collaboration'
     end
   end
 

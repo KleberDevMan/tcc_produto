@@ -9,6 +9,7 @@
     "apexcharts": "^3.23.1",
     "chartjs": "^0.3.24",
     "izitoast": "^1.4.0",
+    "sweetalert2": "^10.13.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

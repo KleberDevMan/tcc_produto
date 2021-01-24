@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    redirect_to edit_user_registration_path, layout
+    # redirect_to edit_user_registration_path#, layout
     # add_breadcrumb "Visualizar", user_path(@user) if last_action.eql? 'show'
     # add_breadcrumb "Alterar", edit_user_path(@user)
   end
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_url, notice: t('notice.excluded')
   end
+
   #
   # def security
   #   @user = current_user
@@ -76,8 +77,8 @@ class UsersController < ApplicationController
   private
 
   def set_combos
-    @orgaos = Secretaria.all.order(nome: :asc).map{|a| [a.nome,a.id]}
-    @perfis = Perfil.to_select
+    # @orgaos = Secretaria.all.order(nome: :asc).map{|a| [a.nome,a.id]}
+    @profiles = Profile.order(name: :asc).map { |p| [p.name, p.id] }
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -87,6 +88,12 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:name, :cpf, :token, secretarias: [] , perfil_ids:[])
+    params.require(:user).permit(:name,
+                                 :cpf,
+                                 :email,
+                                 :telephone,
+                                 :biography,
+                                 :token,
+                                 { profile_ids: [] })
   end
 end

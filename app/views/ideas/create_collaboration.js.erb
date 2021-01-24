@@ -1,0 +1,9 @@
+<% if @result.any? %>
+Swal.fire(
+    'Sucesso!',
+    'Você não é mais um colaborador desta ideia',
+    'success'
+).then((result) => {
+    document.location.reload(true)
+})
+<% end %>

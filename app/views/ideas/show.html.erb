@@ -6,7 +6,6 @@
           /*height:100px;*/
           /*background-color:red;*/
           cursor: pointer;
-
       }
 
       .hli {
@@ -14,6 +13,11 @@
           border: 2px solid blue;
 
       }
+
+      /*.swal2-title,*/
+      /*.swal2-content {*/
+      /*    color: red !important;*/
+      /*}*/
   </style>
 <% end %>
 
@@ -24,12 +28,12 @@
   <div class="col-auto">
     <% profiles_s = current_user.profiles.map(&:namespace) %>
     <% if profiles_s.include? 'admin' %>
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#gerenciar-colaboradores">Gerenciar
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-gerenciar-colaboradores">Gerenciar
         colaboradores
       </button>
     <% elsif profiles_s.include? 'collaborator' %>
       <% if @idea.collaborators.map(&:id).include? current_user.id %>
-        <button type="button" class="btn btn-warning">Desistir colaboração</button>
+        <button type="button" onclick="desistirColaboracao();" class="btn btn-warning">Desistir colaboração</button>
       <% else %>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-colaborar">Colaborar</button>
       <% end %>
@@ -145,12 +149,12 @@
         <dl class="align-items-center mb-0">
           <% if @idea.devs.any? %>
             <table class="table table-hover table-sm">
-              <tbody>
+              <tbody class="">
               <% @idea.devs.each do |dev| %>
                 <tr>
-                  <td><strong><%= dev.name %></strong></td>
-                  <td><%= dev.email %></td>
-                  <td>
+                  <td width="45%"><strong><%= dev.name %></strong></td>
+                  <td width="45%"><%= dev.email %></td>
+                  <td width="10%" class="right">
                     <div class="dropdown">
                       <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="text-muted sr-only">Action</span>
@@ -188,9 +192,9 @@
               <tbody>
               <% @idea.facilitators.each do |fac| %>
                 <tr>
-                  <td><strong><%= fac.name %></strong></td>
-                  <td><%= fac.email %></td>
-                  <td>
+                  <td width="45%"><strong><%= fac.name %></strong></td>
+                  <td width="45%"><%= fac.email %></td>
+                  <td width="10%" class="right">
                     <div class="dropdown">
                       <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="text-muted sr-only">Action</span>
@@ -219,7 +223,7 @@
 </div>
 
 
-<div id="gerenciar-colaboradores" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div id="modal-gerenciar-colaboradores" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
 
@@ -234,8 +238,12 @@
         <%= form.hidden_field :id, value: @idea.id %>
         <div class="modal-body">
 
+          <!--          <div class="container-fluid">-->
+          <!--            <div class="row justify-content-center">-->
+          <!--              <div class="col-12 col-xl-10">-->
+
           <div class="form-row">
-            <div class="form-group col-sm-12">
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
               <%= form.label :dev_ids, class: 'col-form-label' %> <br>
               <%= form.select :dev_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.dev_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
             </div>
@@ -244,6 +252,10 @@
               <%= form.select :facilitator_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.facilitator_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
             </div>
           </div>
+
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
         </div>
 
@@ -267,7 +279,7 @@
       <!--        </button>-->
       <!--      </div>-->
 
-      <%= form_with(url: create_callaboration_ideas_path, method: :post, html: { class: "needs-validation", novalidate: '' }) do |form| %>
+      <%= form_with(url: create_collaboration_ideas_path, method: :post, id: 'form-colaborar', html: { class: "needs-validation", novalidate: '' }) do |form| %>
         <%= form.hidden_field :id, value: @idea.id %>
         <%= form.hidden_field :type_collaboration %>
         <%= form.hidden_field :user_id, value: current_user.id %>
@@ -324,13 +336,15 @@
             <div class="card-body big">
               <div class="custom-control custom-radio">
                 <%= form.radio_button :type_collaboration, 'developer', class: 'custom-control-input', required: true %>
-                <%= form.label :type_collaboration, 'Desenvolvedor', value: 'developer', class: 'custom-control-label' %>
+                <%= form.label :type_collaboration, 'Desenvolvedor', value: 'developer', class: 'custom-control-label h5' %>
                 <!--                <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>-->
                 <!--                <label class="custom-control-label" for="customControlValidation2">Desenvolvedor</label>-->
                 <p class="text-muted"> Colaborar intelectualmente para o desenvolvimento de ideias. Opçõs indicada
                   para
                   <span class="badge badge-secondary">Coordenadores</span> e
-                  <span class="badge badge-secondary">Professores</span>. </p>
+                  <span class="badge badge-secondary">Professores</span>. Estes visualizarão as ideias e contatarão
+                  os alunos predispostos a desenvolver as mesmas. Assim, os tais docentes farão uma espécie de “ponte”
+                  entre os Idealizadores e os alunos.</p>
               </div>
             </div>
           </div>
@@ -341,7 +355,7 @@
 
               <div class="custom-control custom-radio mb-3">
                 <%= form.radio_button :type_collaboration, 'facilitator', class: 'custom-control-input', required: true %>
-                <%= form.label :type_collaboration, 'Facilitador', value: 'facilitator', class: 'custom-control-label' %>
+                <%= form.label :type_collaboration, 'Facilitador', value: 'facilitator', class: 'custom-control-label h5' %>
                 <!--                <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>-->
                 <!--                <label class="custom-control-label" for="customControlValidation3">Facilitador</label>-->
                 <p class="text-muted"> Colabora por meio de aportes físicos, financeiros, logístico, etc. Opçõs
@@ -378,6 +392,76 @@
           $('.hli').toggleClass('hli');
           $(this).toggleClass('hli');
       });
+  </script>
+<% end %>
+
+<% content_for :footer do %>
+  <script>
+      function desistirColaboracao() {
+          Swal.fire({
+              title: '<span style="color: ' + colors.headingColor + ';">Você tem certeza?</span>',
+              html: '<span style="color: ' + colors.bodyColor + ';">Atenção, essa é uma ação irreversível.</span>',
+              imageUrl: 'https://media.giphy.com/media/Ty9Sg8oHghPWg/giphy.gif',
+              background: colors.backgroundColor,
+
+              showCancelButton: true,
+              confirmButtonText: 'Sim, tenho certeza',
+              cancelButtonText: 'Cancelar',
+          }).then((result) => {
+              if (result.isConfirmed) {
+
+                  const url = "<%= destroy_collaboration_ideas_path(idea_id: @idea.id, user_id: current_user.id) %>";
+                  $.ajax({
+                      url: url,
+                      headers: {
+                          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                          'Content-Type': 'application/json'
+                      },
+                      method: "DELETE",
+                      dataType: 'json',
+
+                      success: function () {
+                          Swal.fire({
+                              title: '<span style="color: ' + colors.headingColor + ';">Sucesso</span>',
+                              html: '<span style="color: ' + colors.bodyColor + ';">Você não é mais um colaborador desta ideia.</span>',
+                              background: colors.backgroundColor,
+                              icon: 'success',
+                          }).then((result) => {
+                              document.location.reload(true)
+                          })
+                      },
+
+                      error: function (error) {
+                          Swal.fire({
+                              title: '<span style="color: ' + colors.headingColor + ';">Falha</span>',
+                              html: '<span style="color: ' + colors.bodyColor + ';">Não foi possivel excluir sua colaboração. Por favor, tente novamente mais tarde.</span>',
+                              background: colors.backgroundColor,
+                              icon: 'error',
+                          })
+                      }
+                  });
+
+              }
+          })
+      }
+
+      <% if flash[:success_colaborar] %>
+      Swal.fire({
+          title: '<span style="color: ' + colors.headingColor + ';">Seja bem vindo!</span>',
+          html: '<span style="color: ' + colors.bodyColor + ';">Você agora poderá entrar em contato com o idealizador da ideia ou esperar ele entrar em contato com você.</span>',
+          imageUrl: 'https://media.giphy.com/media/js7SMV0KJrsSl9YbG7/giphy.gif',
+          background: colors.backgroundColor,
+      })
+      <% end %>
+
+      <% if flash[:fail_colaborar] %>
+      Swal.fire({
+          title: '<span style="color: ' + colors.headingColor + ';">Falha</span>',
+          html: '<span style="color: ' + colors.bodyColor + ';">Não foi possivel confirmar sua colaboração. Por favor, tente novamente mais tarde.</span>',
+          background: colors.backgroundColor,
+          icon: 'error',
+      })
+      <% end %>
 
   </script>
 <% end %>

@@ -29,7 +29,8 @@
 
   <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application' %>
-  <!--  <link rel="stylesheet" href="assets/izitoast/dist/css/iziToast.min.css">-->
+  <link rel="stylesheet" href="/assets/izitoast/dist/css/iziToast.min.css">
+  <link rel="stylesheet" href="/assets/sweetalert2/dist/sweetalert2.css">
   <%#= render partial: 'layouts/css_validations' %>
   <%= yield :header %>
 </head>
@@ -71,11 +72,7 @@
 <!--JS specific validations-->
 <%= render partial: 'layouts/js_validations' %>
 
-<!--JS specific sidenav-right-->
-
-
-<%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag 'application' %>
+<script src="/assets/sweetalert2/dist/sweetalert2.js"></script>
 
 <script type="text/javascript" charset="utf-8">
     // init tolltip bootstrap

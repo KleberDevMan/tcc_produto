@@ -10,14 +10,14 @@ class AcademicWorksController < ApplicationController
     all = AcademicWork.all
     @qtd_all = all.count
 
-    @qtd_tcc = all.select {|aw| aw.work_type == 'tcc'}.count
-    @persent_tcc = @qtd_tcc*100/@qtd_all
+    @qtd_tcc = all.select { |aw| aw.work_type == 'tcc' }.count
+    @persent_tcc = @qtd_all > 0 ? @qtd_tcc * 100 / @qtd_all : @qtd_all
 
-    @qtd_search = all.select {|aw| aw.work_type == 'search'}.count
-    @persent_search = @qtd_search*100/@qtd_all
+    @qtd_search = all.select { |aw| aw.work_type == 'search' }.count
+    @persent_search = @qtd_all > 0 ? @qtd_search * 100 / @qtd_all : @qtd_all
 
-    @qtd_extension = all.select {|aw| aw.work_type == 'extension'}.count
-    @persent_extention = @qtd_extension*100/@qtd_all
+    @qtd_extension = all.select { |aw| aw.work_type == 'extension' }.count
+    @persent_extention = @qtd_all > 0 ? @qtd_extension * 100 / @qtd_all : @qtd_all
 
     @q = AcademicWork.ransack(params[:q], default_order: { updated_at: :desc })
 

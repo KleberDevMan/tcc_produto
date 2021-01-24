@@ -7,9 +7,10 @@ import Rails from "@rails/ujs"
 // import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "chartjs"
+import "chartjs/chart"
 import 'izitoast'
 import 'apexcharts'
+import 'sweetalert2'
 
 Rails.start()
 // Turbolinks.start()

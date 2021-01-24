@@ -44,6 +44,9 @@ group :development do
   gem 'spring'
   gem 'annotate' #, git: 'https://github.com/ctran/annotate_models.git'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'pry-rails'
+  gem 'pry-remote'
+  gem 'pry-byebug'
 end
 
 group :test do
