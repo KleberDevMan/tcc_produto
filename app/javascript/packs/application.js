@@ -12,6 +12,7 @@ import 'izitoast'
 import 'apexcharts'
 import 'sweetalert2'
 
+
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
