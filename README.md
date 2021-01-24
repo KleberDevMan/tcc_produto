@@ -1,5 +1,4 @@
-
-####Software desenvolvido com Ruby on Rails para o TCC do curso de Sistemas de Informação.
+Software desenvolvido com Ruby on Rails para o TCC do curso de Sistemas de Informação.
 
 * Contruído usando:
     * Ruby on rails 6
