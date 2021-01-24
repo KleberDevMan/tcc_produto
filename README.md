@@ -1,24 +1,12 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+####Software desenvolvido com Ruby on Rails para o TCC do curso de Sistemas de Informação.
 
-Things you may want to cover:
+* Contruído usando:
+    * Ruby on rails 6
+    * Postgres
+    * Botstrap (template: [TinyDash](https://usebootstrap.com/theme/tinydash))
 
-* Ruby version
 
-* System dependencies
+Link para a documentação do sistema: [aqui](#).
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Link para o sistema: [aqui](#).
