@@ -245,11 +245,11 @@
           <div class="form-row">
             <div class="form-group col-sm-12 col-md-12 col-lg-12">
               <%= form.label :dev_ids, class: 'col-form-label' %> <br>
-              <%= form.select :dev_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.dev_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
+              <%= form.select :dev_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.dev_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", style: 'width: 100% !important;' } %>
             </div>
             <div class="form-group col-sm-12">
               <%= form.label :facilitator_ids %> <br>
-              <%= form.select :facilitator_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.facilitator_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
+              <%= form.select :facilitator_ids, options_for_select(User.collaborators.map { |c| [c.name, c.id] }, @idea.facilitator_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", style: 'width: 100% !important;' } %>
             </div>
           </div>
 

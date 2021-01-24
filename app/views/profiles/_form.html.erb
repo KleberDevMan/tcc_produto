@@ -1,78 +1,95 @@
-<%= form_with(model: profile) do |form| %>
+<%= form_with(model: profile, html: { class: "needs-validation", novalidate: '' }) do |form| %>
+
   <% if profile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
-
+      <h5>
+        <%= t 'texts.solve_the_following_problems' %>:
+      </h5>
       <ul>
         <% profile.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li class="text-danger"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+        <div class="row align-items-center my-4">
+          <div class="col">
+            <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.profile' %></h2>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Savar</button>
+          </div>
+        </div>
 
-<!--  <div class="field">-->
-    <%#= form.label :active %>
-    <%#= form.check_box :active %>
-<!--  </div>-->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: 'form-control', required: true %>
+            <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+          </div>
+          <div class="form-group col-md-6">
+            <%= form.label :namespace %>
+            <%= form.text_field :namespace, class: 'form-control', maxlength: 14, required: true %>
+            <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :namespace %>
-    <%= form.text_field :namespace %>
-  </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <%= form.label :description %>
+            <%= form.text_area :description, class: 'form-control', rows: 2, required: true %>
+          </div>
+        </div>
 
-  <!--  <div class="field">-->
-  <%#= form.label :permissions %>
-  <%#= form.text_field :permissions %>
-  <!--  </div>-->
+        <div class="form-row">
+          <div class="form-group col-sm-12">
+            <a id="check-all" href="javascript:void(0);"><%= t 'texts.check_all' %></a>
+            <a id="uncheck-all" style='display: none' href="javascript:void(0);"><%= t 'texts.uncheck_all' %></a>
+          </div>
+        </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <a id="check-all" href="javascript:void(0);"><%= t 'texts.check_all' %></a>
-      <a id="uncheck-all" style='display: none' href="javascript:void(0);"><%= t 'texts.uncheck_all' %></a>
-    </div>
-  </div>
-
-  <% @controllers.each do |c| %>
-    <div class="col-md-12 mb-4">
-      <div class="card shadow">
-        <div class="card-body">
-          <strong class="card-title mb-0"><%= c[:controller] %></strong> <br> <br>
-          <div class="custom-control custom-checkbox mb-2">
-            <div class="row">
-              <% c[:metodos].sort.each do |m| %>
-                <div class="col-sm-6 col-md-2">
-                  <% if @profile.permissions.present? %>
-                    <label><%= check_box_tag "permissoes[#{c[:controller]}][#{m}]", true, @profile.permissions["#{c[:controller]}"].present? ? @profile.permissions["#{c[:controller]}"]["#{m}"].present? ? true : false : false %>
-                      <span><%= t m %></span>
-                    </label>
-                  <% else %>
-                    <label><%= check_box_tag "permissoes[#{c[:controller]}][#{m}]", true, false %>
-                      <span><%= t m %></span>
-                    </label>
-                  <% end %>
+        <div class="form-row">
+        <% @controllers.each do |c| %>
+          <div class="col-md-12 mb-4">
+            <div class="card shadow">
+              <div class="card-body">
+                <strong class="card-title mb-0"><%= c[:controller] %></strong> <br> <br>
+                <div class="custom-control custom-checkbox mb-2">
+                  <div class="row">
+                    <% c[:metodos].sort.each do |m| %>
+                      <div class="col-sm-6 col-md-2">
+                        <% if @profile.permissions.present? %>
+                          <label><%= check_box_tag "permissoes[#{c[:controller]}][#{m}]", true, @profile.permissions["#{c[:controller]}"].present? ? @profile.permissions["#{c[:controller]}"]["#{m}"].present? ? true : false : false %>
+                            <span><%= t m %></span>
+                          </label>
+                        <% else %>
+                          <label><%= check_box_tag "permissoes[#{c[:controller]}][#{m}]", true, false %>
+                            <span><%= t m %></span>
+                          </label>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
-              <% end %>
+              </div>
             </div>
+          </div>
+        <% end %>
+        </div>
+
+        <hr class="my-4">
+        <div class="form-row">
+          <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary">Savar</button>
           </div>
         </div>
       </div>
     </div>
-
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
 

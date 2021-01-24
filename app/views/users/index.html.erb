@@ -1,27 +1,137 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>-->
 
-<h1>Users</h1>
+<!--<h1>Users</h1>-->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
 
-  <tbody>
-    <% @users.each do |users| %>
-      <tr>
-        <td><%= users.name %></td>
-        <td><%= link_to 'Show', users %></td>
-        <td><%= link_to 'Edit', edit_user_path(users) %></td>
-        <td><%= link_to 'Destroy', users, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!--  <tbody>-->
+    <%# @users.each do |users| %>
+<!--      <tr>-->
+<!--        <td><%#= users.name %></td>-->
+<!--        <td><%#= link_to 'Show', users %></td>-->
+<!--        <td><%#= link_to 'Edit', edit_user_path(users) %></td>-->
+<!--        <td><%#= link_to 'Destroy', users, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--      </tr>-->
+    <%# end %>
+<!--  </tbody>-->
+<!--</table>-->
 
-<br>
+<!--<br>-->
 
-<%= link_to 'New User', new_user_path %>
+<%#= link_to 'New User', new_user_path %>
+
+<% content_for :header do %>
+
+<% end %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+
+      <div class="row align-items-center my-4">
+        <div class="col">
+          <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.users' %></h2>
+        </div>
+        <div class="col-auto">
+          <a class="btn btn-primary" href="<%= new_user_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %>
+          </a>
+        </div>
+      </div>
+
+      <% if @users.length == 0 and !params[:q].present? %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card shadow">
+              <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+                <h6 class="">Não há itens cadastrados.</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+
+
+        <%= search_form_for @q, url: users_path do |f| %>
+          <div class="row my-4">
+            <div class="col-md-6">
+
+              <div class="input-group mb-3">
+                <%= f.text_field :name_or_email_cont, class: 'form-control', placeholder: "Nome ou email" %>
+                <div class="input-group-append">
+                  <button class="btn btn-light" type="submit">
+                    <span class="fe fe-search fe-16 text-muted"></span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-md-auto ml-auto text-right">
+              <% if params[:q].present? %>
+              <span class="small bg-white border py-1 px-2 rounded mr-2">
+                    <a href="<%= users_path %>" class="text-muted"><i class="fe fe-x"></i></a>
+                    <a href="#" class="text-muted ml-2"><span class="">Filtrado</span></a>
+                  </span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <% if @users.count == 0 %>
+              <div class="card shadow">
+                <div class="card-body my-4 align-items-center h-100 row justify-content-center">
+                  <h6 class="">Nenhum item correspondente encontrado.</h6>
+                </div>
+              </div>
+            <% else %>
+              <table class="table border table-hover bg-white table-sm">
+                <thead>
+                <tr role="row">
+                  <th width="40%"><%= t 'activerecord.attributes.user.name' %></th>
+                  <th width="40%"><%= t 'activerecord.attributes.user.email' %></th>
+                  <th width="10%"><%= t 'activerecord.attributes.user.telephone' %></th>
+                  <th width="10%" class="right">Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @users.each do |user| %>
+                  <tr>
+                    <td><a href="<%= user_path user %>"><strong><%= truncate user.name %></strong></a></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.telephone %></td>
+
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="text-muted sr-only">Action</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" style="">
+                          <a class="dropdown-item" href="<%= user_path user %>">Visualizar</a>
+                          <a class="dropdown-item" href="<%= edit_user_path user %>">Editar</a>
+                          <%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+
+              <%= paginate @users %>
+
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

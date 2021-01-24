@@ -38,9 +38,9 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col-sm-12 col-md-12 col-lg-12">
+          <div class="form-group col-sm-12">
             <%= form.label :profile_ids, class: 'col-form-label' %> <br>
-            <%= form.select :profile_ids, options_for_select(@profiles, user.profile_ids), {}, { class: 'form-control select2-multi', multiple: "multiple" } %>
+            <%= form.select :profile_ids, options_for_select(@profiles, user.profile_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", style: 'width: 100% !important;' } %>
           </div>
         </div>
 

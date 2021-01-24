@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get 'pages/homepage'
 
   resources :menus
-  resources :profiles
+  resources :profiles do
+    member do
+      get 'toggle_status'
+    end
+  end
 
   resources :ideas do
     collection do

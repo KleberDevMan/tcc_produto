@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   # before_action :authenticate_user!
   # load_and_authorize_resource
 
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :toggle_status]
   before_action :set_combos, only: [:new, :edit, :update, :create]
 
   # GET /profiles
@@ -52,6 +52,18 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     redirect_to profiles_url, notice: t('notice.profile.deleted')
+  end
+
+  def toggle_status
+    if @profile.active
+      if @profile.update(active: false)
+        redirect_to profiles_url, notice: t('notice.disabled')
+      end
+    else
+      if @profile.update(active: true)
+        redirect_to profiles_url, notice: t('notice.activated')
+      end
+    end
   end
 
   private
