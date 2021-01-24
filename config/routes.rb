@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :ideas do
     collection do
       get 'my_ideas'
+      post 'update_colaborators'
+      post 'create_callaboration'
+      delete 'destroy_callaboration'
     end
   end
 

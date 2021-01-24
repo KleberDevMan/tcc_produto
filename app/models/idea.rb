@@ -5,6 +5,7 @@
 #  id                   :bigint           not null, primary key
 #  description          :string
 #  differential         :string
+#  locality             :string
 #  possibility_business :boolean
 #  possibility_reward   :boolean
 #  problem_to_solve     :string
@@ -14,14 +15,17 @@
 #  title                :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  idea_category_id     :bigint           not null
 #  ideializer_id        :bigint           not null
 #
 # Indexes
 #
-#  index_ideas_on_ideializer_id  (ideializer_id)
+#  index_ideas_on_idea_category_id  (idea_category_id)
+#  index_ideas_on_ideializer_id     (ideializer_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (idea_category_id => idea_categories.id)
 #  fk_rails_...  (ideializer_id => users.id)
 #
 class Idea < ApplicationRecord
@@ -31,9 +35,18 @@ class Idea < ApplicationRecord
   belongs_to :ideializer, class_name: 'User'
 
   has_many :collaborations
-  has_many :collaborators, through: :collaborators, source: :user, class_name: "User"
-  has_many :idea_category_ideas
-  has_many :categories, through: :idea_category_ideas, source: :idea_category, class_name: "IdeaCategory"
+  has_many :collaborators, through: :collaborations, source: :user, class_name: "User"
+
+  has_many :collaboration_devs,-> { where(type_collaboration: :developer) }, class_name: "Collaboration"
+  has_many :devs, through: :collaboration_devs, source: :user, class_name: "User"
+
+  has_many :collaboration_facs,-> { where(type_collaboration: :facilitator) }, class_name: "Collaboration"
+  has_many :facilitators, through: :collaboration_facs, source: :user, class_name: "User"
+
+  # has_many :idea_category_ideas
+  # has_many :categories, through: :idea_category_ideas, source: :idea_category, class_name: "IdeaCategory"
+
+  belongs_to :idea_category
 
   enumerize :status, in: [:public, :private], predicates: true, default: :public
 
@@ -43,5 +56,16 @@ class Idea < ApplicationRecord
     else
       status
     end
+  end
+
+  def get_semester
+    year = self.created_at.year
+    if self.created_at.month <= 6
+      semester = 1
+    else
+      semester = 2
+    end
+
+    "#{year.to_s}/#{semester.to_s}"
   end
 end

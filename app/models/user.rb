@@ -27,6 +27,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attr_accessor :email, :name
+
   has_many :ideas, foreign_key: :ideializer_id, dependent: :destroy
   has_many :profile_users, dependent: :destroy
   has_many :profiles, through: :profile_users, dependent: :destroy
@@ -45,4 +47,6 @@ class User < ApplicationRecord
       ProfileUser.create user_id: self.id, profile_id: profile_idealizer.id
     end
   end
+
+  scope :collaborators, -> { includes(:profiles).where(profiles: {namespace: 'collaborator'}) }
 end

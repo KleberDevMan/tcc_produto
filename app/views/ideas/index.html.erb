@@ -1,4 +1,10 @@
 <% content_for :header do %>
+  <style>
+      .card:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+      }
+  </style>
 <% end %>
 
 <!--<div class="container-fluid">-->
@@ -9,7 +15,9 @@
       <h2 class="h3 mb-0 page-title" style="padding-left: 0.5rem;"><%= t 'activerecord.models.ideas' %></h2>
     </div>
     <div class="col-auto">
-      <a class="" href="<%= new_idea_path %>">Área administrativa</a>
+      <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
+        <a class="" href="<%= pages_homepage_path %>">Área administrativa</a>
+      <% end %>
     </div>
   </div>
 
@@ -74,23 +82,31 @@
 
         <% @ideas.each do |idea| %>
           <div class="col-md-6 col-sm-12 col-lg-3 my-2">
-            <div class="card shadow h-100">
-              <div class="card-body text-center">
-                <div class="avatar avatar-lg">
-                  <a href="">
-                    <img src="https://static.thenounproject.com/png/134479-200.png" style="background-color: white; border: solid 1px red;" alt="..." class="avatar-img rounded-circle">
-                  </a>
-                </div>
-                <div class="card-text mt-2">
-                  <strong class="card-title my-0"><%= truncate idea.title, length: 80 %></strong>
-                  <p class="small text-muted mb-0"><%= truncate idea.ideializer.name %></p>
-                  <p class="small mb-0">
-                    <span class="badge badge-light text-muted">Palmas, TO</span>
-                    <span class="badge badge-light text-muted">2021/1</span>
-                  </p>
+            <a href="<%= idea_path idea %>" style="text-decoration: none">
+              <div class="card shadow h-100">
+                <div class="card-body text-center">
+                  <div class="avatar avatar-lg">
+                    <!--                  <a href="<%#= idea_path idea %>">-->
+                    <!--                    <img src="<%#= idea.categories.first.get_url_img %>" style="background-color: white;" alt="..." class="avatar-img rounded-circle">-->
+                    <img src="<%= idea.idea_category.get_url_img %>" style="background-color: white;" alt="..." class="avatar-img rounded-circle">
+                    <!--                  </a>-->
+                  </div>
+                  <div class="card-text mt-2">
+                    <strong class="card-title my-0"><%= truncate idea.title, length: 80 %></strong>
+                    <p class="small text-muted mb-0"><%= truncate idea.ideializer.name %></p>
+                    <p class="small mb-0">
+                      <span class="badge badge-light text-muted"><%= truncate idea.locality %></span>
+                      <span class="badge badge-light text-muted"><%= idea.get_semester %></span>
+                    </p>
+                    <% if idea.collaborations.map(&:user_id).include? current_user.id %>
+                      <p class="small mb-0">
+                        <span class="badge badge-warning">Colaborando</span>
+                      </p>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         <% end %>
 
@@ -121,7 +137,7 @@
                       <strong>Pesquisa por termos</strong>
                     </p>
                     <div class="">
-                      <%= f.text_field :title_or_description_or_categories_name_cont, class: 'form-control', placeholder: "Título, descrição ou categoria" %>
+                      <%= f.text_field :title_or_description_or_idea_category_name_cont, class: 'form-control', placeholder: "Título, descrição ou categoria" %>
                     </div>
                   </div>
 

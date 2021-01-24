@@ -1,4 +1,10 @@
 pt-BR:
+  enumerize:
+    collaboration:
+      type_collaboration:
+        developer: Desenvolvedor
+        facilitator: Facilitador
+        type_collaboration: Tipo de colaboração
   activerecord:
     models:
       collaboration: Colaboração

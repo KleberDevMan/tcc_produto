@@ -6,6 +6,7 @@
 #  collaboration_date :datetime
 #  quit               :boolean
 #  reason             :string
+#  type_collaboration :string
 #  withdrawal_date    :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

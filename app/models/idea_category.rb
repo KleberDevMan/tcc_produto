@@ -13,9 +13,12 @@
 #
 class IdeaCategory < ApplicationRecord
   extend Enumerize
+  include Rails.application.routes.url_helpers
 
-  has_many :idea_category_ideas
-  has_many :ideas, through: :idea_category_ideas
+  # has_many :idea_category_ideas
+  # has_many :ideas, through: :idea_category_ideas
+
+  has_many :ideas
 
   validates :name, presence: true
 
@@ -35,6 +38,16 @@ class IdeaCategory < ApplicationRecord
       'link'
     else
       link_or_image
+    end
+  end
+
+  def get_url_img
+    if link_or_image == 'img' and img
+      rails_blob_path(img, disposition: "attachment", only_path: true)
+    elsif link_or_image == 'link' and img_link
+      img_link
+    else
+      'https://piotrkowalski.pw/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'
     end
   end
 end
