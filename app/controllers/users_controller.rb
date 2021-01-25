@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+  before_action :set_paper_trail_whodunnit, only: [:create]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_combos, only: [:edit, :update]
+  before_action :set_combos, only: [:new, :edit, :update]
 
   add_breadcrumb "Usuários", :users_path
 
   # GET /users
   def index
     add_breadcrumb "Listagem", users_path
-    @q = User.ransack(params[:q])
+    @q = User.ransack(params[:q], default_order: { updated_at: :desc })
     @users = @q.result.page params[:page]
-    # @users = User.all
   end
 
   #Método que realiza a alteração de perfil e órgão do usuário

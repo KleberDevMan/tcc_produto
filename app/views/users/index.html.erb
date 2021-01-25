@@ -104,7 +104,7 @@
                 <tbody>
                 <% @users.each do |user| %>
                   <tr>
-                    <td><a href="<%= user_path user %>"><strong><%= truncate user.name %></strong></a></td>
+                    <td><a href="<%= user_path user %>"><strong><%= truncate user.name %>|| <%= user.versions.count %></strong></a></td>
                     <td><%= user.email %></td>
                     <td><%= user.telephone %></td>
 

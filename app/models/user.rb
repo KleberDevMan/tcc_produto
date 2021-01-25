@@ -21,6 +21,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  has_paper_trail on: [:create]
+
   extend Enumerize
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -46,5 +48,5 @@ class User < ApplicationRecord
     end
   end
 
-  scope :collaborators, -> { includes(:profiles).where(profiles: {namespace: 'collaborator'}) }
+  scope :collaborators, -> { includes(:profiles).where(profiles: { namespace: 'collaborator' }) }
 end
