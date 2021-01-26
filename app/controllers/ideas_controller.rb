@@ -82,7 +82,7 @@ class IdeasController < ApplicationController
   end
 
   def my_ideas
-    all = Idea.all
+    all = Idea.where(ideializer_id: current_user.id)
     @qtd_all = all.count
 
     @qtd_publics = all.select { |aw| aw.status == 'public' }.count
@@ -96,7 +96,7 @@ class IdeasController < ApplicationController
 
     @tax_collaboration = 66
 
-    @q = Idea.includes(:collaborations).ransack(params[:q], default_order: { updated_at: :desc })
+    @q = all.ransack(params[:q], default_order: { updated_at: :desc })
 
     @ideas = @q.result.page(params[:page]).per(9)
   end
