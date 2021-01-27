@@ -45,7 +45,7 @@
                         <% end %>
                       </a>
                       <% if teacher.academic_works_count == 0 %>
-                        <%= link_to 'Excluir', teacher, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
+                        <%= button_to 'Excluir', teacher, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
                       <% end %>
                     </div>
                   </div>
