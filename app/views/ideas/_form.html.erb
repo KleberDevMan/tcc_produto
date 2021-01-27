@@ -36,7 +36,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :title %>
-            <%= form.text_field :title, class: 'form-control', required: true, maxlength: 80, size: 80 %>
+            <%= form.text_field :title, class: 'form-control', placeholder: 'Ex: Aplicativo para hortas', required: true, maxlength: 80, size: 80 %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
 
@@ -53,7 +53,7 @@
         <div class="form-row">
           <div class="form-group col-md-12">
             <%= form.label :description %>
-            <%= form.text_area :description, class: 'form-control', rows: 4, required: true %>
+            <%= form.text_area :description, class: 'form-control', placeholder: 'Ex: Proponho a contrução de uma aplicativa para o manejo de hortas de pequeno porte. Voltado para aqueles pequenos agricultores e feirantes. Estou a disposição para das mais detalhes sobre minha idea, caso você deseje colaborar comigo.', rows: 4, required: true %>
           </div>
         </div>
 
@@ -61,7 +61,7 @@
           <div class="form-group col-md-8">
             <%= form.label :locality %>
             <p class="small text-muted mb-2"> Múnicipio e estado onde pretende-se desenvolver a idea. </p>
-            <%= form.text_field :locality, class: 'form-control', placeholder: 'Palmas, TO', required: true, maxlength: 20, size: 20 %>
+            <%= form.text_field :locality, class: 'form-control', placeholder: 'Ex: Palmas, TO', required: true, maxlength: 20, size: 20 %>
           </div>
         </div>
 

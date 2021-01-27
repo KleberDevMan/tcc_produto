@@ -37,7 +37,7 @@ class MenusController < ApplicationController
     end
 
     if @menu.save
-      redirect_to @menu, notice: t('notice.menu.created')
+      redirect_to @menu, notice: t('notice.created')
     else
       render :new
     end
@@ -46,7 +46,7 @@ class MenusController < ApplicationController
   # PATCH/PUT /menus/1
   def update
     if @menu.update(menu_params)
-      redirect_to @menu, notice: t('notice.menu.updated')
+      redirect_to @menu, notice: t('notice.updated')
     else
       render :edit
     end
@@ -55,7 +55,7 @@ class MenusController < ApplicationController
   # DELETE /menus/1
   def destroy
     @menu.destroy
-    redirect_to menus_url, notice: t('notice.menu.deleted')
+    redirect_to menus_url, notice: t('notice.excluded')
   end
 
   private

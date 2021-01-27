@@ -45,7 +45,7 @@ class AcademicWorksController < ApplicationController
 
     respond_to do |format|
       if @academic_work.save
-        format.html { redirect_to @academic_work, notice: 'Academic work was successfully created.' }
+        format.html { redirect_to @academic_work, notice: t('notice.created') }
         format.json { render :show, status: :created, location: @academic_work }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class AcademicWorksController < ApplicationController
   def update
     respond_to do |format|
       if @academic_work.update(academic_work_params)
-        format.html { redirect_to @academic_work, notice: 'Academic work was successfully updated.' }
+        format.html { redirect_to @academic_work, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @academic_work }
       else
         format.html { render :edit }
@@ -73,7 +73,7 @@ class AcademicWorksController < ApplicationController
   def destroy
     @academic_work.destroy
     respond_to do |format|
-      format.html { redirect_to academic_works_url, notice: 'Academic work was successfully destroyed.' }
+      format.html { redirect_to academic_works_url, notice: t('notice.excluded') }
       format.json { head :no_content }
     end
   end

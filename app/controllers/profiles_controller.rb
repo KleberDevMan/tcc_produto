@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.permissions = params[:permissoes]
     if @profile.save
-      redirect_to @profile, notice: t('notice.profile.created')
+      redirect_to @profile, notice: t('notice.created')
     else
       render :new
     end
@@ -42,7 +42,7 @@ class ProfilesController < ApplicationController
     @profile.description = params[:profile][:description]
     @profile.permissions = params[:permissoes]
     if @profile.save
-      redirect_to @profile, notice: t('notice.profile.updated')
+      redirect_to @profile, notice: t('notice.updated')
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   def destroy
     @profile.destroy
-    redirect_to profiles_url, notice: t('notice.profile.deleted')
+    redirect_to profiles_url, notice: t('notice.excluded')
   end
 
   def toggle_status

@@ -18,6 +18,8 @@
       <div class="col-12 col-xl-10">
         <h2 class="mb-2 mt-4"><%= t 'activerecord.models.users' %></h2>
 
+        <%= form.hidden_field :registered_by_id, value: current_user.id %>
+
         <div class="form-group">
           <%= form.label :email %>
           <%= form.email_field :email, class: 'form-control', required: true %>
@@ -37,10 +39,38 @@
           </div>
         </div>
 
+        <hr class="my-4">
+        <% if user.new_record? %>
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= form.label :password %>
+                <%= form.password_field :password, autocomplete: "new-password", class: 'form-control', required: true, minlength: 6 %>
+                <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
+              </div>
+              <div class="form-group">
+                <%= form.label :password_confirmation %>
+                <%= form.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true, minlength: 6 %>
+                <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
+                <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2"><%= t 'texts.devise.password_requirements' %></p>
+              <p class="small text-muted mb-2"> <%= t 'texts.devise.requirements_to_create_password' %>: </p>
+              <ul class="small text-muted pl-4 mb-0">
+                <li> Mínimo 6 caracteres.</li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+
+
         <div class="form-row">
           <div class="form-group col-sm-12">
             <%= form.label :profile_ids, class: 'col-form-label' %> <br>
-            <%= form.select :profile_ids, options_for_select(@profiles, user.profile_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", style: 'width: 100% !important;' } %>
+            <%= form.select :profile_ids, options_for_select(Profile.order(name: :asc).map { |p| [p.name, p.id] }, user.profile_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", style: 'width: 100% !important;' } %>
           </div>
         </div>
 

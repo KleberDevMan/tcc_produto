@@ -23,48 +23,48 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card shadow h-100">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <div class="col">
-                  <small class="text-muted mb-1">Total visualizações</small>
-                  <h3 class="card-title mb-0"><%= @qtd_views %></h3>
-                </div>
-                <div class="col-4 text-right">
-                  <p class="small text-muted mb-0"><span>Última semana</span></p>
-                  <span class="inlinebar"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card shadow h-100">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <div class="col-3 text-center">
-                          <span class="circle circle-sm bg-primary">
-                            <i class="fe fe-16 fe-filter text-white mb-0"></i>
-                          </span>
-                </div>
-                <div class="col">
-                  <p class="small text-muted mb-2"><span class="mr-1">Taxa de colaboração</span><span class="text-muted fe fe-24 fe-info" style="font-size: 18px" data-toggle="tooltip" data-placement="bottom" title="Percentual das suas ideias que obtiveram colaboração"></span></p>
-                  <div class="row align-items-center no-gutters">
-                    <div class="col-auto">
-                      <span class="h3 mr-2 mb-0"> <%= @tax_collaboration %>% </span>
-                    </div>
-                    <div class="col-md-12 col-lg">
-                      <div class="progress progress-sm mt-2" style="height:3px">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <%= @tax_collaboration %>%" aria-valuenow="<%= @tax_collaboration %>" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<!--        <div class="col-md-4 mb-4">-->
+<!--          <div class="card shadow h-100">-->
+<!--            <div class="card-body">-->
+<!--              <div class="row align-items-center">-->
+<!--                <div class="col">-->
+<!--                  <small class="text-muted mb-1">Total visualizações</small>-->
+<!--                  <h3 class="card-title mb-0"><%#= @qtd_views %></h3>-->
+<!--                </div>-->
+<!--                <div class="col-4 text-right">-->
+<!--                  <p class="small text-muted mb-0"><span>Última semana</span></p>-->
+<!--                  <span class="inlinebar"></span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-4 mb-4">-->
+<!--          <div class="card shadow h-100">-->
+<!--            <div class="card-body">-->
+<!--              <div class="row align-items-center">-->
+<!--                <div class="col-3 text-center">-->
+<!--                          <span class="circle circle-sm bg-primary">-->
+<!--                            <i class="fe fe-16 fe-filter text-white mb-0"></i>-->
+<!--                          </span>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                  <p class="small text-muted mb-2"><span class="mr-1">Taxa de colaboração</span><span class="text-muted fe fe-24 fe-info" style="font-size: 18px" data-toggle="tooltip" data-placement="bottom" title="Percentual das suas ideias que obtiveram colaboração"></span></p>-->
+<!--                  <div class="row align-items-center no-gutters">-->
+<!--                    <div class="col-auto">-->
+<!--                      <span class="h3 mr-2 mb-0"> <%#= @tax_collaboration %>% </span>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-12 col-lg">-->
+<!--                      <div class="progress progress-sm mt-2" style="height:3px">-->
+<!--                        <div class="progress-bar bg-success" role="progressbar" style="width: <%#= @tax_collaboration %>%" aria-valuenow="<%#= @tax_collaboration %>" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
 
 
@@ -173,7 +173,7 @@
                         <div class="dropdown-menu dropdown-menu-right" style="">
                           <a class="dropdown-item" href="<%= idea_path idea %>">Visualizar</a>
                           <a class="dropdown-item" href="<%= edit_idea_path idea %>">Editar</a>
-                          <%= link_to 'Excluir', idea, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                          <%= button_to 'Excluir', idea, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
                         </div>
                       </div>
                     </td>

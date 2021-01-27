@@ -40,6 +40,11 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
+  devise_scope :user do
+    get 'users/user_new' => 'users#new', as: 'user_new'
+    post 'users/user_create' => 'users#create', as: 'user_create'
+    put 'users/:id/user_update' => 'users#update', as: 'user_update'
+  end
 
   root 'pages#homepage'
 end

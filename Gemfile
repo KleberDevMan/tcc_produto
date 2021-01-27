@@ -69,5 +69,5 @@ gem 'ransack'
 gem "breadcrumbs_on_rails"
 gem 'arel_extensions' # fazer consultas ransack desconsiderando acentos
 gem 'cloudinary'
-gem 'paper_trail'
+# gem 'paper_trail' # not working
 # gem 'poppler'#preview activestorage

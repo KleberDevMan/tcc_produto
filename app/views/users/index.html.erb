@@ -11,14 +11,14 @@
 <!--  </thead>-->
 
 <!--  <tbody>-->
-    <%# @users.each do |users| %>
+<%# @users.each do |users| %>
 <!--      <tr>-->
 <!--        <td><%#= users.name %></td>-->
 <!--        <td><%#= link_to 'Show', users %></td>-->
 <!--        <td><%#= link_to 'Edit', edit_user_path(users) %></td>-->
 <!--        <td><%#= link_to 'Destroy', users, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
 <!--      </tr>-->
-    <%# end %>
+<%# end %>
 <!--  </tbody>-->
 <!--</table>-->
 
@@ -96,17 +96,19 @@
                 <thead>
                 <tr role="row">
                   <th width="40%"><%= t 'activerecord.attributes.user.name' %></th>
-                  <th width="40%"><%= t 'activerecord.attributes.user.email' %></th>
-                  <th width="10%"><%= t 'activerecord.attributes.user.telephone' %></th>
+                  <th width="30%"><%= t 'activerecord.attributes.user.profile_ids' %></th>
+                  <th width="20%"><%= t 'activerecord.attributes.user.email' %></th>
+<!--                  <th width="20%"><%#= t 'activerecord.attributes.user.telephone' %></th>-->
                   <th width="10%" class="right">Ação</th>
                 </tr>
                 </thead>
                 <tbody>
                 <% @users.each do |user| %>
                   <tr>
-                    <td><a href="<%= user_path user %>"><strong><%= truncate user.name %>|| <%= user.versions.count %></strong></a></td>
+                    <td><a href="<%= user_path user %>"><strong><%= truncate user.name %></strong></a></td>
+                    <td><%= user.profiles.map(&:name).join(', ') %></td>
                     <td><%= user.email %></td>
-                    <td><%= user.telephone %></td>
+<!--                    <td><%#= user.telephone %></td>-->
 
                     <td>
                       <div class="dropdown">
@@ -116,7 +118,9 @@
                         <div class="dropdown-menu dropdown-menu-right" style="">
                           <a class="dropdown-item" href="<%= user_path user %>">Visualizar</a>
                           <a class="dropdown-item" href="<%= edit_user_path user %>">Editar</a>
-                          <%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                          <% if user.registered_by.present? %>
+                            <%= button_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                          <% end %>
                         </div>
                       </div>
                     </td>

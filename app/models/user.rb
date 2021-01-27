@@ -14,14 +14,20 @@
 #  type_collaborator      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  registered_by_id       :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_registered_by_id      (registered_by_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+# Foreign Keys
+#
+#  fk_rails_...  (registered_by_id => users.id)
+#
 class User < ApplicationRecord
-  has_paper_trail on: [:create]
+  # has_paper_trail on: [:create]
 
   extend Enumerize
   # Include default devise modules. Others available are:
@@ -36,6 +42,8 @@ class User < ApplicationRecord
   has_many :menus, through: :profile_menus, dependent: :destroy
   has_many :collaborations
 
+  belongs_to :registered_by, class_name: 'User', optional: true
+
   enumerize :type_collaborator, in: [:developer, :facilitator], predicates: true
 
   after_create :set_profile_idealize
@@ -49,4 +57,8 @@ class User < ApplicationRecord
   end
 
   scope :collaborators, -> { includes(:profiles).where(profiles: { namespace: 'collaborator' }) }
+
+  def to_s
+    name
+  end
 end

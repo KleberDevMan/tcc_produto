@@ -7,7 +7,7 @@ pt-BR:
       profile:
         name: Nome
         active: Ativo
-        description: Description
+        description: Descrição
         permissions: Permissões
         namespace: Namespace
   notice:

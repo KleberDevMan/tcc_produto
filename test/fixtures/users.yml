@@ -14,11 +14,17 @@
 #  type_collaborator      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  registered_by_id       :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_registered_by_id      (registered_by_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (registered_by_id => users.id)
 #
 
 # This model initially had no columns defined. If you add columns to the

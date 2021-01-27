@@ -4,14 +4,13 @@ class UsersController < ApplicationController
   before_action :set_paper_trail_whodunnit, only: [:create]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_combos, only: [:new, :edit, :update]
+  # before_action :set_combos, only: [:new, :edit, :update]
 
-  add_breadcrumb "Usuários", :users_path
+  # add_breadcrumb "Usuários", :users_path
 
   # GET /users
   def index
-    add_breadcrumb "Listagem", users_path
-    @q = User.ransack(params[:q], default_order: { updated_at: :desc })
+    @q = User.order(updated_at: :desc).ransack(params[:q])
     @users = @q.result.page params[:page]
   end
 
@@ -23,12 +22,12 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    add_breadcrumb "Visualizar", user_path(@user)
+    # add_breadcrumb "Visualizar", user_path(@user)
   end
 
   # GET /users/new
   def new
-    add_breadcrumb "Cadastrar", new_user_path
+    # add_breadcrumb "Cadastrar", new_user_path
     @user = User.new
   end
 
@@ -76,10 +75,10 @@ class UsersController < ApplicationController
 
   private
 
-  def set_combos
-    # @orgaos = Secretaria.all.order(nome: :asc).map{|a| [a.nome,a.id]}
-    @profiles = Profile.order(name: :asc).map { |p| [p.name, p.id] }
-  end
+  # def set_combos
+  #   # @orgaos = Secretaria.all.order(nome: :asc).map{|a| [a.nome,a.id]}
+  #   @profiles = Profile.order(name: :asc).map { |p| [p.name, p.id] }
+  # end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -94,6 +93,9 @@ class UsersController < ApplicationController
                                  :telephone,
                                  :biography,
                                  :token,
+                                 :password,
+                                 :registered_by_id,
+                                 :password_confirmation,
                                  { profile_ids: [] })
   end
 end

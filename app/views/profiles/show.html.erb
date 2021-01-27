@@ -1,29 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t 'activerecord.attributes.profile.name' %>:</strong>
   <%= @profile.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= t 'activerecord.attributes.profile.description' %>:</strong>
   <%= @profile.description %>
 </p>
 
 <p>
-  <strong>Active:</strong>
+  <strong><%= t 'activerecord.attributes.profile.active' %>:</strong>
   <%= @profile.active %>
 </p>
 
 <p>
-  <strong>Permissions:</strong>
+  <strong><%= t 'activerecord.attributes.profile.permissions' %>:</strong>
   <%= @profile.permissions %>
 </p>
 
 <p>
-  <strong>Namespace:</strong>
+  <strong><%= t 'activerecord.attributes.profile.namespace' %>:</strong>
   <%= @profile.namespace %>
 </p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
