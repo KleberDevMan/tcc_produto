@@ -184,7 +184,7 @@
                       <div class="dropdown-menu dropdown-menu-right" style="">
                         <a class="dropdown-item" href="<%= academic_work_path academic_work %>">Visualizar</a>
                         <a class="dropdown-item" href="<%= edit_academic_work_path academic_work %>">Editar</a>
-                        <%= link_to 'Excluir', academic_work, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                        <%= button_to 'Excluir', academic_work, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
                       </div>
                     </div>
                   </td>

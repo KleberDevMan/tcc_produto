@@ -10,7 +10,7 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @q = Idea.includes(:collaborations, :idea_category).ransack(params[:q], default_order: { updated_at: :desc })
+    @q = Idea.quick_filter(params[:quick_filter], current_user.id).includes(:collaborations, :idea_category).ransack(params[:q], default_order: { updated_at: :desc })
     @ideas = @q.result.page(params[:page]).per(12)
   end
 

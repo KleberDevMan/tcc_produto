@@ -15,7 +15,7 @@
 #  title                :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  idea_category_id     :bigint           not null
+#  idea_category_id     :bigint
 #  ideializer_id        :bigint           not null
 #
 # Indexes
@@ -37,10 +37,10 @@ class Idea < ApplicationRecord
   has_many :collaborations
   has_many :collaborators, through: :collaborations, source: :user, class_name: "User"
 
-  has_many :collaboration_devs,-> { where(type_collaboration: :developer) }, class_name: "Collaboration"
+  has_many :collaboration_devs, -> { where(type_collaboration: :developer) }, class_name: "Collaboration"
   has_many :devs, through: :collaboration_devs, source: :user, class_name: "User"
 
-  has_many :collaboration_facs,-> { where(type_collaboration: :facilitator) }, class_name: "Collaboration"
+  has_many :collaboration_facs, -> { where(type_collaboration: :facilitator) }, class_name: "Collaboration"
   has_many :facilitators, through: :collaboration_facs, source: :user, class_name: "User"
 
   # has_many :idea_category_ideas
@@ -67,5 +67,16 @@ class Idea < ApplicationRecord
     end
 
     "#{year.to_s}/#{semester.to_s}"
+  end
+
+  scope :quick_filter, -> (filter = nil, user_id = nil) do
+    case filter
+    when 'my_collaborations'
+      includes(:collaborations).where(collaborations: { user_id: user_id }).distinct
+    when 'my_ideas'
+      where(ideializer_id: user_id)
+    else
+      all
+    end
   end
 end

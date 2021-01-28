@@ -31,6 +31,9 @@
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-gerenciar-colaboradores">Gerenciar
         colaboradores
       </button>
+      <%= link_to_if @idea.ideializer_id.eql?(current_user.id), 'Editar', edit_idea_path(@idea), class: 'btn btn-success' %>
+    <% elsif @idea.ideializer_id.eql? current_user.id %>
+      <%= link_to 'Editar', edit_idea_path(@idea), class: 'btn btn-success' %>
     <% elsif profiles_s.include? 'collaborator' %>
       <% if @idea.collaborators.map(&:id).include? current_user.id %>
         <button type="button" onclick="desistirColaboracao();" class="btn btn-warning">Desistir colaboração</button>
