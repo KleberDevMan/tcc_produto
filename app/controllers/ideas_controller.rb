@@ -17,6 +17,19 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    # require 'sendgrid-ruby'
+    #
+    # from = SendGrid::Email.new(email: 'sistematccproduto@gmail.com')
+    # to = SendGrid::Email.new(email: 'klebersubcontas@gmail.com')
+    # subject = 'Sending with SendGrid is Fun'
+    # content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+    # mail = SendGrid::Mail.new(from, subject, to, content)
+    #
+    # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    # response = sg.client.mail._('send').post(request_body: mail.to_json)
+    # puts response.status_code
+    # puts response.body
+    # puts response.headers
   end
 
   # GET /ideas/new
@@ -114,6 +127,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if collaboration.save
+        UserMailer.with(collaboration: collaboration).new_collaboration.deliver_now
         flash[:success_colaborar] = true
         format.html { redirect_to idea_path @idea.id }
       else
@@ -121,6 +135,9 @@ class IdeasController < ApplicationController
         format.html { redirect_to idea_path @idea.id }
       end
     end
+  end
+
+  def dashboard
 
   end
 

@@ -41,6 +41,7 @@ class User < ApplicationRecord
   has_many :profile_menus, through: :profiles, dependent: :destroy
   has_many :menus, through: :profile_menus, dependent: :destroy
   has_many :collaborations
+  has_many :notifications
 
   belongs_to :registered_by, class_name: 'User', optional: true
 

@@ -30,4 +30,5 @@ class Collaboration < ApplicationRecord
   belongs_to :idea
 
   enumerize :type_collaboration, in: [:developer, :facilitator], predicates: true, default: :developer
+
 end

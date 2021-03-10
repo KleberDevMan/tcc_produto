@@ -47,6 +47,7 @@ group :development do
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'pry-byebug'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -69,5 +70,6 @@ gem 'ransack'
 gem "breadcrumbs_on_rails"
 gem 'arel_extensions' # fazer consultas ransack desconsiderando acentos
 gem 'cloudinary'
+# gem 'sendgrid-ruby'
 # gem 'paper_trail' # not working
 # gem 'poppler'#preview activestorage
