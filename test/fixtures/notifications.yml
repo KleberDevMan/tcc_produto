@@ -2,12 +2,14 @@
 #
 # Table name: notifications
 #
-#  id          :bigint           not null, primary key
-#  description :string
-#  title       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :bigint           not null
+#  id                :bigint           not null, primary key
+#  description       :string
+#  title             :string
+#  type_notification :string
+#  visualized        :boolean          default(FALSE)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :bigint           not null
 #
 # Indexes
 #

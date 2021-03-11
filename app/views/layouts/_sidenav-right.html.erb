@@ -11,60 +11,36 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background: #212529;">
         <div class="list-group list-group-flush my-n3">
-          <div class="list-group-item bg-transparent">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="fe fe-box fe-24"></span>
-              </div>
-              <div class="col">
-                <small><strong>Package has uploaded successfull</strong></small>
-                <div class="my-0 text-muted small">Package is zipped and uploaded</div>
-                <small class="badge badge-pill badge-light text-muted">1m ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="list-group-item bg-transparent">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="fe fe-download fe-24"></span>
-              </div>
-              <div class="col">
-                <small><strong>Widgets are updated successfull</strong></small>
-                <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
-                <small class="badge badge-pill badge-light text-muted">2m ago</small>
+          <% @notifications.each do |n| %>
+            <div class="list-group-item bg-transparent">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <% if n.type_notification.new_collaboration? %>
+                    <span class="fe fe-user-plus fe-24"></span>
+                  <% elsif n.type_notification.quit_collaboration? %>
+                    <span class="fe fe-user-x fe-24"></span>
+                  <% else %>
+                    <span class="fe fe-users fe-24"></span>
+                  <% end %>
+                </div>
+                <div class="col">
+                  <small><strong><%= n.title %></strong></small>
+                  <div class="my-0 text-muted small"><%= n.description.truncate(80) %></div>
+                  <small class="badge badge-pill badge-light text-muted"><%= n.created_at.to_s %></small>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="list-group-item bg-transparent">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="fe fe-inbox fe-24"></span>
-              </div>
-              <div class="col">
-                <small><strong>Notifications have been sent</strong></small>
-                <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
-                <small class="badge badge-pill badge-light text-muted">30m ago</small>
-              </div>
-            </div> <!-- / .row -->
-          </div>
-          <div class="list-group-item bg-transparent">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="fe fe-link fe-24"></span>
-              </div>
-              <div class="col">
-                <small><strong>Link was attached to menu</strong></small>
-                <div class="my-0 text-muted small">New layout has been attached to the menu</div>
-                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-              </div>
-            </div>
-          </div> <!-- / .row -->
+          <% end %>
+
+
         </div> <!-- / .list-group -->
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
+      <div class="modal-footer" style="background: #212529;">
+        <%= form_with url: notifications_clear_path, remote: true do |f| %>
+          <input class="btn btn-secondary btn-block" type="submit" value="Clear All" />
+        <% end if @notifications.any? %>
       </div>
     </div>
   </div>

@@ -73,8 +73,20 @@ class IdeasController < ApplicationController
 
   def update_colaborators
     @idea = Idea.find_by id: idea_params[:id]
+
+    result = false
+
+    ActiveRecord::Base.transaction do
+      begin
+        result = @idea.update(idea_params)
+        Notification.create_notification('edit_collaboration_admin', @idea)
+      rescue => error
+        raise ActiveRecord::Rollback
+      end
+    end
+
     respond_to do |format|
-      if @idea.update(idea_params)
+      if result
         format.html { redirect_to @idea, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @idea }
       else
@@ -123,11 +135,20 @@ class IdeasController < ApplicationController
     collaboration.type_collaboration = params[:type_collaboration]
     collaboration.user_id = params[:user_id]
 
-    @result = collaboration.save
+    @result = false
+
+    ActiveRecord::Base.transaction do
+      begin
+        @result = collaboration.save
+        Notification.create_notification('new_collaboration', collaboration.idea)
+      rescue
+        raise ActiveRecord::Rollback
+      end
+    end
 
     respond_to do |format|
-      if collaboration.save
-        UserMailer.with(collaboration: collaboration).new_collaboration.deliver_now
+      if @result
+        UserMailer.with(collaboration: collaboration).new_collaboration.deliver_later
         flash[:success_colaborar] = true
         format.html { redirect_to idea_path @idea.id }
       else
@@ -142,15 +163,26 @@ class IdeasController < ApplicationController
   end
 
   def destroy_collaboration
-    # binding.pry
     collaborations = Collaboration.where(user_id: params[:user_id], idea_id: params[:idea_id])
 
+    result = false
+
+    ActiveRecord::Base.transaction do
+      begin
+        result_delete = collaborations.destroy_all
+        Notification.create_notification('quit_collaboration', result_delete.first.idea)
+
+        result = true
+      rescue => error
+        raise ActiveRecord::Rollback
+      end
+    end
+
     respond_to do |format|
-      result = collaborations.destroy_all
-      if result.any?
-        format.json { render json: result.to_json, status: :ok }
+      if result
+        format.json { render json: nil, status: :ok }
       else
-        format.json { render json: result.to_json, status: :internal_server_error }
+        format.json { render json: nil, status: :internal_server_error }
       end
     end
   end

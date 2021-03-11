@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/clear'
   get 'pages/denied'
   get 'pages/homepage'
 
@@ -7,6 +8,10 @@ Rails.application.routes.draw do
     member do
       get 'toggle_status'
     end
+  end
+
+  resources :notifications, only: [] do
+    post 'clear', on: :collection
   end
 
   resources :ideas do

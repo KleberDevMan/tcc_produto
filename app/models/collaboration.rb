@@ -24,11 +24,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Collaboration < ApplicationRecord
-  extend Enumerize
-
   belongs_to :user
   belongs_to :idea
 
+  extend Enumerize
   enumerize :type_collaboration, in: [:developer, :facilitator], predicates: true, default: :developer
-
 end

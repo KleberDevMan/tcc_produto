@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_default_breadcrumbs, only: [:index, :show, :edit, :update, :new, :create]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_profiles_s
+  before_action :set_notifications
 
   layout :set_layout
 
@@ -88,5 +89,10 @@ class ApplicationController < ActionController::Base
 
   def set_profiles_s
     @profiles_s = current_user.present? ? current_user.profiles.map(&:namespace) : []
+  end
+
+  def set_notifications
+    @notifications = Notification.not_viewed.where(user_id: current_user&.id)
+    # Notification.where(user_id: current_user.id).update_all(visualized: false)
   end
 end
