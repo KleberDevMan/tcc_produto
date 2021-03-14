@@ -19,7 +19,7 @@ pt-BR:
         updated_at: Atualizado em
         institution: Instituição
         course_id: Curso
-        teacher_id: Orientador
+        teacher_id: Orientador(a)
 #        teacher: Orientador
         document: Documento
   enumerize:

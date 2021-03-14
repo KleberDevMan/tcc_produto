@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong><%= t 'activerecord.attributes.academic_work.teacher_id' %>:</strong>
+  <%= @academic_work.teacher.name %>
+</p>
+
+<p>
   <strong><%= t 'activerecord.attributes.academic_work.summary' %>:</strong>
   <%= @academic_work.summary %>
 </p>
@@ -49,7 +54,6 @@
 <p>
   <strong><%= t 'activerecord.attributes.academic_work.document' %>:</strong>
   <iframe src="<%= url_for @academic_work.document %>" width="100%" height="500" style="border: none;"></iframe>
-  <%#= @academic_work.document %>
 </p>
 <% else %>
   <p>
