@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     @user = params[:collaboration].user
 
     mail to: @idea.ideializer.email,
-         subject: "Novo colaborador - #{@idea.title.truncate(60)}"
+         subject: 'Novo colaborador para sua ideia!'
   end
 
 end

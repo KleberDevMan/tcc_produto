@@ -7,8 +7,6 @@
   </style>
 <% end %>
 
-<!--<div class="container-fluid">-->
-<!--  <div class="row justify-content-center">-->
 <div class="col-12">
   <div class="row align-items-center my-4">
     <div class="col">
@@ -21,7 +19,7 @@
     </div>
   </div>
 
-  <% if @ideas.length == 0 and !params[:q].present? %>
+  <% if @ideas.length == 0 and !params[:q].present? and !params[:quick_filter] %>
     <div class="row">
       <div class="col-sm-12">
         <div class="card shadow">
@@ -72,10 +70,8 @@
     <div class="row">
       <% if @ideas.count == 0 %>
         <div class="col-md-12">
-          <div class="card shadow">
-            <div class="card-body my-4 align-items-center h-100 row justify-content-center">
-              <h6 class="">Nenhum item correspondente encontrado.</h6>
-            </div>
+          <div class="align-items-center h-100 row justify-content-center">
+              <h6 class="my-5">Nenhum item correspondente encontrado.</h6>
           </div>
         </div>
       <% else %>
@@ -86,9 +82,9 @@
               <div class="card shadow h-100">
                 <div class="card-body text-center">
 
-<!--                  <div class="center-cropped"-->
-<!--                       style="background-image: url('<%#= idea.idea_category.get_url_img %>');">-->
-<!--                  </div>-->
+                  <!--                  <div class="center-cropped"-->
+                  <!--                       style="background-image: url('<%#= idea.idea_category.get_url_img %>');">-->
+                  <!--                  </div>-->
 
                   <div class="avatar avatar-lg">
                     <img src="<%= idea.idea_category.get_url_img %>" style="background-color: white;" height="60" width="50" alt="..." class="avatar-img rounded-circle">
@@ -173,5 +169,3 @@
     <% end %>
   <% end %>
   </div>
-  <!--  </div>-->
-  <!--</div>-->

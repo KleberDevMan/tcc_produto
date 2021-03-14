@@ -6,43 +6,26 @@ class IdeasController < ApplicationController
   skip_forgery_protection
 
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_q, only: [:index]
 
-  # GET /ideas
-  # GET /ideas.json
   def index
-    @q = Idea.quick_filter(params[:quick_filter], current_user.id).includes(:collaborations, :idea_category).ransack(params[:q], default_order: { updated_at: :desc })
+    @q = Idea.quick_filter(params[:quick_filter], current_user.id)
+             .includes(:collaborations, :idea_category)
+             .ransack(params[:q], default_order: { updated_at: :desc })
+
     @ideas = @q.result.page(params[:page]).per(12)
   end
 
-  # GET /ideas/1
-  # GET /ideas/1.json
   def show
-    # require 'sendgrid-ruby'
-    #
-    # from = SendGrid::Email.new(email: 'sistematccproduto@gmail.com')
-    # to = SendGrid::Email.new(email: 'klebersubcontas@gmail.com')
-    # subject = 'Sending with SendGrid is Fun'
-    # content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-    # mail = SendGrid::Mail.new(from, subject, to, content)
-    #
-    # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    # response = sg.client.mail._('send').post(request_body: mail.to_json)
-    # puts response.status_code
-    # puts response.body
-    # puts response.headers
   end
 
-  # GET /ideas/new
   def new
     @idea = Idea.new
   end
 
-  # GET /ideas/1/edit
   def edit
   end
 
-  # POST /ideas
-  # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
 
@@ -57,8 +40,6 @@ class IdeasController < ApplicationController
     end
   end
 
-  # PATCH/PUT /ideas/1
-  # PATCH/PUT /ideas/1.json
   def update
     respond_to do |format|
       if @idea.update(idea_params)
@@ -96,8 +77,6 @@ class IdeasController < ApplicationController
     end
   end
 
-  # DELETE /ideas/1
-  # DELETE /ideas/1.json
   def destroy
     @idea.destroy
     respond_to do |format|
@@ -126,9 +105,6 @@ class IdeasController < ApplicationController
     @ideas = @q.result.page(params[:page]).per(9)
   end
 
-  # def manage_collaborators
-  # end
-
   def create_collaboration
     collaboration = Collaboration.new
     collaboration.idea_id = params[:id]
@@ -148,7 +124,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @result
-        UserMailer.with(collaboration: collaboration).new_collaboration.deliver_later
+        UserMailer.with(collaboration: collaboration).new_collaboration.deliver_now
         flash[:success_colaborar] = true
         format.html { redirect_to idea_path @idea.id }
       else
@@ -189,12 +165,10 @@ class IdeasController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_idea
     @idea = Idea.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def idea_params
     params.require(:idea).permit(:title,
                                  :id,
@@ -221,6 +195,13 @@ class IdeasController < ApplicationController
       'application'
     else
       'application'
+    end
+  end
+
+  def prepare_q
+    if params[:q]
+      params[:q].delete(:possibility_business_eq) if params[:q][:possibility_business_eq].eql?(0.to_s)
+      params[:q].delete(:possibility_reward_eq) if params[:q][:possibility_reward_eq].eql?(0.to_s)
     end
   end
 end

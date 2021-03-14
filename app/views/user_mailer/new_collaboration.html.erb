@@ -1,14 +1,43 @@
-<h1>Novo colaborador - <%= @idea.title.truncate(60) %></h1>
+<p>
+  Conseguimos um novo colaborador para sua ideia abaixo.
+</p>
+<table>
+  <tbody>
+  <tr>
+    <td>Título:</td>
+    <td>
+      <%= @idea.title %>
+    </td>
+  </tr>
+  <tr>
+    <td>Descrição:</td>
+    <td>
+      <%= @idea.description %>
+    </td>
+  </tr>
+  </tbody>
+</table>
 
 <p>
-  Você acabar de receber o covite de um novo colaborador para desenvolver sua
-  ideia.
-
   Entre em contato com ele:
-
-  nome: <%= @user.name %>
-  email: <%= @user.email %>
-
-  Att.
-  Equipe TCC Produto.
 </p>
+
+<table>
+  <tbody>
+  <tr>
+    <td>Nome:</td>
+    <td>
+      <%= @user.name %>
+    </td>
+  </tr>
+  <tr>
+    <td>Contato:</td>
+    <td>
+      <%= @user.email %>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p>Att.</p>
+<h4>Equipe TCC Produto.</h4>

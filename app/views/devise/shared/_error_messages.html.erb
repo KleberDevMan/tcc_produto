@@ -4,8 +4,8 @@
       <%= t 'texts.solve_the_following_problems' %>:
     </h5>
     <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li class="text-danger"><%= message %></li>
+      <% resource.errors.messages.each do |key, message| %>
+        <li class="text-danger"><%= key %>: <%= message.first %></li>
       <% end %>
     </ul>
   </div>
