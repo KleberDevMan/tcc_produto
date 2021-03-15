@@ -10,7 +10,6 @@ pt-BR:
         summary: Resumo
         course: Curso
         defense_date: Data da defesa
-        document_link: Link para documento
         work_type: Tipo
         keyword: Palavras-chave
         how_to_quote: Como citar
@@ -20,11 +19,15 @@ pt-BR:
         institution: Instituição
         course_id: Curso
         teacher_id: Orientador(a)
-#        teacher: Orientador
-        document: Documento
+        document: Arquivo
+        document_link: Link para arquivo
+        link_or_doc: Link ou arquivo?
   enumerize:
     academic_work:
       work_type:
         tcc: TCC
         search: Pesquisa
         extension: Extensão
+      link_or_doc:
+        link: Link
+        doc: Arquivo

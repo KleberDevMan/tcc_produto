@@ -92,12 +92,13 @@ class AcademicWorksController < ApplicationController
                                           :summary,
                                           :defense_date,
                                           :document,
-                                          :document_link,
                                           :work_type,
                                           :keyword,
                                           :how_to_quote,
                                           :appraisers,
                                           :teacher_id,
-                                          :course_id)
+                                          :course_id,
+                                          :document_link,
+                                          :link_or_doc)
   end
 end

@@ -85,10 +85,22 @@
 
         <div class="form-row">
           <div class="form-group col-md-12">
-            <%= form.label :document %>
-            <div class="custom-file">
-              <input name="academic_work[document]" type="file" class="custom-file-input" id="customFile">
-              <label class="custom-file-label" for="customFile">Selecione o arquivo</label>
+            <h5 class="mb-2 mt-5">Arquivo</h5>
+            <%= form.label :link_or_doc, class: 'mr-2' %>
+
+            <% AcademicWork.link_or_doc.options.each do |type| %>
+              <%= form.radio_button :link_or_doc, type.last, class: 'form-check form-check-inline mr-0', checked: type.last == academic_work.default_link_or_doc, id: type.last %>
+              <%= form.label :link_or_doc, type.first, value: type.last, class: 'mr-3', for: type.last %>
+            <% end %>
+
+            <div id="div-link">
+              <%= form.text_field :document_link, class: 'form-control', placeholder: 'http://www.sefaz2.to.gov.br/.../doc.pdf' %>
+            </div>
+            <div id="div-doc" style="display: none">
+              <div class="custom-file">
+                <input name="academic_work[document]" type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Selecione o arquivo</label>
+              </div>
             </div>
           </div>
         </div>
@@ -102,4 +114,26 @@
       </div>
     </div>
   </div>
+<% end %>
+<% content_for :footer do %>
+  <script>
+    $(document).ready(function () {
+      toggleLinkImg();
+
+      $('input[name="academic_work[link_or_doc]"]').click(function () {
+        toggleLinkImg();
+      })
+
+      function toggleLinkImg() {
+        const valor = $('input[name="academic_work[link_or_doc]"]:checked').val()
+        if (valor === 'link') {
+          $('#div-doc').hide()
+          $('#div-link').fadeIn(500)
+        } else {
+          $('#div-link').hide()
+          $('#div-doc').fadeIn(500)
+        }
+      }
+    })
+  </script>
 <% end %>

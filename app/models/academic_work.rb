@@ -6,11 +6,12 @@
 #  appraisers    :string
 #  author        :string
 #  course        :string
-#  defense_date  :date
+#  defense_date  :string
 #  document_link :string
 #  how_to_quote  :string
 #  institution   :string
 #  keyword       :string
+#  link_or_doc   :string
 #  summary       :string
 #  title         :string
 #  work_type     :string
@@ -31,6 +32,7 @@
 #
 class AcademicWork < ApplicationRecord
   extend Enumerize
+  include Rails.application.routes.url_helpers
 
   belongs_to :teacher, counter_cache: true
   belongs_to :course, counter_cache: true
@@ -38,6 +40,7 @@ class AcademicWork < ApplicationRecord
   validates :title, :teacher_id, presence: true
 
   enumerize :work_type, in: [:tcc, :search, :extension], predicates: true, default: :tcc
+  enumerize :link_or_doc, in: [:link, :doc], predicates: true, default: :link
 
   has_one_attached :document
 
@@ -46,6 +49,24 @@ class AcademicWork < ApplicationRecord
       'tcc'
     else
       work_type
+    end
+  end
+
+  def default_link_or_doc
+    if link_or_doc.nil?
+      'link'
+    else
+      link_or_doc
+    end
+  end
+
+  def get_url_doc
+    if link_or_doc == 'doc' and document
+      rails_blob_path(document , only_path: true)
+    elsif link_or_doc == 'link' and document_link
+      document_link
+    else
+      'https://media.istockphoto.com/vectors/broken-file-line-icon-vector-id1146597753?k=6&m=1146597753&s=612x612&w=0&h=OM5uYm7mpD3dW3S3nSHDwIwy5kbIQcIEW9i46HKTahM='
     end
   end
 end

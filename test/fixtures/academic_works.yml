@@ -6,11 +6,12 @@
 #  appraisers    :string
 #  author        :string
 #  course        :string
-#  defense_date  :date
+#  defense_date  :string
 #  document_link :string
 #  how_to_quote  :string
 #  institution   :string
 #  keyword       :string
+#  link_or_doc   :string
 #  summary       :string
 #  title         :string
 #  work_type     :string

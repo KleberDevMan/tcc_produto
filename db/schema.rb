@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_011049) do
+ActiveRecord::Schema.define(version: 2021_03_15_004008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_011049) do
     t.string "author"
     t.string "summary"
     t.string "course"
-    t.date "defense_date"
-    t.string "document_link"
+    t.string "defense_date"
     t.string "work_type"
     t.string "keyword"
     t.string "how_to_quote"
@@ -31,6 +30,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_011049) do
     t.string "institution"
     t.bigint "course_id", null: false
     t.bigint "teacher_id", null: false
+    t.string "link_or_doc"
+    t.string "document_link"
     t.index ["course_id"], name: "index_academic_works_on_course_id"
     t.index ["teacher_id"], name: "index_academic_works_on_teacher_id"
   end

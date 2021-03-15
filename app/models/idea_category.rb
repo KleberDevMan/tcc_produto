@@ -15,9 +15,6 @@ class IdeaCategory < ApplicationRecord
   extend Enumerize
   include Rails.application.routes.url_helpers
 
-  # has_many :idea_category_ideas
-  # has_many :ideas, through: :idea_category_ideas
-
   has_many :ideas
 
   validates :name, presence: true
