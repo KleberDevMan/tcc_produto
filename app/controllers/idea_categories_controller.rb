@@ -57,10 +57,10 @@ class IdeaCategoriesController < ApplicationController
   # DELETE /idea_categories/1
   # DELETE /idea_categories/1.json
   def destroy
-    @idea_category.destroy
-    respond_to do |format|
-      format.html { redirect_to idea_categories_url, notice: t('notice.excluded') }
-      format.json { head :no_content }
+    if @idea_category.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
     end
   end
 

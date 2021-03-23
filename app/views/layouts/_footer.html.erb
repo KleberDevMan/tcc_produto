@@ -1,0 +1,114 @@
+<script type="text/javascript">
+  let id;
+  let name;
+  let obj;
+
+  let is_show;
+  let path_delete;
+  let path_destino;
+
+  function set_id(id1, obj1, name1, is_show_p, path_delete_p, path_destino_p) {
+    id = id1;
+    obj = obj1
+    name = name1;
+    is_show = is_show_p;
+    path_delete = path_delete_p;
+    path_destino = path_destino_p;
+  }
+
+  $(document).ready(function () {
+
+    $('.sw-delete').on('click', function (e) {
+
+      e.preventDefault();
+      Swal.fire({
+        title: '<span style="color: ' + colors.headingColor + ';">Deseja excluir este item?</span>',
+        html: '<span style="color: ' + colors.bodyColor + ';">Esta é uma ação que não tem volta!</span>',
+        type: 'warning',
+        background: colors.backgroundColor,
+        showCancelButton: true,
+        cancelButtonColor: '#999',
+        confirmButtonColor: '#d33',
+        cancelButtonText: 'Não excluir',
+        confirmButtonText: 'Sim, excluir item!',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.value) {
+          if (is_show) {
+
+            let url = "<%= request.env['PATH_INFO'] %>";
+            if (path_delete) {
+              url = path_delete;
+            }
+            $.ajax({
+              url: url + "/" + id,
+              method: "DELETE",
+              dataType: 'json',
+              headers: {
+                'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+              },
+              success: function () {
+                Swal.fire({
+                  title: '<span style="color: ' + colors.headingColor + ';">Excluído!</span>',
+                  html: '<span style="color: ' + colors.bodyColor + ';">O item foi excluído.</span>',
+                  background: colors.backgroundColor,
+                  icon: 'success',
+                }).then((result) => {
+                  if (result.value) {
+                    if (path_destino) {
+                      window.location = path_destino;
+                    } else {
+                      window.location = url;
+                    }
+                  }
+                })
+              },
+
+              error: function () {
+                iziToast.show({
+                  title: 'Não é possível excluir. Item vinculado em outro cadastro!',
+                  position: 'topRight',
+                  color: 'red'
+                });
+              }
+            });
+          } else {
+            let url = "<%= request.env['PATH_INFO'] %>";
+            if (path_delete) {
+              url = path_delete;
+            }
+            $.ajax({
+              url: url + '/' + id,
+              method: "DELETE",
+              dataType: 'json',
+              headers: {
+                'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+              },
+              success: function () {
+                $('#' + obj + '_' + id).remove();
+                Swal.fire({
+                  title: '<span style="color: ' + colors.headingColor + ';">Excluído!</span>',
+                  html: '<span style="color: ' + colors.bodyColor + ';">O item foi excluído.</span>',
+                  background: colors.backgroundColor,
+                  icon: 'success',
+                }).then(() => {
+                  document.location.reload(true)
+                });
+              },
+
+              error: function () {
+                iziToast.show({
+                  title: 'Não é possível excluir. Item vinculado em outro cadastro!',
+                  position: 'topRight',
+                  color: 'red'
+                });
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
+
+

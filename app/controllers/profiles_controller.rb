@@ -50,8 +50,11 @@ class ProfilesController < ApplicationController
 
   # DELETE /profiles/1
   def destroy
-    @profile.destroy
-    redirect_to profiles_url, notice: t('notice.excluded')
+    if @profile.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
+    end
   end
 
   def toggle_status

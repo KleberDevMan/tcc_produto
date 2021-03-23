@@ -45,7 +45,9 @@
                         <% end %>
                       </a>
                       <% if teacher.academic_works_count == 0 %>
-                        <%= button_to 'Excluir', teacher, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
+                        <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= teacher.id %>', '<%= teacher.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                          Excluir
+                        </a>
                       <% end %>
                     </div>
                   </div>

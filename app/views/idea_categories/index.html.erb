@@ -53,7 +53,9 @@
                         <% end %>
                       </a>
                       <% if idea_category.ideas.count == 0 %>
-                        <%= button_to 'Excluir', idea_category, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
+                        <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= idea_category.id %>', '<%= idea_category.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                          Excluir
+                        </a>
                       <% end %>
                     </div>
                   </div>

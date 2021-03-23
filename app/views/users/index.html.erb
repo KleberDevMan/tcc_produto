@@ -1,31 +1,3 @@
-<!--<p id="notice"><%#= notice %></p>-->
-
-<!--<h1>Users</h1>-->
-
-<!--<table>-->
-<!--  <thead>-->
-<!--    <tr>-->
-<!--      <th>Name</th>-->
-<!--      <th colspan="3"></th>-->
-<!--    </tr>-->
-<!--  </thead>-->
-
-<!--  <tbody>-->
-<%# @users.each do |users| %>
-<!--      <tr>-->
-<!--        <td><%#= users.name %></td>-->
-<!--        <td><%#= link_to 'Show', users %></td>-->
-<!--        <td><%#= link_to 'Edit', edit_user_path(users) %></td>-->
-<!--        <td><%#= link_to 'Destroy', users, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-<!--      </tr>-->
-<%# end %>
-<!--  </tbody>-->
-<!--</table>-->
-
-<!--<br>-->
-
-<%#= link_to 'New User', new_user_path %>
-
 <% content_for :header do %>
 
 <% end %>
@@ -118,8 +90,10 @@
                         <div class="dropdown-menu dropdown-menu-right" style="">
                           <a class="dropdown-item" href="<%= user_path user %>">Visualizar</a>
                           <a class="dropdown-item" href="<%= edit_user_path user %>">Editar</a>
-                          <% if user.registered_by.present? %>
-                            <%= button_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "dropdown-item text-danger" %>
+                          <% if user.registered_by.present? and user.id != current_user.id %>
+                            <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= user.id %>', '<%= user.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                              Excluir
+                            </a>
                           <% end %>
                         </div>
                       </div>

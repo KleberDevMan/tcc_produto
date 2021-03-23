@@ -64,8 +64,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: t('notice.excluded')
+    if @user.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
+    end
   end
 
   #

@@ -71,10 +71,10 @@ class AcademicWorksController < ApplicationController
   # DELETE /academic_works/1
   # DELETE /academic_works/1.json
   def destroy
-    @academic_work.destroy
-    respond_to do |format|
-      format.html { redirect_to academic_works_url, notice: t('notice.excluded') }
-      format.json { head :no_content }
+    if @academic_work.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
     end
   end
 

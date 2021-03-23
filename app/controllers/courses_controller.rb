@@ -57,10 +57,10 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-    @course.destroy
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: t('notice.excluded') }
-      format.json { head :no_content }
+    if @course.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
     end
   end
 

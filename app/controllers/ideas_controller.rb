@@ -78,10 +78,10 @@ class IdeasController < ApplicationController
   end
 
   def destroy
-    @idea.destroy
-    respond_to do |format|
-      format.html { redirect_to my_ideas_ideas_path, notice: t('notice.excluded') }
-      format.json { head :no_content }
+    if @idea.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
     end
   end
 

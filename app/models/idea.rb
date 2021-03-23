@@ -34,7 +34,7 @@ class Idea < ApplicationRecord
   # belongs_to :idea_category, coyunter_cache: true
   belongs_to :ideializer, class_name: 'User'
 
-  has_many :collaborations
+  has_many :collaborations, dependent: :destroy
   has_many :collaborators, through: :collaborations, source: :user, class_name: "User"
 
   has_many :collaboration_devs, -> { where(type_collaboration: :developer) }, class_name: "Collaboration"

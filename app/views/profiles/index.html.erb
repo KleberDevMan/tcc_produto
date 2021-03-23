@@ -101,7 +101,9 @@
                             <% end %>
                           </a>
                           <% if profile.users.count == 0 %>
-                            <%= button_to 'Excluir', profile, method: :delete, data: { confirm: t('notice.are_you_sure') }, class: 'dropdown-item bg-danger-dark' %>
+                            <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= profile.id %>', '<%= profile.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                              Excluir
+                            </a>
                           <% end %>
                         </div>
                       </div>

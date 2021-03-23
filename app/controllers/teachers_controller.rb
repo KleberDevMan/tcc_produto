@@ -57,10 +57,10 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    @teacher.destroy
-    respond_to do |format|
-      format.html { redirect_to teachers_path, notice: t('notice.excluded') }
-      format.json { head :no_content }
+    if @teacher.destroy
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :internal_server_error
     end
   end
 

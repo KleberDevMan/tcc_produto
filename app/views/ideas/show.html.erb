@@ -27,19 +27,23 @@
   </div>
   <div class="col-auto">
     <% profiles_s = current_user.profiles.map(&:namespace) %>
+
     <% if profiles_s.include? 'admin' %>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-gerenciar-colaboradores">Gerenciar
         colaboradores
       </button>
-      <%= link_to_if @idea.ideializer_id.eql?(current_user.id), 'Editar', edit_idea_path(@idea), class: 'btn btn-success' %>
-    <% elsif @idea.ideializer_id.eql? current_user.id %>
-      <%= link_to 'Editar', edit_idea_path(@idea), class: 'btn btn-success' %>
     <% elsif profiles_s.include? 'collaborator' %>
+
       <% if @idea.collaborators.map(&:id).include? current_user.id %>
         <button type="button" onclick="desistirColaboracao();" class="btn btn-warning">Desistir colaboração</button>
       <% else %>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-colaborar">Colaborar</button>
       <% end %>
+
+    <% end %>
+
+    <% if @idea.ideializer_id.eql?(current_user.id) %>
+      <%= link_to 'Editar', edit_idea_path(@idea), class: 'btn btn-success' %>
     <% end %>
   </div>
 </div>
@@ -390,81 +394,81 @@
 
 <% content_for :footer do %>
   <script>
-      $('.big').click(function () {
-          $(this).find('input:radio')[0].checked = true;
-          $('.hli').toggleClass('hli');
-          $(this).toggleClass('hli');
-      });
+    $('.big').click(function () {
+      $(this).find('input:radio')[0].checked = true;
+      $('.hli').toggleClass('hli');
+      $(this).toggleClass('hli');
+    });
   </script>
 <% end %>
 
 <% content_for :footer do %>
   <script>
-      function desistirColaboracao() {
-          Swal.fire({
-              title: '<span style="color: ' + colors.headingColor + ';">Você tem certeza?</span>',
-              html: '<span style="color: ' + colors.bodyColor + ';">Atenção, essa é uma ação irreversível.</span>',
-              imageUrl: 'https://media.giphy.com/media/Ty9Sg8oHghPWg/giphy.gif',
-              background: colors.backgroundColor,
-
-              showCancelButton: true,
-              confirmButtonText: 'Sim, tenho certeza',
-              cancelButtonText: 'Cancelar',
-          }).then((result) => {
-              if (result.isConfirmed) {
-
-                  const url = "<%= destroy_collaboration_ideas_path(idea_id: @idea.id, user_id: current_user.id) %>";
-                  $.ajax({
-                      url: url,
-                      headers: {
-                          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-                          'Content-Type': 'application/json'
-                      },
-                      method: "DELETE",
-                      dataType: 'json',
-
-                      success: function () {
-                          Swal.fire({
-                              title: '<span style="color: ' + colors.headingColor + ';">Sucesso</span>',
-                              html: '<span style="color: ' + colors.bodyColor + ';">Você não é mais um colaborador desta ideia.</span>',
-                              background: colors.backgroundColor,
-                              icon: 'success',
-                          }).then((result) => {
-                              document.location.reload(true)
-                          })
-                      },
-
-                      error: function (error) {
-                          Swal.fire({
-                              title: '<span style="color: ' + colors.headingColor + ';">Falha</span>',
-                              html: '<span style="color: ' + colors.bodyColor + ';">Não foi possivel excluir sua colaboração. Por favor, tente novamente mais tarde.</span>',
-                              background: colors.backgroundColor,
-                              icon: 'error',
-                          })
-                      }
-                  });
-
-              }
-          })
-      }
-
-      <% if flash[:success_colaborar] %>
+    function desistirColaboracao() {
       Swal.fire({
-          title: '<span style="color: ' + colors.headingColor + ';">Seja bem vindo!</span>',
-          html: '<span style="color: ' + colors.bodyColor + ';">Você agora poderá entrar em contato com o idealizador da ideia ou esperar ele entrar em contato com você.</span>',
-          imageUrl: 'https://media.giphy.com/media/js7SMV0KJrsSl9YbG7/giphy.gif',
-          background: colors.backgroundColor,
-      })
-      <% end %>
+        title: '<span style="color: ' + colors.headingColor + ';">Você tem certeza?</span>',
+        html: '<span style="color: ' + colors.bodyColor + ';">Atenção, essa é uma ação irreversível.</span>',
+        imageUrl: 'https://media.giphy.com/media/Ty9Sg8oHghPWg/giphy.gif',
+        background: colors.backgroundColor,
 
-      <% if flash[:fail_colaborar] %>
-      Swal.fire({
-          title: '<span style="color: ' + colors.headingColor + ';">Falha</span>',
-          html: '<span style="color: ' + colors.bodyColor + ';">Não foi possivel confirmar sua colaboração. Por favor, tente novamente mais tarde.</span>',
-          background: colors.backgroundColor,
-          icon: 'error',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, tenho certeza',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          const url = "<%= destroy_collaboration_ideas_path(idea_id: @idea.id, user_id: current_user.id) %>";
+          $.ajax({
+            url: url,
+            headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+              'Content-Type': 'application/json'
+            },
+            method: "DELETE",
+            dataType: 'json',
+
+            success: function () {
+              Swal.fire({
+                title: '<span style="color: ' + colors.headingColor + ';">Sucesso</span>',
+                html: '<span style="color: ' + colors.bodyColor + ';">Você não é mais um colaborador desta ideia.</span>',
+                background: colors.backgroundColor,
+                icon: 'success',
+              }).then((result) => {
+                document.location.reload(true)
+              })
+            },
+
+            error: function (error) {
+              Swal.fire({
+                title: '<span style="color: ' + colors.headingColor + ';">Falha</span>',
+                html: '<span style="color: ' + colors.bodyColor + ';">Não foi possivel excluir sua colaboração. Por favor, tente novamente mais tarde.</span>',
+                background: colors.backgroundColor,
+                icon: 'error',
+              })
+            }
+          });
+
+        }
       })
-      <% end %>
+    }
+
+    <% if flash[:success_colaborar] %>
+    Swal.fire({
+      title: '<span style="color: ' + colors.headingColor + ';">Seja bem vindo!</span>',
+      html: '<span style="color: ' + colors.bodyColor + ';">Você agora poderá entrar em contato com o idealizador da ideia ou esperar ele entrar em contato com você.</span>',
+      imageUrl: 'https://media.giphy.com/media/js7SMV0KJrsSl9YbG7/giphy.gif',
+      background: colors.backgroundColor,
+    })
+    <% end %>
+
+    <% if flash[:fail_colaborar] %>
+    Swal.fire({
+      title: '<span style="color: ' + colors.headingColor + ';">Falha</span>',
+      html: '<span style="color: ' + colors.bodyColor + ';">Não foi possivel confirmar sua colaboração. Por favor, tente novamente mais tarde.</span>',
+      background: colors.backgroundColor,
+      icon: 'error',
+    })
+    <% end %>
 
   </script>
 <% end %>
