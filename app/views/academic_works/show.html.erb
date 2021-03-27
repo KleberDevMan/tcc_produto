@@ -53,12 +53,21 @@
 <% if @academic_work.document %>
 <p>
   <strong><%= t 'activerecord.attributes.academic_work.document' %>:</strong>
-<!--  <iframe src="<%#= @academic_work.get_url_doc %>" width="100%" height="500" style="border: none;"></iframe>-->
-  <embed src="<%= url_for @academic_work.get_url_doc %>" width="100%" height="500" type="application/pdf">
+  <a href="#" id="document" url="<%= url_for @academic_work.get_url_doc %>"class="btn btn-info">
+    <i class="fe fe-file mr-2 text-muted"></i>Documento
+  </a>
 </p>
 <% else %>
   <p>
     <strong><%= t 'activerecord.attributes.academic_work.document_link' %>:</strong>
     <%= @academic_work.document_link %>
   </p>
+<% end %>
+
+<% content_for :footer do%>
+  <script>
+    $('#document').click(function () {
+      window.open($(this).attr('url'));
+    });
+  </script>
 <% end %>
