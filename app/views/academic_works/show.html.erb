@@ -1,70 +1,94 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.title' %>:</strong>
-  <%= @academic_work.title %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.author' %>:</strong>
-  <%= @academic_work.author %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.teacher_id' %>:</strong>
-  <%= @academic_work.teacher.name %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.summary' %>:</strong>
-  <%= @academic_work.summary %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.summary' %>:</strong>
-  <%= @academic_work.course %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.defense_date' %>:</strong>
-  <%= @academic_work.defense_date %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.work_type' %>:</strong>
-  <%= @academic_work.work_type_text %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.keyword' %>:</strong>
-  <%= @academic_work.keyword %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.how_to_quote' %>:</strong>
-  <%= @academic_work.how_to_quote %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.appraisers' %>:</strong>
-  <%= @academic_work.appraisers %>
-</p>
-
-<% if @academic_work.document %>
-<p>
-  <strong><%= t 'activerecord.attributes.academic_work.document' %>:</strong>
-  <a href="#" id="document" url="<%= url_for @academic_work.get_url_doc %>"class="btn btn-info">
-    <i class="fe fe-file mr-2 text-muted"></i>Documento
+<% title truncate @academic_work.title %>
+<% content_for :page_actions do %>
+  <a class="btn btn-success" href="<%= edit_academic_work_path @academic_work %>">
+    <span class="fe fe-edit fe-12 mr-2"></span>Editar
   </a>
-</p>
-<% else %>
-  <p>
-    <strong><%= t 'activerecord.attributes.academic_work.document_link' %>:</strong>
-    <%= @academic_work.document_link %>
-  </p>
 <% end %>
 
-<% content_for :footer do%>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.title' %>:</strong>
+        <%= @academic_work.title %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.author' %>
+          :</strong>
+        <%= @academic_work.author %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.teacher_id' %>
+          :</strong>
+        <%= @academic_work.teacher.name %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.summary' %>
+          :</strong>
+        <%= @academic_work.summary %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.summary' %>
+          :</strong>
+        <%= @academic_work.course %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.defense_date' %>
+          :</strong>
+        <%= @academic_work.defense_date %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.work_type' %>
+          :</strong>
+        <%= @academic_work.work_type_text %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.keyword' %>
+          :</strong>
+        <%= @academic_work.keyword %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.how_to_quote' %>
+          :</strong>
+        <%= @academic_work.how_to_quote %>
+      </p>
+
+      <p>
+        <strong><%= t 'activerecord.attributes.academic_work.appraisers' %>
+          :</strong>
+        <%= @academic_work.appraisers %>
+      </p>
+
+      <% if @academic_work.document %>
+        <p>
+          <strong><%= t 'activerecord.attributes.academic_work.document' %>
+            :</strong>
+          <a href="#" id="document" url="<%= url_for @academic_work.get_url_doc %>" class="btn mb-2 btn-secondary btn-sm">
+            <i class="fe fe-file mr-2 text-muted"></i>Documento
+          </a>
+        </p>
+      <% else %>
+        <p>
+          <strong><%= t 'activerecord.attributes.academic_work.document_link' %>
+            :</strong>
+          <%= @academic_work.document_link %>
+        </p>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<% content_for :footer do %>
   <script>
     $('#document').click(function () {
       window.open($(this).attr('url'));

@@ -1,14 +1,14 @@
+<% title t('activerecord.models.idea_categories'), true %>
+<% content_for :page_actions do %>
+  <a href="<%= new_idea_category_path %>" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-2"></span>Adicionar</a>
+<% end %>
+
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-10">
-      <div class="row align-items-center my-4">
-        <div class="col">
-          <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.idea_categories' %></h2>
-        </div>
-        <div class="col-auto">
-          <a href="<%= new_idea_category_path %>" class="btn btn-primary"><span class="fe fe-plus-circle fe-12 mr-2"></span>Adicionar</a>
-        </div>
-      </div>
+      <hr class="mb-4 mt-0">
+      <p class="mb-4">Lista de categorias que irá aparecer no momento de
+        cadastrar uma ideia.</p>
       <div class="card shadow">
         <div class="card-body">
           <table class="table table-hover table-sm">

@@ -3,8 +3,8 @@
     <i class="fe fe-menu navbar-toggler-icon"></i>
   </button>
   <% if @profiles_s.include? 'admin' or @profiles_s.include? 'collaborator' %>
-    <form class="form-inline mr-auto searchform text-muted">
-      <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Buscar uma ideia..." aria-label="Search">
+    <form class="form-inline mr-auto searchform text-muted" onsubmit="buscarIdea(event)">
+      <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Buscar uma ideia..." aria-label="Search" id="buscaIdeia">
     </form>
   <% end %>
 
@@ -23,7 +23,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="avatar avatar-sm mt-2">
-                <img src="/templates/tinydash/light/assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+                <img src="/img/avatar2.png" alt="..." class="avatar-img rounded-circle">
               </span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -34,3 +34,17 @@
     </li>
   </ul>
 </nav>
+
+
+<% content_for :footer do%>
+  <script>
+    async function buscarIdea(e) {
+      e.preventDefault()
+      const query = document.getElementById('buscaIdeia').value
+
+      let params = `q[title_or_description_or_idea_category_name_cont]=${query}`
+
+      window.open(`/ideas?${params}`, "_self")
+    }
+  </script>
+<% end %>

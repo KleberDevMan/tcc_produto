@@ -1,3 +1,6 @@
+<% content_for :page_actions do %>
+  <a class="btn btn-primary" href="#" onClick="document.getElementById('submit-profile').click()">Savar</a>
+<% end %>
 <%= form_with(model: profile, html: { class: "needs-validation", novalidate: '' }) do |form| %>
 
   <% if profile.errors.any? %>
@@ -16,16 +19,6 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 col-xl-10">
-
-        <div class="row align-items-center my-4">
-          <div class="col">
-            <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.profile' %></h2>
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Savar</button>
-          </div>
-        </div>
-
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :name %>
@@ -85,7 +78,7 @@
         <hr class="my-4">
         <div class="form-row">
           <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-primary">Savar</button>
+            <button type="submit" class="btn btn-primary" id="submit-profile">Savar</button>
           </div>
         </div>
       </div>

@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
   # load_and_authorize_resource
 
-  add_breadcrumb I18n.t('breadcrumb.home'), '/'
-  before_action :set_default_breadcrumbs, only: [:index, :show, :edit, :update, :new, :create]
+  add_breadcrumb I18n.t('breadcrumb.home'), '/', unless: :devise_controller?
+  before_action :set_default_breadcrumbs, only: [:index, :show, :edit, :update, :new, :create], unless: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_profiles_s
   before_action :set_notifications
@@ -21,29 +21,8 @@ class ApplicationController < ActionController::Base
 
   # Breadcrumbs generic
   def set_default_breadcrumbs
-    if params[:controller].eql? 'versions' # logs
-
-      # verifica se está querendo ver os logs de um registro específico
-      #   path: index > show > logs
-      if params[:action] == 'index' and params[:id].present? and params[:from_show].present?
-        $id_model_version = params[:id]
-      elsif params[:action] == 'index' and !params[:from_show].present? and last_action != 'show'
-        $id_model_version = nil
-      end
-
-      # adiciona o crumb da index
-      add_breadcrumb I18n.t("activerecord.models.#{params[:item_type].tableize}"), "/#{params[:item_type].tableize}"
-
-      # adiciona o crumb show model
-      add_breadcrumb I18n.t('breadcrumb.show'), "/#{params[:item_type].tableize}/#{$id_model_version}" if $id_model_version.present?
-
-      # adiciona crumb logs
-      link = params[:action].eql?('show') ? "/#{params[:controller]}?item_type=#{params[:item_type]}" : nil
-      add_breadcrumb I18n.t("activerecord.models.#{params[:controller]}"), link
-    else
-      # adiciona o crumb da index
-      add_breadcrumb I18n.t("activerecord.models.#{params[:controller]}"), "/#{params[:controller]}"
-    end
+    # adiciona o crumb da index
+    add_breadcrumb I18n.t("activerecord.models.#{params[:controller]}"), "/#{params[:controller]}"
 
     if params[:action] == "index"
       link = nil
@@ -63,7 +42,9 @@ class ApplicationController < ActionController::Base
       link = "/#{params[:controller]}/#{params[:id]}/#{params[:action]}"
     end
 
-    add_breadcrumb(I18n.t("breadcrumb.#{params[:action]}"), link) #unless params[:action] == 'index'
+    unless %w[index my_ideas].include? params[:action]
+      add_breadcrumb(I18n.t("breadcrumb.#{params[:action]}"), link)
+    end
   end
 
   # Retorna nome da ultima action

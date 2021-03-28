@@ -73,3 +73,4 @@ gem 'cloudinary'
 # gem 'sendgrid-ruby'
 # gem 'paper_trail' # not working
 # gem 'poppler'#preview activestorage
+# gem "punching_bag" #contador de views

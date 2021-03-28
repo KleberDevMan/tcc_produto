@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.breadcrumbs > li {
+    display: inline-block;
+}
+.breadcrumbs>li+li::before {
+    padding: 0 5px 0 4px;
+    color: #bdbdbd;
+    content: "keyboard_arrow_right";
+    font-family: "Material Icons";
+    position: relative;
+    top: 3px;
+}

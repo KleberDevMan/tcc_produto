@@ -1,21 +1,11 @@
-<% content_for :header do %>
-
+<% title t('activerecord.models.users') %>
+<% content_for :page_actions do %>
+  <a class="btn btn-primary" href="<%= new_user_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %>
+  </a>
 <% end %>
-
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-12">
-
-      <div class="row align-items-center my-4">
-        <div class="col">
-          <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.users' %></h2>
-        </div>
-        <div class="col-auto">
-          <a class="btn btn-primary" href="<%= new_user_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %>
-          </a>
-        </div>
-      </div>
-
       <% if @users.length == 0 and !params[:q].present? %>
         <div class="row">
           <div class="col-sm-12">
@@ -70,7 +60,7 @@
                   <th width="40%"><%= t 'activerecord.attributes.user.name' %></th>
                   <th width="30%"><%= t 'activerecord.attributes.user.profile_ids' %></th>
                   <th width="20%"><%= t 'activerecord.attributes.user.email' %></th>
-<!--                  <th width="20%"><%#= t 'activerecord.attributes.user.telephone' %></th>-->
+                  <!--                  <th width="20%"><%#= t 'activerecord.attributes.user.telephone' %></th>-->
                   <th width="10%" class="right">Ação</th>
                 </tr>
                 </thead>
@@ -80,7 +70,7 @@
                     <td><a href="<%= user_path user %>"><strong><%= truncate user.name %></strong></a></td>
                     <td><%= user.profiles.map(&:name).join(', ') %></td>
                     <td><%= user.email %></td>
-<!--                    <td><%#= user.telephone %></td>-->
+                    <!--                    <td><%#= user.telephone %></td>-->
 
                     <td>
                       <div class="dropdown">

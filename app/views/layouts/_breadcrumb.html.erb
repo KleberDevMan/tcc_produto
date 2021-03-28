@@ -1,0 +1,25 @@
+<form>
+  <div class="container-fluid" id="breadcrumbs-wrapper">
+    <div class="row justify-content-center">
+      <div class="col-12 <%= 'col-xl-10' if @col_xl_10  %>" style="padding-right: 30px; padding-left: 30px">
+
+        <div class="row align-items-center my-4">
+          <div class="col">
+            <h2 class="h3 mb-0 page-title">
+              <%= yield :title %>
+            </h2>
+
+            <ul class="breadcrumbs mb-0 mt-1 list-inline">
+              <%= render_breadcrumbs tag: :li, separator: "" %>
+            </ul>
+          </div>
+
+          <div class="col-auto">
+            <%= yield :page_actions %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

@@ -5,6 +5,11 @@ class IdeasController < ApplicationController
 
   skip_forgery_protection
 
+  skip_before_action :set_default_breadcrumbs
+
+  add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path, only: [:my_ideas]
+  add_breadcrumb I18n.t('texts.idea.wall_of_ideas'), :ideas_path, only: [:index]
+
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
   before_action :prepare_q, only: [:index]
 
@@ -17,13 +22,35 @@ class IdeasController < ApplicationController
   end
 
   def show
+    if last_action.eql? 'my_ideas' or params[:breadcrumb]&.include? I18n.t('texts.idea.my_ideas')
+      add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path
+    else
+      add_breadcrumb I18n.t('texts.idea.wall_of_ideas'), :ideas_path
+    end
+
+    add_breadcrumb I18n.t('breadcrumb.show'), idea_path(@idea)
   end
 
   def new
+    add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path
+    add_breadcrumb I18n.t('breadcrumb.new'), :new_idea_path
     @idea = Idea.new
   end
 
   def edit
+    if last_action.eql? 'my_ideas'
+      add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path
+
+    elsif last_action.eql? 'show'
+      if params[:breadcrumb].include? I18n.t('texts.idea.my_ideas')
+        add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path
+      else
+        add_breadcrumb I18n.t('texts.idea.wall_of_ideas'), :ideas_path
+      end
+      add_breadcrumb I18n.t('breadcrumb.show'), idea_path(@idea, breadcrumb: params[:breadcrumb])
+    end
+
+    add_breadcrumb I18n.t('breadcrumb.edit'), edit_idea_path(@idea)
   end
 
   def create

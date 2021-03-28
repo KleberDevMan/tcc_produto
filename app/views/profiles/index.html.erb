@@ -1,21 +1,11 @@
-<% content_for :header do %>
-
+<% title t('activerecord.models.profiles') %>
+<% content_for :page_actions do %>
+  <a class="btn btn-primary" href="<%= new_profile_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %>
+  </a>
 <% end %>
-
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-12">
-
-      <div class="row align-items-center my-4">
-        <div class="col">
-          <h2 class="h3 mb-0 page-title"><%= t 'activerecord.models.profiles' %></h2>
-        </div>
-        <div class="col-auto">
-          <a class="btn btn-primary" href="<%= new_profile_path %>"><span class="fe fe-plus-circle fe-12 mr-2"></span><%= t 'buttons.add' %>
-          </a>
-        </div>
-      </div>
-
       <% if @profiles.length == 0 and !params[:q].present? %>
         <div class="row">
           <div class="col-sm-12">

@@ -1,26 +1,31 @@
-<p id="notice"><%= notice %></p>
+<% title truncate(@profile.name) %>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <p>
+        <strong><%= t 'activerecord.attributes.profile.name' %>:</strong>
+        <%= @profile.name %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.profile.name' %>:</strong>
-  <%= @profile.name %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.profile.description' %>:</strong>
+        <%= @profile.description %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.profile.description' %>:</strong>
-  <%= @profile.description %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.profile.active' %>:</strong>
+        <%= @profile.active %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.profile.active' %>:</strong>
-  <%= @profile.active %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.profile.permissions' %>:</strong>
+        <%= @profile.permissions %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.profile.permissions' %>:</strong>
-  <%= @profile.permissions %>
-</p>
-
-<p>
-  <strong><%= t 'activerecord.attributes.profile.namespace' %>:</strong>
-  <%= @profile.namespace %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.profile.namespace' %>:</strong>
+        <%= @profile.namespace %>
+      </p>
+    </div>
+  </div>
+</div>

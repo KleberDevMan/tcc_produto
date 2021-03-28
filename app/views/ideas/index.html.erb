@@ -7,17 +7,14 @@
   </style>
 <% end %>
 
+<% title t('texts.idea.wall_of_ideas') %>
+<% content_for :page_actions do %>
+  <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
+    <a class="" href="<%= pages_homepage_path %>">Área administrativa</a>
+  <% end %>
+<% end %>
+
 <div class="col-12">
-  <div class="row align-items-center my-4">
-    <div class="col">
-      <h2 class="h3 mb-0 page-title" style="padding-left: 0.5rem;"><%= t 'activerecord.models.ideas' %></h2>
-    </div>
-    <div class="col-auto">
-      <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
-        <a class="" href="<%= pages_homepage_path %>">Área administrativa</a>
-      <% end %>
-    </div>
-  </div>
 
   <% if @ideas.length == 0 and !params[:q].present? and !params[:quick_filter] %>
     <div class="row">

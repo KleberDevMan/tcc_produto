@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="/templates/tinydash/light/css/jquery.steps.css">
   <link rel="stylesheet" href="/templates/tinydash/light/css/jquery.timepicker.css">
   <link rel="stylesheet" href="/templates/tinydash/light/css/quill.snow.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <title>TCC Produto</title>
   <%= csrf_meta_tags %>
@@ -42,6 +43,7 @@
   <%= render partial: 'layouts/sidebar_left' %>
 
   <main role="main" class="main-content">
+    <%= render 'layouts/breadcrumb' %>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12">

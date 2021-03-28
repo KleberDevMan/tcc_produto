@@ -1,35 +1,42 @@
-<p id="notice"><%= notice %></p>
+<% title truncate(@user.name) %>
 
-<p>
-  <strong><%= t 'activerecord.attributes.user.name' %>:</strong>
-  <%= @user.name %>
-</p>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <p>
+        <strong><%= t 'activerecord.attributes.user.name' %>:</strong>
+        <%= @user.name %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.user.email' %>:</strong>
-  <%= @user.email %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.user.email' %>:</strong>
+        <%= @user.email %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.user.telephone' %>:</strong>
-  <%= @user.telephone %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.user.telephone' %>:</strong>
+        <%= @user.telephone %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.user.profile_ids' %>:</strong>
-  <%= @user.profiles.map(&:name).join(', ') %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.user.profile_ids' %>:</strong>
+        <%= @user.profiles.map(&:name).join(', ') %>
+      </p>
 
-<p>
-  <strong>Cadastrado por:</strong>
-  <% if @user.registered_by.present? %>
-    <%= @user.registered_by %>
-  <% else %>
-    Autocadastro
-  <% end %>
-</p>
+      <p>
+        <strong>Cadastrado por:</strong>
+        <% if @user.registered_by.present? %>
+          <%= @user.registered_by %>
+        <% else %>
+          Autocadastro
+        <% end %>
+      </p>
 
-<p>
-  <strong><%= t 'activerecord.attributes.user.biography' %>:</strong>
-  <%= @user.biography %>
-</p>
+      <p>
+        <strong><%= t 'activerecord.attributes.user.biography' %>:</strong>
+        <%= @user.biography %>
+      </p>
+
+    </div>
+  </div>
+</div>

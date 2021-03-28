@@ -1,1 +1,2 @@
+<% title truncate(@user.name), true %>
 <%= render 'form', user: @user, method: 'put', url: user_update_path(@user.id) %>
