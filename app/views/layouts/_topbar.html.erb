@@ -17,7 +17,9 @@
     <li class="nav-item nav-notif">
       <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
         <span class="fe fe-bell fe-16"></span>
-        <span class="dot dot-md bg-success"></span>
+        <% if @notifications.any? %>
+          <span class="dot dot-md bg-success"></span>
+        <% end %>
       </a>
     </li>
     <li class="nav-item dropdown">
@@ -36,7 +38,7 @@
 </nav>
 
 
-<% content_for :footer do%>
+<% content_for :footer do %>
   <script>
     async function buscarIdea(e) {
       e.preventDefault()

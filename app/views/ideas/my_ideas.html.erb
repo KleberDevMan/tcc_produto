@@ -16,9 +16,9 @@
                 <div class="col">
                   <label class="text-muted mb-1">Total ideias</label>
                   <h3 class="card-title mb-0"><%= @qtd_all %></h3>
-                  <p class="small text-muted mb-0"><span>Públicas e privadas</span></p>
                 </div>
                 <div class="col-4 text-right">
+                  <p class="small text-muted mb-0"><span>Públicas e privadas</span></p>
                   <span class="inlinepie"></span>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                   <h3 class="card-title mb-0"><%= @qtd_views %></h3>
                 </div>
                 <div class="col-4 text-right">
-                  <p class="small text-muted mb-0"><span>Última semana</span></p>
+                  <p class="small text-muted mb-0"><span>Últimos 5 dias</span></p>
                   <span class="inlinebar"></span>
                 </div>
               </div>
@@ -289,7 +289,7 @@
           sliceColors: ['#3AD29F', '#2C67FF']//chartColors
       });
 
-      $(".inlinebar").sparkline(<%= @last_week %>, {
+      $(".inlinebar").sparkline(<%= @last_five_days %>, {
           type: "bar",
           width: "100%",
           height: "35",
