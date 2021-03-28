@@ -28,7 +28,7 @@ class IdeasController < ApplicationController
       add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path
     else
       add_breadcrumb I18n.t('texts.idea.wall_of_ideas'), :ideas_path
-      impressionist @idea # contabiliza visualizacao
+      impressionist(@idea) unless current_user.id == @idea.ideializer_id
     end
 
     add_breadcrumb I18n.t('breadcrumb.show'), idea_path(@idea)
