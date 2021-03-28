@@ -43,7 +43,7 @@
 
         </div> <!-- / .list-group -->
       </div>
-      <div class="modal-footer" style="background: #212529;">
+      <div class="modal-footer">
         <%= form_with url: notifications_clear_path, remote: true do |f| %>
           <input class="btn btn-secondary btn-block" type="submit" value="Clear All"/>
         <% end if @notifications.any? %>
