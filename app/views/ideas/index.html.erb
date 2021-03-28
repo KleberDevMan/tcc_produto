@@ -10,7 +10,7 @@
 <% title t('texts.idea.wall_of_ideas') %>
 <% content_for :page_actions do %>
   <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
-    <a class="" href="<%= pages_homepage_path %>">Área administrativa</a>
+    <a class="" href="<%= homepage_pages_path %>">Área administrativa</a>
   <% end %>
 <% end %>
 

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   get 'notifications/clear'
-  get 'pages/denied'
-  get 'pages/homepage'
+
+  resources :pages, only: :none do
+    collection do
+      get 'denied'
+      get 'homepage'
+      get 'terms_of_use'
+    end
+  end
 
   resources :menus
   resources :profiles do

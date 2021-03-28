@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout 'devise_layout'
+
   def denied
   end
 
@@ -20,5 +22,8 @@ class PagesController < ApplicationController
         render "pages/denied", layout: 'devise_layout'
       end
     end
+  end
+
+  def terms_of_use
   end
 end
