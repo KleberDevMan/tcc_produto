@@ -111,4 +111,26 @@
   });
 </script>
 
+<script type="text/javascript">
+  let title;
+  let description;
+  let date;
 
+  function show_notification(title_p, description_p, date_p) {
+    title = title_p;
+    description = description_p;
+    date = date_p;
+
+    Swal.fire({
+      title: '<span style="color: ' + colors.headingColor + ';">' + title + '</span>',
+      html: '<span style="color: ' + colors.bodyColor + ';">' + description + '</span>',
+      background: colors.backgroundColor,
+      showClass: {
+        popup: 'animate__animated animate__fadeInTopRight animate__faster'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutTopRight animate__faster'
+      }
+    })
+  }
+</script>

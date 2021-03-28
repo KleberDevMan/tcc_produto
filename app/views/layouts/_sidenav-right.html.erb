@@ -1,20 +1,25 @@
 <!-- Slide Modal -->
 <%= yield :busca %>
+<% content_for :header do %>
+  <style>
 
+  </style>
+<% end %>
 
 <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-notifications">
       <div class="modal-header">
         <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="background: #212529;">
+      <div class="modal-body">
         <div class="list-group list-group-flush my-n3">
           <% @notifications.each do |n| %>
-            <div class="list-group-item bg-transparent">
+
+            <div class="list-group-item bg-transparent" onclick="show_notification('<%= n.title %>', '<%= n.description %>', '<%= n.created_at.to_s %>')">
               <div class="row align-items-center">
                 <div class="col-auto">
                   <% if n.type_notification.new_collaboration? %>
@@ -32,6 +37,7 @@
                 </div>
               </div>
             </div>
+
           <% end %>
 
 
@@ -39,9 +45,16 @@
       </div>
       <div class="modal-footer" style="background: #212529;">
         <%= form_with url: notifications_clear_path, remote: true do |f| %>
-          <input class="btn btn-secondary btn-block" type="submit" value="Clear All" />
+          <input class="btn btn-secondary btn-block" type="submit" value="Clear All"/>
         <% end if @notifications.any? %>
       </div>
     </div>
   </div>
 </div>
+<% content_for :footer do %>
+  <script>
+    $("#modal-notifications .modal-header").css({backgroundColor: colors.backgroundColor});
+    $("#modal-notifications .modal-body").css({backgroundColor: colors.backgroundColor});
+    $("#modal-notifications .modal-footer").css({backgroundColor: colors.backgroundColor});
+  </script>
+<% end %>
