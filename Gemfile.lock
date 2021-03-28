@@ -138,6 +138,8 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    impressionist (2.0.0)
+      nokogiri (~> 1)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     kaminari (1.2.1)
@@ -317,6 +319,7 @@ DEPENDENCIES
   dotenv-rails
   enumerize
   guard-livereload (~> 2.5)
+  impressionist
   jbuilder (~> 2.7)
   kaminari
   listen (~> 3.3)

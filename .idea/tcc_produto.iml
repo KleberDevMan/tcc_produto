@@ -76,6 +76,7 @@
     <orderEntry type="library" scope="PROVIDED" name="http-cookie (v1.0.3, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="http_parser.rb (v0.6.0, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.8.5, rbenv: 2.5.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="impressionist (v2.0.0, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.10.1, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v1.2.1, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari-actionview (v1.2.1, rbenv: 2.5.1) [gem]" level="application" />
@@ -156,6 +157,7 @@
       <list>
         <option value="active_record:application_record" />
         <option value="active_record:devise" />
+        <option value="active_record:impressionist" />
         <option value="annotate:install" />
         <option value="application_record" />
         <option value="assets" />
@@ -169,6 +171,7 @@
         <option value="devise:views" />
         <option value="generator" />
         <option value="helper" />
+        <option value="impressionist:impressionist" />
         <option value="integration_test" />
         <option value="jbuilder" />
         <option value="job" />
@@ -178,7 +181,9 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="mongo_mapper:impressionist" />
         <option value="mongoid:devise" />
+        <option value="mongoid:impressionist" />
         <option value="resource" />
         <option value="responders:install" />
         <option value="responders_controller" />
@@ -197,6 +202,7 @@
       <list>
         <option value="active_record:application_record" />
         <option value="active_record:devise" />
+        <option value="active_record:impressionist" />
         <option value="annotate:install" />
         <option value="application_record" />
         <option value="assets" />
@@ -210,6 +216,7 @@
         <option value="devise:views" />
         <option value="generator" />
         <option value="helper" />
+        <option value="impressionist:impressionist" />
         <option value="integration_test" />
         <option value="jbuilder" />
         <option value="job" />
@@ -219,7 +226,9 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="mongo_mapper:impressionist" />
         <option value="mongoid:devise" />
+        <option value="mongoid:impressionist" />
         <option value="resource" />
         <option value="responders:install" />
         <option value="responders_controller" />

@@ -5,6 +5,8 @@ class IdeasController < ApplicationController
 
   skip_forgery_protection
 
+  # impressionist actions: [:show] if from_mural_ideas?
+
   skip_before_action :set_default_breadcrumbs
 
   add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path, only: [:my_ideas]
@@ -26,6 +28,7 @@ class IdeasController < ApplicationController
       add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path
     else
       add_breadcrumb I18n.t('texts.idea.wall_of_ideas'), :ideas_path
+      impressionist @idea # contabiliza visualizacao
     end
 
     add_breadcrumb I18n.t('breadcrumb.show'), idea_path(@idea)
@@ -122,13 +125,28 @@ class IdeasController < ApplicationController
     @qtd_privates = all.select { |aw| aw.status == 'private' }.count
     @persent_privates = @qtd_all > 0 ? @qtd_privates * 100 / @qtd_all : @qtd_all
 
-    @qtd_views = 1168 #
-    @last_week = [3, 2, 7, 5, 4, 6, 8]
+    # visualizacoes
+    views = Impression.where(impressionable_type: 'Idea', impressionable_id: [all.pluck(:id)]).distinct(:request_hash)
+    @qtd_views = views.length
+    five_days_ago = views.where(created_at: 5.days.ago.to_date..4.days.ago.to_date).count
+    four_days_ago = views.where(created_at: 4.days.ago.to_date..3.days.ago.to_date).count
+    tree_days_ago = views.where(created_at: 3.days.ago.to_date..2.days.ago.to_date).count
+    two_days_ago = views.where(created_at: 2.days.ago.to_date..Date.yesterday).count
+    yesterday = views.where(created_at: Date.yesterday..Date.today).count
+    today = views.where(created_at: Date.today..Date.tomorrow).count
+    @last_five_days = [five_days_ago, four_days_ago, tree_days_ago, two_days_ago, yesterday, today]
 
-    @tax_collaboration = 66
+    # taxa de colaboração
+    @tax_collaboration = 0
+    qty_ideas_with_collaboration = all.joins(:collaborations).distinct.pluck(:id).count
+    unless qty_ideas_with_collaboration.zero?
+      @tax_collaboration = (qty_ideas_with_collaboration / @qtd_all * 100).to_f.round(1)
+    end
 
+    # filtro
     @q = all.ransack(params[:q], default_order: { updated_at: :desc })
 
+    # paginacao
     @ideas = @q.result.page(params[:page]).per(9)
   end
 
@@ -231,4 +249,8 @@ class IdeasController < ApplicationController
       params[:q].delete(:possibility_reward_eq) if params[:q][:possibility_reward_eq].eql?(0.to_s)
     end
   end
+
+  # def from_mural_ideas?
+  #   !last_action.eql?('my_ideas') and !params[:breadcrumb]&.include? I18n.t('texts.idea.my_ideas')
+  # end
 end

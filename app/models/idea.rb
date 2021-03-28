@@ -30,6 +30,7 @@
 #
 class Idea < ApplicationRecord
   extend Enumerize
+  is_impressionable  # contabiliza visualizacoes
 
   # belongs_to :idea_category, coyunter_cache: true
   belongs_to :ideializer, class_name: 'User'
