@@ -18,8 +18,8 @@
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "needs-validation", novalidate: '' }) do |f| %>
               <div class="row mt-5 align-items-center">
                 <div class="col-md-3 text-center mb-5">
-                  <div class="avatar avatar-xl">
-                    <img src="/img/avatar2.png" alt="..." class="avatar-img rounded-circle">
+                  <div class="avatar avatar-xl crop">
+                    <%= image_tag current_user.get_url_img, class: 'avatar-img rounded-circle', style: 'background-color: white;', height: 90, width: 100 %>
                   </div>
                 </div>
                 <div class="col">
@@ -77,6 +77,27 @@
                 </div>
               </div>
 
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <h5 class="mb-2 mt-5">Imagem</h5>
+                  <%= f.label :link_or_image, class: 'mr-2' %>
+
+                  <% User.link_or_img.options.each do |type| %>
+                    <%= f.radio_button :link_or_img, type.last, class: 'form-check form-check-inline mr-0', checked: type.last == resource.link_or_img_value_default, id: type.last %>
+                    <%= f.label :link_or_img, type.first, value: type.last, class: 'mr-3', for: type.last %>
+                  <% end %>
+
+                  <div id="div-link">
+                    <%= f.text_field :img_link, class: 'form-control', placeholder: 'http://www.sefaz2.to.gov.br/...' %>
+                  </div>
+                  <div id="div-img" style="display: none">
+                    <div class="custom-file">
+                      <%= f.file_field :img, class: "custom-file-input", direct_upload: true %>
+                      <%= f.label :img, resource.img.blob ? resource.img.blob.filename : 'Selecione a imagem', class: 'custom-file-label' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <hr class="my-4">
               <div class="row mb-4 ">
@@ -160,3 +181,25 @@
     </div>
   </div>
 </div>
+<% content_for :footer do %>
+  <script>
+    $(document).ready(function () {
+      toggleLinkImg();
+
+      $('input[name="user[link_or_img]"]').click(function () {
+        toggleLinkImg();
+      })
+
+      function toggleLinkImg() {
+        const valor = $('input[name="user[link_or_img]"]:checked').val()
+        if (valor === 'link') {
+          $('#div-img').hide()
+          $('#div-link').fadeIn(500)
+        } else {
+          $('#div-link').hide()
+          $('#div-img').fadeIn(500)
+        }
+      }
+    })
+  </script>
+<% end %>

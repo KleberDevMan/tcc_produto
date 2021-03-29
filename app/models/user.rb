@@ -6,6 +6,9 @@
 #  biography              :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  img                    :string
+#  img_link               :string
+#  link_or_img            :string
 #  name                   :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -30,6 +33,7 @@ class User < ApplicationRecord
   # has_paper_trail on: [:create]
 
   extend Enumerize
+  include Rails.application.routes.url_helpers
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -45,7 +49,10 @@ class User < ApplicationRecord
 
   belongs_to :registered_by, class_name: 'User', optional: true
 
+  has_one_attached :img
+
   enumerize :type_collaborator, in: [:developer, :facilitator], predicates: true
+  enumerize :link_or_img, in: [:link, :img], predicates: true, default: :link
 
   after_create :set_profile_idealize
 
@@ -61,5 +68,23 @@ class User < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def link_or_img_value_default
+    if link_or_img.nil?
+      'link'
+    else
+      link_or_img
+    end
+  end
+
+  def get_url_img
+    if link_or_img == 'img' and img
+      rails_blob_path(img, disposition: "attachment", only_path: true)
+    elsif link_or_img == 'link' and img_link
+      img_link
+    else
+      '/img/avatar2.png'
+    end
   end
 end

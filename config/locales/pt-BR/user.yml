@@ -23,3 +23,6 @@ pt-BR:
       type_collaborator:
         developer: Desenvolvedor
         facilitator: Facilitador
+      link_or_image:
+        link: Link
+        img: Imagem

@@ -6,6 +6,9 @@
 #  biography              :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  img                    :string
+#  img_link               :string
+#  link_or_img            :string
 #  name                   :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
