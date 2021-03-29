@@ -64,8 +64,11 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :telephone, :biography, :img, :link_or_img, :img_link])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :telephone, :biography, :img, :link_or_img, :img_link])
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :name, :telephone, :biography, :img, :link_or_img, :img_link, :password, :password_confirmation, :remember_me, :current_password) }
+
+    devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:email, :name, :telephone, :biography, :img, :link_or_img, :img_link, :password, :password_confirmation, :remember_me, :current_password) }
+
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :name, :telephone, :biography, :img, :link_or_img, :img_link, :password, :password_confirmation, :remember_me, :current_password) }
   end
 
   def set_profiles_s
