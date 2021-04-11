@@ -38,11 +38,18 @@ class AcademicWork < ApplicationRecord
   belongs_to :course, counter_cache: true
 
   validates :title, :teacher_id, presence: true
+  include ActiveModel::Validations
+  validates_url :document_link, allow_blank: false, message: "'Link para arquivo': não é uma URL válida. É preciso incluir os prefixos: 'https://' ou 'http://'", :if => :attach_link?
+  validates :document, presence: true, :unless => :attach_link?
 
   enumerize :work_type, in: [:tcc, :search, :extension], predicates: true, default: :tcc
   enumerize :link_or_doc, in: [:link, :doc], predicates: true, default: :link
 
   has_one_attached :document
+
+  def attach_link?
+    default_link_or_doc.eql? 'link'
+  end
 
   def work_type_value_default
     if work_type.nil?

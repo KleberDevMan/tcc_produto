@@ -72,3 +72,4 @@ gem 'arel_extensions' # fazer consultas ransack desconsiderando acentos
 gem 'cloudinary' # storage web
 gem 'impressionist' # contador de views
 gem 'conecta_address_br' # estados e cidades
+gem 'validate_url' # validador de url

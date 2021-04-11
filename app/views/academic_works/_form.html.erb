@@ -1,23 +1,25 @@
 <%= form_with(model: academic_work, multipart: true, html: { class: "needs-validation", novalidate: '' }) do |form| %>
 
-  <% if academic_work.errors.any? %>
-    <div id="error_explanation">
-      <h5>
-        <%= t 'texts.solve_the_following_problems' %>:
-      </h5>
-      <ul>
-        <% academic_work.errors.each do |error| %>
-          <li class="text-danger"><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
 
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 col-xl-10">
-<!--        <h2 class="mb-2 mt-4"><%#= t 'activerecord.models.academic_work' %></h2>-->
-<!--        <p class="mb-4">Informações básicas sobre o trabalho</p>-->
+
+        <% if academic_work.errors.any? %>
+          <div id="error_explanation">
+            <h5>
+              <%= t 'texts.solve_the_following_problems' %>:
+            </h5>
+            <ul>
+              <% academic_work.errors.each do |error| %>
+                <li class="text-danger"><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :title %>
@@ -94,12 +96,13 @@
             <% end %>
 
             <div id="div-link">
-              <%= form.text_field :document_link, class: 'form-control', placeholder: 'Link para o .pdf do arquivo' %>
+              <%= form.text_field :document_link, class: 'form-control', placeholder: 'Link para arquivo' %>
             </div>
             <div id="div-doc" style="display: none">
               <div class="custom-file">
-                <input name="academic_work[document]" type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Selecione o arquivo</label>
+                <%= form.hidden_field :document, value: form.object.document.signed_id, id: 'doc_cache' if form.object.document.attached? %>
+                <input name="academic_work[document]" type="file" class="custom-file-input">
+                <label class="custom-file-label" for="customFile"><%= form.object.document.filename.to_s || 'Selecione o arquivo' %></label>
               </div>
             </div>
           </div>
@@ -117,23 +120,37 @@
 <% end %>
 <% content_for :footer do %>
   <script>
+    const radioDocOrLink = $('input[name="academic_work[link_or_doc]"]');
+    const inputDocLink = $("input[name='academic_work[document_link]']");
+    const inputDoc = $("input[name='academic_work[document]']");
+
     $(document).ready(function () {
       toggleLinkImg();
 
-      $('input[name="academic_work[link_or_doc]"]').click(function () {
+      radioDocOrLink.click(function () {
         toggleLinkImg();
-      })
+      });
 
-      function toggleLinkImg() {
-        const valor = $('input[name="academic_work[link_or_doc]"]:checked').val()
-        if (valor === 'link') {
-          $('#div-doc').hide()
-          $('#div-link').fadeIn(500)
-        } else {
-          $('#div-link').hide()
-          $('#div-doc').fadeIn(500)
-        }
-      }
+      inputDoc.change(function () {
+        $('.custom-file-label').text(this.value.replace(/.*[\/\\]/, ''));
+      });
     })
+
+    function toggleLinkImg() {
+      const valor = $('input[name="academic_work[link_or_doc]"]:checked').val()
+      if (valor === 'link') {
+        $('#div-doc').hide()
+        $('#div-link').fadeIn(500)
+        inputDocLink.prop('required', true);
+        inputDoc.removeAttr('required');
+      } else {
+        $('#div-link').hide()
+        $('#div-doc').fadeIn(500)
+        if ($('#doc_cache').val() == null) {
+          inputDoc.prop('required', true);
+        }
+        inputDocLink.removeAttr('required');
+      }
+    }
   </script>
 <% end %>
