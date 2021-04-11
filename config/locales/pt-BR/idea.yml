@@ -22,6 +22,8 @@ pt-BR:
         locality: Localização
         dev_ids: Desenvolvedores
         facilitator_ids: Facilitadores
+        state: Estado
+        city: Cidade
   enumerize:
     idea:
       status:

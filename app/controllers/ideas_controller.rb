@@ -5,8 +5,6 @@ class IdeasController < ApplicationController
 
   skip_forgery_protection
 
-  # impressionist actions: [:show] if from_mural_ideas?
-
   skip_before_action :set_default_breadcrumbs
 
   add_breadcrumb I18n.t('texts.idea.my_ideas'), :my_ideas_ideas_path, only: [:my_ideas]
@@ -208,6 +206,10 @@ class IdeasController < ApplicationController
     end
   end
 
+  def update_state
+    @cities = ConectaAddressBr::Cities.by_state_single(params[:state_uf]).insert(0, t('texts.select'))
+  end
+
   private
 
   def set_idea
@@ -218,9 +220,9 @@ class IdeasController < ApplicationController
     params.require(:idea).permit(:title,
                                  :id,
                                  :description,
-                                 # { category_ids: [] },
                                  :ideializer_id,
-                                 :locality,
+                                 :state,
+                                 :city,
                                  :idea_category_id,
                                  { dev_ids: [] },
                                  { facilitator_ids: [] },

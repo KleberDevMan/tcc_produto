@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       post 'create_collaboration'
       delete 'destroy_collaboration'
       get 'dashboard'
+      get 'update_state'
     end
   end
 

@@ -69,9 +69,6 @@ gem 'cancancan'
 gem 'ransack'
 gem "breadcrumbs_on_rails"
 gem 'arel_extensions' # fazer consultas ransack desconsiderando acentos
-gem 'cloudinary'
-# gem 'sendgrid-ruby'
-# gem 'paper_trail' # not working
-# gem 'poppler'#preview activestorage
-# gem "punching_bag" #contador de views
-gem 'impressionist'
+gem 'cloudinary' # storage web
+gem 'impressionist' # contador de views
+gem 'conecta_address_br' # estados e cidades

@@ -3,13 +3,14 @@
 # Table name: ideas
 #
 #  id                   :bigint           not null, primary key
+#  city                 :string
 #  description          :string
 #  differential         :string
-#  locality             :string
 #  possibility_business :boolean
 #  possibility_reward   :boolean
 #  problem_to_solve     :string
 #  proposed_solution    :string
+#  state                :string
 #  status               :string
 #  suffering_people     :string
 #  title                :string
@@ -79,5 +80,9 @@ class Idea < ApplicationRecord
     else
       all
     end
+  end
+
+  def locality
+    "#{city}/#{state}"
   end
 end
