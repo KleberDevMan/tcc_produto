@@ -43,7 +43,7 @@
                         <% end %>
                       </a>
                       <% if teacher.academic_works_count == 0 %>
-                        <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= teacher.id %>', '<%= teacher.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                        <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= teacher.id %>', '<%= teacher.class.to_s.split(':')[0] %>')" target="_self" href="#">
                           Excluir
                         </a>
                       <% end %>

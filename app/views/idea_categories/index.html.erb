@@ -53,7 +53,7 @@
                         <% end %>
                       </a>
                       <% if idea_category.ideas.count == 0 %>
-                        <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= idea_category.id %>', '<%= idea_category.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                        <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= idea_category.id %>', '<%= idea_category.class.to_s.split(':')[0] %>')" target="_self" href="#">
                           Excluir
                         </a>
                       <% end %>
