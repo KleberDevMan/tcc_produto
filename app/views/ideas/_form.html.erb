@@ -1,5 +1,5 @@
 <% content_for :page_actions do %>
-  <a class="btn btn-primary" href="#" onClick="document.getElementById('submit-idea').click()">Savar</a>
+  <a class="btn btn-primary" href="#" onClick="document.getElementById('submit-idea').click()">Salvar</a>
 <% end %>
 <%= form_with(model: idea, html: { class: "needs-validation", novalidate: '', id: 'form-idea' }) do |form| %>
   <%= form.hidden_field :ideializer_id, value: current_user.id %>
@@ -121,7 +121,7 @@
 
         <div class="form-row">
           <div class="col-md-12 text-right">
-            <button type="submit" id="submit-idea" class="btn btn-primary">Savar</button>
+            <button type="submit" id="submit-idea" class="btn btn-primary">Salvar</button>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <% content_for :page_actions do %>
-  <a class="btn btn-primary" href="#" onClick="document.getElementById('submit-profile').click()">Savar</a>
+  <a class="btn btn-primary" href="#" onClick="document.getElementById('submit-profile').click()">Salvar</a>
 <% end %>
 <%= form_with(model: profile, html: { class: "needs-validation", novalidate: '' }) do |form| %>
 
@@ -78,7 +78,7 @@
         <hr class="my-4">
         <div class="form-row">
           <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-primary" id="submit-profile">Savar</button>
+            <button type="submit" class="btn btn-primary" id="submit-profile">Salvar</button>
           </div>
         </div>
       </div>

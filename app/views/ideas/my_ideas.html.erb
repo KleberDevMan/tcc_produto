@@ -164,7 +164,7 @@
                         <div class="dropdown-menu dropdown-menu-right" style="">
                           <a class="dropdown-item" href="<%= idea_path idea %>">Visualizar</a>
                           <a class="dropdown-item" href="<%= edit_idea_path idea %>">Editar</a>
-                          <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= idea.id %>', '<%= idea.class.to_s.split(':')[0] %>', '', 'true', '/ideas', '/ideas/my_ideas')" target="_self" href="#">
+                          <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= idea.id %>', '<%= idea.class.to_s.split(':')[0] %>', '', 'true', '/ideas', '/ideas/my_ideas')" target="_self" href="#">
                             Excluir
                           </a>
                         </div>

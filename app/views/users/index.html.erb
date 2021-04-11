@@ -81,7 +81,7 @@
                           <a class="dropdown-item" href="<%= user_path user %>">Visualizar</a>
                           <a class="dropdown-item" href="<%= edit_user_path user %>">Editar</a>
                           <% if user.registered_by.present? and user.id != current_user.id %>
-                            <a class="sw-delete dropdown-item bg-danger-dark" onclick="set_id('<%= user.id %>', '<%= user.class.to_s.split(':')[0] %>')" target="_self" href="#">
+                            <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= user.id %>', '<%= user.class.to_s.split(':')[0] %>')" target="_self" href="#">
                               Excluir
                             </a>
                           <% end %>
