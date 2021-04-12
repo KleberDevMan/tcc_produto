@@ -11,6 +11,7 @@ class IdeasController < ApplicationController
   add_breadcrumb I18n.t('texts.idea.wall_of_ideas'), :ideas_path, only: [:index]
 
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_combos, only: [:edit, :update, :new, :create]
   before_action :prepare_q, only: [:index]
 
   def index
@@ -142,7 +143,7 @@ class IdeasController < ApplicationController
     end
 
     # filtro
-    @q = all.ransack(params[:q], default_order: { updated_at: :desc })
+    @q = all.order(updated_at: :desc).ransack(params[:q])
 
     # paginacao
     @ideas = @q.result.page(params[:page]).per(9)
@@ -211,6 +212,11 @@ class IdeasController < ApplicationController
   end
 
   private
+
+  def set_combos
+    @states = ConectaAddressBr::States.all
+    @cities = (@idea.state ? ConectaAddressBr::Cities.by_state_single(@idea.state) : [])
+  end
 
   def set_idea
     @idea = Idea.find(params[:id])
