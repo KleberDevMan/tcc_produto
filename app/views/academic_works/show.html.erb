@@ -53,7 +53,7 @@
       <p>
         <strong><%= t 'activerecord.attributes.academic_work.keyword' %>
           :</strong>
-        <%= @academic_work.keyword %>
+        <%= @academic_work.keyword.gsub(",", "; ") %>
       </p>
 
       <p>

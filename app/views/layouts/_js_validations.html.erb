@@ -24,7 +24,10 @@
   /** date range picker */
   if ($('.datetimes').length) {
     $('.datetimes').daterangepicker({
-      timePicker: true, startDate: moment().startOf('hour'), endDate: moment().startOf('hour').add(32, 'hour'), locale: {
+      timePicker: true,
+      startDate: moment().startOf('hour'),
+      endDate: moment().startOf('hour').add(32, 'hour'),
+      locale: {
         format: 'M/DD hh:mm A'
       }
     });
@@ -133,14 +136,25 @@
 
   function isInputTag(node) {
     const inputTag = document.getElementsByClassName('bootstrap-tagsinput')[0];
-    return inputTag.contains(node);
+
+    if (inputTag == null) {
+      return false;
+    } else {
+      return inputTag.contains(node);
+    }
   }
 </script>
 <script>
   var uptarg = document.getElementById('drag-drop-area');
   if (uptarg) {
     var uppy = Uppy.Core().use(Uppy.Dashboard, {
-      inline: true, target: uptarg, proudlyDisplayPoweredByUppy: false, theme: 'dark', width: 770, height: 210, plugins: ['Webcam']
+      inline: true,
+      target: uptarg,
+      proudlyDisplayPoweredByUppy: false,
+      theme: 'dark',
+      width: 770,
+      height: 210,
+      plugins: ['Webcam']
     }).use(Uppy.Tus, {
       endpoint: 'https://master.tus.io/files/'
     });

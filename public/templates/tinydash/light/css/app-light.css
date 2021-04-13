@@ -12051,7 +12051,7 @@ a.uppy-Dashboard-poweredBy {
 .bootstrap-tagsinput {
   display: block;
   width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
+  height: fit-content;
   padding: 0.375rem 0.75rem;
   font-size: 0.9rem;
   font-weight: 400;
@@ -12099,6 +12099,7 @@ a.uppy-Dashboard-poweredBy {
   border-radius: 5px;
   padding: 3px 6px 3px 6px;
   color: #444;
+  line-height: 1.7;
 }
 
 .bootstrap-tagsinput .tag [data-role="remove"] {

@@ -39,8 +39,9 @@
             </div>
             <div id="div-img" style="display: none">
               <div class="custom-file">
+                <%= form.hidden_field :img, value: form.object.img.signed_id, id: 'img_cache' if form.object.img.attached? %>
                 <%= form.file_field :img, class: "custom-file-input", direct_upload: true %>
-                <%= form.label :img, idea_category.img.blob ? idea_category.img.blob.filename : 'Selecione a imagem', class: 'custom-file-label' %>
+                <%= form.label :img, (form.object.img.filename.to_s || 'Selecione a imagem'), class: 'custom-file-label' %>
               </div>
             </div>
           </div>
@@ -76,5 +77,42 @@
               }
           }
       })
+  </script>
+<% end %>
+
+<% content_for :footer do %>
+  <script>
+    const radioImgOrLink = $('input[name="idea_category[link_or_image]"]');
+    const inputImgLink = $("input[name='idea_category[img_link]']");
+    const inputImg = $("input[name='idea_category[img]']");
+
+    $(document).ready(function () {
+      toggleLinkImg();
+
+      radioImgOrLink.click(function () {
+        toggleLinkImg();
+      });
+
+      inputImg.change(function () {
+        $('.custom-file-label').text(this.value.replace(/.*[\/\\]/, ''));
+      });
+    })
+
+    function toggleLinkImg() {
+      const valor = $('input[name="idea_category[link_or_image]"]:checked').val()
+      if (valor === 'link') {
+        $('#div-img').hide()
+        $('#div-link').fadeIn(500)
+        inputImgLink.prop('required', true);
+        inputImg.removeAttr('required');
+      } else {
+        $('#div-link').hide()
+        $('#div-img').fadeIn(500)
+        if ($('#img_cache').val() == null) {
+          inputImg.prop('required', true);
+        }
+        inputImgLink.removeAttr('required');
+      }
+    }
   </script>
 <% end %>
