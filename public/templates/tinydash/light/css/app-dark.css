@@ -12074,6 +12074,10 @@ a.uppy-Dashboard-poweredBy {
   max-width: inherit;
   color: #ced4da;
 }
+.bootstrap-tagsinput input::placeholder {
+  color: #bbb;
+  opacity: 1;
+}
 
 .bootstrap-tagsinput.form-control input::-moz-placeholder {
   color: #777;
@@ -12120,3 +12124,10 @@ a.uppy-Dashboard-poweredBy {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /*End TagsInput Bootstrap*/
+.span-filtrado {
+  background-color: #ffff00e0 !important;
+}
+
+.span-filtrado a {
+  color: black !important;
+}

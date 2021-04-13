@@ -21,12 +21,12 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :title %>
-            <%= form.text_field :title, class: 'form-control', required: true %>
+            <%= form.text_field :title, class: 'form-control', placeholder: 'Ex: Desenvolvimento de uma ferramenta para gestão de eventos', required: true %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
           <div class="form-group col-md-6">
             <%= form.label :author %>
-            <%= form.text_field :author, class: 'form-control', required: true %>
+            <%= form.text_field :author, class: 'form-control', placeholder: 'Ex: Kleber J. C. Chaves; Joana C. Souza', required: true %>
             <small>Use o <strong class="text-primary">;</strong> como separador.</small>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
@@ -60,26 +60,26 @@
           <div class="form-group col-md-8">
             <%= form.label :keyword %>
             <br>
-            <%= form.text_field :keyword, class: 'form-control', "data-role" => "tagsinput" %>
+            <%= form.text_field :keyword, class: 'form-control', "data-role" => "tagsinput", placeholder: 'Ex: Sistemas de Informação' %>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-12">
             <%= form.label :summary %>
-            <%= form.text_area :summary, class: 'form-control', rows: 4, required: true %>
+            <%= form.text_area :summary, class: 'form-control', rows: 4, required: true, placeholder: 'Ex: A ferramenta desenvolvida é composta por 2 aplicações, uma web e outra mobile. A aplicação web foi desenvolvida para os organizadores, a fim de que eles realizem o envio e atualização das informações do evento. Já a aplicação mobile é voltada para os participantes, a ideia é proporcionar a estes maior comodidade e versatilidade no recebimento de informações e atualizações relacionadas ao evento que está participando.' %>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :how_to_quote %>
-            <%= form.text_area :how_to_quote, class: 'form-control', rows: 3 %>
+            <%= form.text_area :how_to_quote, class: 'form-control', rows: 3, placeholder: 'Ex: CHAVES, Kleber Junio Cabral. Desenvolvimento de uma ferramenta para gestão de eventos. Orientador: Frederico Pires Pinto. 2020. Relatório final de Estágio (Bacharelado em Sistemas de Informação) - Centro Universitário Católica do Tocantins, Palmas, 2019. p. 30.' %>
           </div>
           <div class="form-group col-md-6">
             <%= form.label :appraisers %>
             <small>(Nome dos avaliadores)</small>
-            <%= form.text_area :appraisers, class: 'form-control', rows: 3 %>
+            <%= form.text_area :appraisers, class: 'form-control', rows: 3, placeholder: 'Ex: Frederico Pires Pinto; Jean N. R. Araujo; Stephany Martins' %>
           </div>
         </div>
 
@@ -100,7 +100,7 @@
               <div class="custom-file">
                 <%= form.hidden_field :document, value: form.object.document.signed_id, id: 'doc_cache' if form.object.document.attached? %>
                 <input name="academic_work[document]" type="file" class="custom-file-input">
-                <label class="custom-file-label" for="customFile"><%= form.object.document.filename.to_s || 'Selecione o arquivo' %></label>
+                <label class="custom-file-label" for="customFile"><%= form.object.document.filename.to_s.blank? ? 'Selecione o arquivo' : form.object.document.filename.to_s %></label>
               </div>
             </div>
           </div>

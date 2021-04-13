@@ -20,14 +20,14 @@
 
         <div class="form-group">
           <%= form.label :email %>
-          <%= form.email_field :email, class: 'form-control', required: true %>
+          <%= form.email_field :email, class: 'form-control', required: true, placeholder: 'Ex: joaopereira@gmail.com' %>
           <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :name %>
-            <%= form.text_field :name, class: 'form-control', required: true %>
+            <%= form.text_field :name, class: 'form-control', required: true, placeholder: 'Ex: João Ferreira' %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
           <div class="form-group col-md-6">

@@ -19,7 +19,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= form.label :name %>
-            <%= form.text_field :name, class: 'form-control', required: true %>
+            <%= form.text_field :name, class: 'form-control', placeholder: 'Ex: Desenvolvimento de software', required: true %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
               <div class="custom-file">
                 <%= form.hidden_field :img, value: form.object.img.signed_id, id: 'img_cache' if form.object.img.attached? %>
                 <%= form.file_field :img, class: "custom-file-input", direct_upload: true %>
-                <%= form.label :img, (form.object.img.filename.to_s || 'Selecione a imagem'), class: 'custom-file-label' %>
+                <%= form.label :img, (form.object.img.filename.to_s.blank? ? 'Selecione a imagem' : form.object.img.filename.to_s), class: 'custom-file-label' %>
               </div>
             </div>
           </div>
