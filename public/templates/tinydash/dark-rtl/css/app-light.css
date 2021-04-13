@@ -431,7 +431,7 @@ mark,
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem;
   max-width: 100%;
   height: auto; }
@@ -1445,7 +1445,7 @@ pre {
   color: #495057;
   background-color: #ffffff;
   background-clip: padding-box;
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
@@ -2567,7 +2567,7 @@ input[type="button"].btn-block {
   text-align: center;
   white-space: nowrap;
   background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem; }
   .input-group-text input[type="radio"],
   .input-group-text input[type="checkbox"] {
@@ -2673,7 +2673,7 @@ input[type="button"].btn-block {
     pointer-events: none;
     content: "";
     background-color: #ffffff;
-    border: #ced4da solid 1px; }
+    border: #bbb solid 1px; }
   .custom-control-label::after {
     position: absolute;
     top: 0.15625rem;
@@ -2747,7 +2747,7 @@ input[type="button"].btn-block {
   color: #495057;
   vertical-align: middle;
   background: #ffffff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem;
   appearance: none; }
   .custom-select:focus {
@@ -2821,7 +2821,7 @@ input[type="button"].btn-block {
   line-height: 1.5;
   color: #495057;
   background-color: #ffffff;
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem; }
   .custom-file-label::after {
     position: absolute;
@@ -9447,7 +9447,7 @@ svg.navbar-brand-img {
     line-height: calc(1.5em + 0.75rem); }
 
 .select2-search--dropdown .select2-search__field {
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem;
   background: #ffffff;
   color: #6c757d; }
@@ -9470,7 +9470,7 @@ svg.navbar-brand-img {
       background-color: #ffffff; }
   .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__choice {
     color: #6c757d;
-    border: 1px solid #dee2e6;
+    border: 1px solid #bbb;
     border-radius: 0.2rem;
     padding: 0;
     padding-right: 5px;
@@ -9522,7 +9522,7 @@ svg.navbar-brand-img {
 
 .select2-container--bootstrap4 .select2-selection {
   background-color: #ffffff;
-  border: 1px solid #dee2e6;
+  border: 1px solid #bbb;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width: 100%; }
