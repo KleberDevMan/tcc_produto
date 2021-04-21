@@ -173,7 +173,7 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
   margin-top: 0.7em;
   border-radius: 100%;
   background-color: #fff;
-  color: #f8f9fa;
+  color: #f0f4f8;
   float: right;
   margin-right: 0.3em; }
   .select2-container--bootstrap4 .select2-selection__clear:hover {
