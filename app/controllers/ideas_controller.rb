@@ -219,7 +219,7 @@ class IdeasController < ApplicationController
   end
 
   def set_idea
-    @idea = Idea.find(params[:id])
+    @idea = Idea.includes(:ideializer, :collaborators).find(params[:id])
   end
 
   def idea_params

@@ -14,12 +14,16 @@
 
           <p>
             <strong><%= t 'activerecord.attributes.user.email' %>:</strong>
-            <%= @user.email %>
+            <a class="btn-link" href="mailto:<%= @user.email %>?subject=Olá%20<%= @user.name %>" target="_blank">
+              <%= @user.email %>
+            </a>
           </p>
 
           <p>
             <strong><%= t 'activerecord.attributes.user.telephone' %>:</strong>
-            <%= @user.telephone %>
+            <a href="tel:+55<%= @user.telephone&.tr('-() ', '') %>">
+              <%= @user.telephone %>
+            </a>
           </p>
 
           <p>
