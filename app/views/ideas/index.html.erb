@@ -1,9 +1,9 @@
 <% content_for :header do %>
   <style>
-      .ideas .card:hover {
-          transform: scale(1.05);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-      }
+    .ideas .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    }
   </style>
 <% end %>
 
@@ -12,9 +12,17 @@
   <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
     <a class="" href="<%= homepage_pages_path %>">Área administrativa</a>
   <% end %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    Ajude essas ideias a se tornarem realidade. Você pode!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 <% end %>
 
 <div class="col-12">
+
+
 
   <% if @ideas.length == 0 and !params[:q].present? and !params[:quick_filter] %>
     <div class="row">
@@ -68,7 +76,7 @@
       <% if @ideas.count == 0 %>
         <div class="col-md-12">
           <div class="align-items-center h-100 row justify-content-center">
-              <h6 class="my-5">Nenhum item correspondente encontrado.</h6>
+            <h6 class="my-5">Nenhum item correspondente encontrado.</h6>
           </div>
         </div>
       <% else %>

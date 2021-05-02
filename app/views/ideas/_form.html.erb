@@ -2,7 +2,7 @@
   <a class="btn btn-primary" href="#" onClick="document.getElementById('submit-idea').click()">Salvar</a>
 <% end %>
 <%= form_with(model: idea, html: { class: "needs-validation", novalidate: '', id: 'form-idea' }) do |form| %>
-  <%= form.hidden_field :ideializer_id, value: current_user.id %>
+  <%= form.hidden_field :ideializer_id, value: idea.ideializer_id || current_user.id %>
   <%= hidden_field_tag :breadcrumb, params[:breadcrumb] %>
 
   <% if idea.errors.any? %>
