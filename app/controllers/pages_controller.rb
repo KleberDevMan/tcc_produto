@@ -26,4 +26,8 @@ class PagesController < ApplicationController
 
   def terms_of_use
   end
+
+  def set_cookie
+    cookies.permanent[params[:cookie]] = true
+  end
 end

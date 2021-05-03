@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'denied'
       get 'homepage'
       get 'terms_of_use'
+      get 'set_cookie'
     end
   end
 

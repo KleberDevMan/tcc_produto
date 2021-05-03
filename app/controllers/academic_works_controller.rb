@@ -4,9 +4,13 @@ class AcademicWorksController < ApplicationController
 
   before_action :set_academic_work, only: [:show, :edit, :update, :destroy]
 
+  SHOW_INFO_INDEX = 'show_info_academic_works'.freeze
+
   # GET /academic_works
   # GET /academic_works.json
   def index
+    @show_info = cookies[SHOW_INFO_INDEX]
+
     all = AcademicWork.all
     @qtd_all = all.count
 

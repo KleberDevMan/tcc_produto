@@ -12,12 +12,15 @@
   <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
     <a class="" href="<%= homepage_pages_path %>">Área administrativa</a>
   <% end %>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    Ajude essas ideias a se tornarem realidade. Você pode!
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+
+  <% unless @show_info %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      Ajude essas ideias a se tornarem realidade. Você pode!
+      <button type="button" class="close" onclick="showInfoIdeas();" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
 <% end %>
 
 <div class="col-12">
@@ -174,3 +177,13 @@
     <% end %>
   <% end %>
   </div>
+
+  <% content_for :footer do %>
+    <script type="text/javascript" charset="utf-8">
+      function showInfoIdeas() {
+        $.ajax({
+          url: '<%= set_cookie_pages_path(cookie: IdeasController::SHOW_INFO_INDEX) %>', dataType: 'json'
+        });
+      }
+    </script>
+  <% end %>

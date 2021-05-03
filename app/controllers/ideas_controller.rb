@@ -14,7 +14,12 @@ class IdeasController < ApplicationController
   before_action :set_combos, only: [:edit, :update, :new, :create]
   before_action :prepare_q, only: [:index]
 
+  SHOW_INFO_MY_IDEAS = 'show_info_my_ideas'.freeze
+  SHOW_INFO_INDEX = 'show_info_ideas'.freeze
+
   def index
+    @show_info = cookies[SHOW_INFO_INDEX]
+
     @q = Idea.quick_filter(params[:quick_filter], current_user.id)
              .includes(:collaborations, :idea_category)
              .ransack(params[:q], default_order: { updated_at: :desc })
@@ -115,6 +120,8 @@ class IdeasController < ApplicationController
   end
 
   def my_ideas
+    @show_info = cookies[SHOW_INFO_MY_IDEAS]
+
     all = Idea.where(ideializer_id: current_user.id)
     @qtd_all = all.count
 
