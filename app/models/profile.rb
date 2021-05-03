@@ -18,6 +18,8 @@ class Profile < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :active, -> { where(status: true) }
+
   before_create :set_active
 
   def set_active
