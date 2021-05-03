@@ -73,19 +73,18 @@
                     <!--                    <td><%#= user.telephone %></td>-->
 
                     <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" style="">
-                          <a class="dropdown-item" href="<%= user_path user %>">Visualizar</a>
-                          <a class="dropdown-item" href="<%= edit_user_path user %>">Editar</a>
-                          <% if user.registered_by.present? and user.id != current_user.id %>
-                            <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= user.id %>', '<%= user.class.to_s.split(':')[0] %>')" target="_self" href="#">
-                              Excluir
-                            </a>
-                          <% end %>
-                        </div>
+                      <div class="links-table">
+                        <a href="<%= user_path user %>" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.show' %>">
+                          <span class="fe fe-eye fe-16 mr-2"></span>
+                        </a>
+                        <a href="<%= edit_user_path user %>" class="text-success-darker" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.edit' %>">
+                          <span class="fe fe-edit fe-16 mr-2"></span>
+                        </a>
+                        <% if user.registered_by.present? and user.id != current_user.id %>
+                          <a class="sw-delete text-danger" onclick="set_id('<%= user.id %>', '<%= user.class.to_s.split(':')[0] %>')" target="_self" href="#" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.destroy' %>">
+                            <span class="fe fe-trash fe-16 mr-2"></span>
+                          </a>
+                        <% end %>
                       </div>
                     </td>
                   </tr>

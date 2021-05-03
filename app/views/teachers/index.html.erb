@@ -29,25 +29,25 @@
                   <% end %>
                 </td>
                 <td>
-                  <div class="dropdown">
-                    <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="text-muted sr-only">Action</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr<%= teacher.id %>">
-                      <a class="dropdown-item" href="<%= edit_teacher_path teacher %>">Editar</a>
-                      <a class="dropdown-item" href="<%= toggle_status_teacher_path teacher %>">
-                        <% if teacher.status.active? %>
-                          <span class="text-danger">Inativar</span>
-                        <% else %>
-                          <span class="text-success">Ativar</span>
-                        <% end %>
-                      </a>
-                      <% if teacher.academic_works_count == 0 %>
-                        <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= teacher.id %>', '<%= teacher.class.to_s.split(':')[0] %>')" target="_self" href="#">
-                          Excluir
-                        </a>
+                  <div class="links-table">
+
+                    <a href="<%= edit_teacher_path teacher %>" class="text-success-darker" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.edit' %>">
+                      <span class="fe fe-edit fe-16 mr-2"></span>
+                    </a>
+
+                    <a href="<%= toggle_status_teacher_path teacher %>" data-toggle="tooltip" data-placement="top" title="<%= teacher.status.active? ? t('buttons.deactivate') : t('buttons.activate') %>">
+                      <% if teacher.status.active? %>
+                        <span class="text-danger fe fe-x fe-16 mr-2"></span>
+                      <% else %>
+                        <span class="text-success fe fe-check fe-16 mr-2"></span>
                       <% end %>
-                    </div>
+                    </a>
+
+                    <% if teacher.academic_works_count == 0 %>
+                      <a class="sw-delete text-danger" onclick="set_id('<%= teacher.id %>', '<%= teacher.class.to_s.split(':')[0] %>')" target="_self" href="#" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.destroy' %>">
+                        <span class="fe fe-trash fe-16 mr-2"></span>
+                      </a>
+                    <% end %>
                   </div>
                 </td>
               </tr>

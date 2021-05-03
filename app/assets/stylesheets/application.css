@@ -14,18 +14,39 @@
  *= require_self
  */
 .breadcrumbs > li {
-    display: inline-block;
+  display: inline-block;
 }
-.breadcrumbs>li+li::before {
-    padding: 0 5px 0 4px;
-    color: #bdbdbd;
-    content: "keyboard_arrow_right";
-    font-family: "Material Icons";
-    position: relative;
-    top: 3px;
+
+.breadcrumbs > li + li::before {
+  padding: 0 5px 0 4px;
+  color: #bdbdbd;
+  content: "keyboard_arrow_right";
+  font-family: "Material Icons";
+  position: relative;
+  top: 3px;
 }
+
 #modal-notifications .list-group-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-    cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  cursor: pointer;
 }
+
+/*btn pulse*/
+.pulse3 {
+  animation: pulse3 1.5s linear infinite;
+}
+
+@keyframes pulse3 {
+  50% {
+    box-shadow: 0 0 0 0.3em #FCEDCD, 0 0 0 0.5em #dce5ee;
+  }
+  100% {
+    box-shadow: 0 0 0 0.5em #dce5ee, 0 0 0 0.8em #dce5ee;
+  }
+}
+
+/*end btn pulse*/
+.links-table a { text-decoration: none; }
+.tr-colaborator { cursor: pointer; }
+.tr-colaborator:hover * { color: #1b68ff; }

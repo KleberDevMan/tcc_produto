@@ -29,25 +29,25 @@
                   <% end %>
                 </td>
                 <td>
-                  <div class="dropdown">
-                    <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="text-muted sr-only">Action</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr<%= course.id %>">
-                      <a class="dropdown-item" href="<%= edit_course_path course %>">Editar</a>
-                      <a class="dropdown-item" href="<%= toggle_status_course_path course %>">
-                        <% if course.status.active? %>
-                          <span class="text-danger">Inativar</span>
-                        <% else %>
-                          <span class="text-success">Ativar</span>
-                        <% end %>
-                      </a>
-                      <% if course.academic_works_count == 0 %>
-                        <a class="sw-delete dropdown-item bg-danger-light text-white text-white" onclick="set_id('<%= course.id %>', '<%= course.class.to_s.split(':')[0] %>')" target="_self" href="#">
-                          Excluir
-                        </a>
+                  <div class="links-table">
+
+                    <a href="<%= edit_course_path course %>" class="text-success-darker" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.edit' %>">
+                      <span class="fe fe-edit fe-16 mr-2"></span>
+                    </a>
+
+                    <a href="<%= toggle_status_course_path course %>" data-toggle="tooltip" data-placement="top" title="<%= course.status.active? ? t('buttons.deactivate') : t('buttons.activate') %>">
+                      <% if course.status.active? %>
+                        <span class="text-danger fe fe-x fe-16 mr-2"></span>
+                      <% else %>
+                        <span class="text-success fe fe-check fe-16 mr-2"></span>
                       <% end %>
-                    </div>
+                    </a>
+
+                    <% if course.academic_works_count == 0 %>
+                      <a class="sw-delete text-danger" onclick="set_id('<%= course.id %>', '<%= course.class.to_s.split(':')[0] %>')" target="_self" href="#" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.destroy' %>">
+                        <span class="fe fe-trash fe-16 mr-2"></span>
+                      </a>
+                    <% end %>
                   </div>
                 </td>
               </tr>

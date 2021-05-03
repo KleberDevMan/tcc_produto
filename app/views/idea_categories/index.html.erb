@@ -39,25 +39,24 @@
                   <% end %>
                 </td>
                 <td>
-                  <div class="dropdown">
-                    <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="text-muted sr-only">Action</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr<%= idea_category.id %>">
-                      <a class="dropdown-item" href="<%= edit_idea_category_path idea_category %>">Editar</a>
-                      <a class="dropdown-item" href="<%= toggle_status_idea_category_path idea_category %>">
-                        <% if idea_category.status.active? %>
-                          <span class="text-danger">Inativar</span>
-                        <% else %>
-                          <span class="text-success">Ativar</span>
-                        <% end %>
-                      </a>
-                      <% if idea_category.ideas.count == 0 %>
-                        <a class="sw-delete dropdown-item bg-danger-light text-white" onclick="set_id('<%= idea_category.id %>', '<%= idea_category.class.to_s.split(':')[0] %>')" target="_self" href="#">
-                          Excluir
-                        </a>
+                  <div class="links-table">
+                    <a href="<%= edit_idea_category_path idea_category %>" class="text-success-darker" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.edit' %>">
+                      <span class="fe fe-edit fe-16 mr-2"></span>
+                    </a>
+
+                    <a href="<%= toggle_status_idea_category_path idea_category %>" data-toggle="tooltip" data-placement="top" title="<%= idea_category.status.active? ? t('buttons.deactivate') : t('buttons.activate') %>">
+                      <% if idea_category.status.active? %>
+                        <span class="text-danger fe fe-x fe-16 mr-2"></span>
+                      <% else %>
+                        <span class="text-success fe fe-check fe-16 mr-2"></span>
                       <% end %>
-                    </div>
+                    </a>
+
+                    <% if idea_category.ideas.count == 0 %>
+                      <a class="sw-delete text-danger" onclick="set_id('<%= idea_category.id %>', '<%= idea_category.class.to_s.split(':')[0] %>')" target="_self" href="#" data-toggle="tooltip" data-placement="top" title="<%= t 'buttons.destroy' %>">
+                        <span class="fe fe-trash fe-16 mr-2"></span>
+                      </a>
+                    <% end %>
                   </div>
                 </td>
               </tr>

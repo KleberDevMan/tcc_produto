@@ -191,6 +191,9 @@ pt-BR:
     delete: Excluir
     save: Salvar
     enter: Entrar
+    show: Visualizar
+    activate: Ativar (se torna Vísivel)
+    deactivate: Desativar (se torna Invísivel)
 
   breadcrumb:
     home: Início
