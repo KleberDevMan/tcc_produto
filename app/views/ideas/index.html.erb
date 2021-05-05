@@ -7,15 +7,22 @@
   </style>
 <% end %>
 
-<% title t('texts.idea.wall_of_ideas') %>
-<% content_for :page_actions do %>
-  <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
-    <a class="" href="<%= homepage_pages_path %>">Área administrativa</a>
-  <% end %>
-
+<%= content_for :alert do %>
   <% unless @show_info %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      Ajude essas ideias a se tornarem realidade. Você pode!
+    <div class="col-md-12 col-sm-12 alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="row">
+        <div class="col-md-6">
+          <span class="h4" style="color: #7c5502">
+            Precisa de uma ideia para seu projeto de pesquisa? TCC? <br>Está em busca de pessoas com ideias inovadoras, talvez até lucrativas? <br><br><br><br>
+          </span>
+          <span>
+            De uma olhada nessas ideias, ajude-as a se tornarem realidade. Você pode!!
+          </span>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="/img/parceria.png" width="400px" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
       <button type="button" class="close" onclick="showInfoIdeas();" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -23,8 +30,15 @@
   <% end %>
 <% end %>
 
-<div class="col-12">
 
+<% title t('texts.idea.wall_of_ideas') %>
+<% content_for :page_actions do %>
+  <% if self.controller.send(:_layout, self.lookup_context, []) == 'devise_layout' %>
+    <a class="" href="<%= homepage_pages_path %>">Área administrativa</a>
+  <% end %>
+<% end %>
+
+<div class="col-12">
 
 
   <% if @ideas.length == 0 and !params[:q].present? and !params[:quick_filter] %>

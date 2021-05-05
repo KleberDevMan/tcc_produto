@@ -1,12 +1,19 @@
 <%= content_for :alert do %>
   <% unless @show_info %>
-    <div class="offset-md-6 col-md-6 col-sm-12 alert alert-warning alert-dismissible fade show" role="alert">
-      <b>Precisa de pessoas para ajudar a tirar a sua ideia do papel?</b> <br><br>
+    <div class="col-md-12 col-sm-12 alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="row">
+        <div class="col-md-6">
+          <b class="h4" style="color: #7c5502">Precisa de pessoas para ajudar a tirar a sua ideia do papel?</b> <br>
+          <b><span class="text-success-darker">Sim? Então você está no lugar certo!</span></b> <br><br><br>
 
-      Compartilhe conosco! <br>
-      Temos uma galera querendo ajudar! <br>
-      <span style="font-size: 80%">Alunos, pesquisadores, professores, intituições de fomento, incubadoras...</span>
-
+          Compartilhe conosco! <br>
+          Temos uma "galera" querendo ajudar! <br>
+          <span style="font-size: 80%">Alunos, pesquisadores, professores, intituições de fomento, incubadoras...</span>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="/img/parceria.png" width="400px" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
       <button type="button" class="close" onclick="showInfoIdeas();" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -306,8 +313,7 @@
 
     function showInfoIdeas() {
       $.ajax({
-        url: '<%= set_cookie_pages_path(cookie: IdeasController::SHOW_INFO_MY_IDEAS) %>',
-        dataType : 'json'
+        url: '<%= set_cookie_pages_path(cookie: IdeasController::SHOW_INFO_MY_IDEAS) %>', dataType: 'json'
       });
     }
   </script>

@@ -28,6 +28,6 @@ class PagesController < ApplicationController
   end
 
   def set_cookie
-    cookies.permanent[params[:cookie]] = true
+    cookies[params[:cookie]] = { value: true, expires: 5.minutes }
   end
 end

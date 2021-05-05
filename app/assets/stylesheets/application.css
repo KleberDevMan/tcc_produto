@@ -34,15 +34,15 @@
 
 /*btn pulse*/
 .pulse3 {
-  animation: pulse3 1.5s linear infinite;
+  animation: pulse3 0.8s linear infinite;
 }
 
 @keyframes pulse3 {
-  50% {
-    box-shadow: 0 0 0 0.3em #FCEDCD, 0 0 0 0.5em #dce5ee;
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
   }
   100% {
-    box-shadow: 0 0 0 0.5em #dce5ee, 0 0 0 0.8em #dce5ee;
+    box-shadow: 0 0 0 70px rgba(0, 0, 0, 0);
   }
 }
 
