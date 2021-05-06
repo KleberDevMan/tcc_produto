@@ -22,12 +22,12 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= f.label :name %>
+      <%= f.label :name, class: 'required' %>
       <%= f.text_field :name, class: 'form-control', required: true, placeholder: 'Seu nome completo' %>
       <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
     </div>
     <div class="form-group col-md-6">
-      <%= f.label :telephone %>
+      <%= f.label :telephone, class: 'required' %>
       <%= f.text_field :telephone, class: 'form-control', maxlength: 14, required: true, "data-placeholder": "(__) _ ____-____", "data-mask": "(00) 0 0000-0000", autocomplete: "off", placeholder: "(__) _ ____-____" %>
       <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
     </div>
@@ -35,7 +35,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <%= f.label :biography %>
+      <%= f.label :biography, class: 'required' %>
       <p class="small text-muted mb-2"> <%= t 'texts.devise.biography_description' %> </p>
       <%= f.text_area :biography, class: 'form-control', rows: 4, required: true %>
       <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
@@ -46,13 +46,13 @@
   <div class="row mb-4">
     <div class="col-md-6">
       <div class="form-group">
-        <%= f.label :password %>
+        <%= f.label :password, class: 'required' %>
         <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', required: true, minlength: 6 %>
         <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
         <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
       </div>
       <div class="form-group">
-        <%= f.label :password_confirmation %>
+        <%= f.label :password_confirmation, class: 'required' %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true, minlength: 6 %>
         <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
         <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
@@ -81,7 +81,7 @@
 
       <div class="custom-control custom-checkbox mb-3">
         <input type="checkbox" class="custom-control-input" id="customControlValidation16" required="">
-        <label class="custom-control-label" for="customControlValidation16">
+        <label class="custom-control-label required" for="customControlValidation16">
           Li e aceito as <a href="<%= terms_of_use_pages_path %>" target="_blank">políticas e condições</a> de uso da aplicação.
         </label>
         <div class="invalid-feedback"> Você deve confirmar antes de enviar</div>

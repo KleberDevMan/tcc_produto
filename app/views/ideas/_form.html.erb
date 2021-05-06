@@ -30,7 +30,7 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <%= form.label :title %>
+            <%= form.label :title, class: 'required' %>
             <%= form.text_field :title, class: 'form-control', placeholder: 'Ex: Aplicativo para hortas', required: true, maxlength: 80, size: 80 %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
@@ -38,7 +38,7 @@
           <div class="form-group col-md-6 col-sm-12">
             <%#= form.label :category_ids %>
             <%#= form.select :category_ids, options_for_select(IdeaCategory.active.map { |c| [c.name, c.id] }, idea.category_ids), {}, { class: 'form-control select2-multi', multiple: "multiple", required: true } %>
-            <%= form.label :idea_category_id %>
+            <%= form.label :idea_category_id, class: 'required' %>
             <%= form.select :idea_category_id, IdeaCategory.active.map { |r| [r.name, r.id] }, { include_blank: t('texts.select') }, { class: 'form-control custom-select', required: true } %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
@@ -47,18 +47,18 @@
 
         <div class="form-row">
           <div class="form-group col-md-12">
-            <%= form.label :description %>
+            <%= form.label :description, class: 'required' %>
             <%= form.text_area :description, class: 'form-control', placeholder: 'Ex: Proponho a construção de um aplicativo para o manejo de hortas de pequeno porte. Voltado para aqueles pequenos agricultores e feirantes. Estou à disposição para dar mais detalhes sobre minha ideia, caso você deseje colaborar comigo.', rows: 4, required: true %>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <%= form.label :state %>
+            <%= form.label :state, class: 'required' %>
             <%= form.select :state, @states, { include_blank: t('texts.select') }, { class: 'form-control custom-select', required: true } %>
           </div>
           <div class="form-group col-md-6">
-            <%= form.label :city %>
+            <%= form.label :city, class: 'required' %>
             <%= form.select :city, options_for_select(@cities, idea.city), { include_blank: t('texts.select') }, { class: 'form-control custom-select', required: true } %>
           </div>
         </div>
@@ -116,7 +116,7 @@
           </div>
           <div class="form-group col-md-6">
             <%= form.label :differential %>
-            <%= form.text_area :differential, class: 'form-control', placeholder: "Ex: Poucas ferramentas tecnológicas voltadas para esse nicho esepecífico de população. \nSimplicidade, baixo custo e comodidade.", rows: 4 %>
+            <%= form.text_area :differential, class: 'form-control', placeholder: "Ex: Poucas ferramentas tecnológicas voltadas para esse nicho específico de população. \nSimplicidade, baixo custo e comodidade.", rows: 4 %>
           </div>
         </div>
 

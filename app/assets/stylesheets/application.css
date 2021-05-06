@@ -45,8 +45,17 @@
     box-shadow: 0 0 0 70px rgba(0, 0, 0, 0);
   }
 }
-
 /*end btn pulse*/
+
 .links-table a { text-decoration: none; }
 .tr-colaborator { cursor: pointer; }
 .tr-colaborator:hover * { color: #1b68ff; }
+
+/*required asterisk*/
+label.required:after {
+  display: inline;
+  content: " *";
+  color: #f44336;
+  position: static !important;
+  opacity: 1 !important;
+}

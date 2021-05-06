@@ -26,7 +26,7 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <%= form.label :name %>
+            <%= form.label :name, class: 'required' %>
             <%= form.text_field :name, class: 'form-control', required: true, placeholder: 'Ex: João Ferreira' %>
             <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
           </div>
@@ -48,7 +48,7 @@
                 <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
               </div>
               <div class="form-group">
-                <%= form.label :password_confirmation %>
+                <%= form.label :password_confirmation, class: 'required' %>
                 <%= form.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true, minlength: 6 %>
                 <div class="invalid-feedback"> <%= t 'texts.fill_this_field' %> </div>
                 <div class="valid-feedback"> <%= t 'texts.looks_good' %> </div>
