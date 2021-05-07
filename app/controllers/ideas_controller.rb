@@ -22,7 +22,8 @@ class IdeasController < ApplicationController
 
     @q = Idea.quick_filter(params[:quick_filter], current_user.id)
              .includes(:collaborations, :idea_category)
-             .ransack(params[:q], default_order: { updated_at: :desc })
+             .order(updated_at: :desc)
+             .ransack(params[:q])
 
     @ideas = @q.result.page(params[:page]).per(12)
   end
