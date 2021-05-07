@@ -42,6 +42,28 @@
     </div>
   </div>
 
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <h6 class="mb-2">Foto de perfil</h6>
+      <%= f.label :link_or_image, class: 'mr-2' %>
+
+      <% User.link_or_img.options.each do |type| %>
+        <%= f.radio_button :link_or_img, type.last, class: 'form-check form-check-inline mr-0', checked: type.last == resource.link_or_img_value_default, id: type.last %>
+        <%= f.label :link_or_img, type.first, value: type.last, class: 'mr-3', for: type.last %>
+      <% end %>
+
+      <div id="div-link">
+        <%= f.text_field :img_link, class: 'form-control', placeholder: 'Link para a imagem' %>
+      </div>
+      <div id="div-img" style="display: none">
+        <div class="custom-file">
+          <%= f.file_field :img, class: "custom-file-input", direct_upload: true %>
+          <%= f.label :img, resource.img.blob ? resource.img.blob.filename : 'Selecione a imagem', class: 'custom-file-label' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <hr class="my-4">
   <div class="row mb-4">
     <div class="col-md-6">
@@ -63,7 +85,7 @@
       <p class="small text-muted mb-2"> <%= t 'texts.devise.requirements_to_create_password' %>: </p>
       <ul class="small text-muted pl-4 mb-0">
         <% if @minimum_password_length %>
-          <li> Minimum <%= @minimum_password_length %> characters</li>
+          <li>Mínimo <%= @minimum_password_length %> characters</li>
         <% end %><br/>
         <!--        <li>At least one special character</li>-->
         <!--        <li>At least one number</li>-->
@@ -93,4 +115,26 @@
 
   <button class="btn btn-lg btn-primary btn-block" type="submit"><%= t 'buttons.save' %></button>
   <p class="mt-5 mb-3 text-muted text-center">©TccProduto. 2021</p>
+<% end %>
+<% content_for :footer do %>
+  <script>
+    $(document).ready(function () {
+      toggleLinkImg();
+
+      $('input[name="user[link_or_img]"]').click(function () {
+        toggleLinkImg();
+      })
+
+      function toggleLinkImg() {
+        const valor = $('input[name="user[link_or_img]"]:checked').val()
+        if (valor === 'link') {
+          $('#div-img').hide()
+          $('#div-link').fadeIn(500)
+        } else {
+          $('#div-link').hide()
+          $('#div-img').fadeIn(500)
+        }
+      }
+    })
+  </script>
 <% end %>

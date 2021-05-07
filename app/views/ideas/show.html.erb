@@ -138,7 +138,7 @@
                   <p class="text-muted mb-3">Idealizada por</p>
                   <h6 class=""><%= @idea.ideializer.name %></h6>
                   <% if @idea.collaborators.map(&:id).include? current_user.id %>
-                    <a href="#" class="btn-link" data-toggle="modal" data-target="#modal-detalhes-idealizador"><span class="text-muted">(detalhes)</span></a>
+                    <a href="#" class="btn-link" data-toggle="modal" data-target="#modal-detalhes-idealizador"><span class="text-primary">(detalhes)</span></a>
                   <% end %>
                 </div>
               </div>
@@ -178,6 +178,38 @@
             <div class="card-header">
               <strong class="card-title"><i class="fe fe-coffee mr-2 text-muted"></i>
                 Desenvolvedores</strong>
+              <a class="float-right" data-toggle="modal" data-target="#dev-quem-sao" href="#">Detalhes</a>
+              <div class="modal fade" id="dev-quem-sao" tabindex="-1" role="dialog" aria-labelledby="verticalModalTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="verticalModalTitle">Desenvolvedores</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-center">
+
+                      <div class="col-sm-12">
+                        <img src="/img/desenvolvedor.png" width="300px" class="img-fluid" alt="Responsive image">
+                      </div>
+
+                      <span class="h4">Não se preocupe, eles entrarão em contato com você!!</span>
+                      <br><br>
+
+                      <h3 class="h5 mt-4 mb-1">O que fazem?</h3>
+                      <p class="text-muted mb-4">Colaboram intelectualmente para o desenvolvimento de ideias.</p>
+
+                      <h3 class="h5 mt-4 mb-1">Quem são?</h3>
+                      <p class="text-muted mb-4">Alunos e Pesquisadores das mais diversas áreas: Computação, Direito, Administração, etc.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <dl class="align-items-center mb-0">
@@ -187,7 +219,8 @@
                     <% @idea.devs.each do |dev| %>
                       <tr class="tr-colaborator" data-toggle="modal" data-target="#modal-fac-<%= dev.id %>">
                         <td width="50%"><strong><%= dev.name %></strong></td>
-                        <td width="50%"><%= dev.email %></td>
+                        <td width="30%"><%= dev.email %></td>
+                        <td width="20%" class="text-right"><span class="fe fe-eye fe-16 mr-2"></span></td>
                       </tr>
                       <div class="modal fade" id="modal-fac-<%= dev.id %>" tabindex="-1" role="dialog" aria-labelledby="verticalModalTitle" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -256,6 +289,38 @@
             <div class="card-header">
               <strong class="card-title"><i class="fe fe-dollar-sign mr-2 text-muted"></i>
                 Facilitadores</strong>
+              <a class="float-right" data-toggle="modal" data-target="#fac-quem-sao" href="#">Detalhes</a>
+              <div class="modal fade" id="fac-quem-sao" tabindex="-1" role="dialog" aria-labelledby="verticalModalTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="verticalModalTitle">Facilitadores</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-center">
+
+                      <div class="col-sm-12">
+                        <img src="/img/facilitador.png" width="300px" class="img-fluid" alt="Responsive image">
+                      </div>
+
+                      <span class="h4">Não se preocupe, eles entrarão em contato com você!!</span>
+                      <br><br>
+
+                      <h3 class="h5 mt-4 mb-1">O que fazem?</h3>
+                      <p class="text-muted mb-4">Colaboram com aportes físicos, financeiros, logístico, consulturia, etc.</p>
+
+                      <h3 class="h5 mt-4 mb-1">Quem são?</h3>
+                      <p class="text-muted mb-4">Sebrae, Incubadoras, Investidores, Bancos, etc.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <dl class="align-items-center mb-0">
@@ -265,7 +330,8 @@
                     <% @idea.facilitators.each do |fac| %>
                       <tr class="tr-colaborator" data-toggle="modal" data-target="#modal-fac-<%= fac.id %>">
                         <td width="50%"><strong><%= fac.name %></strong></td>
-                        <td width="50%"><%= fac.email %></td>
+                        <td width="30%"><%= fac.email %></td>
+                        <td width="20%" class="text-right"><span class="fe fe-eye fe-16 mr-2"></span></td>
                       </tr>
                       <div class="modal fade" id="modal-fac-<%= fac.id %>" tabindex="-1" role="dialog" aria-labelledby="verticalModalTitle" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -612,7 +678,7 @@
     <% if flash[:success_colaborar] %>
     Swal.fire({
       title: '<span style="color: ' + colors.headingColor + ';">Seja bem vindo!</span>',
-      html: '<span style="color: ' + colors.bodyColor + ';">Você agora poderá entrar em contato com o idealizador da ideia ou esperar ele entrar em contato com você.</span>',
+      html: '<span style="color: ' + colors.bodyColor + ';"><b>Entre em contato com o idealizador da ideia.</b> <br><br>O contato dele agora está desbloqueado para você.</span>',
       imageUrl: 'https://media.giphy.com/media/js7SMV0KJrsSl9YbG7/giphy.gif',
       background: colors.backgroundColor,
     })

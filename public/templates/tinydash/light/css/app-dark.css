@@ -12134,3 +12134,8 @@ a.uppy-Dashboard-poweredBy {
 }
 .card-idealize-contact { background-color: #3f4034; }
 .nav-link-primary {font-weight: 800; background: #3f444a;}
+.alert-warning {
+  color: #7c5502;
+  background-color: #ccb27b !important;
+  border-color: #8e7a4f !important;
+}
