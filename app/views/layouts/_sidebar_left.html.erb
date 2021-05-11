@@ -24,20 +24,6 @@
           </a>
         </li>
       <% end %>
-      <% if @profiles_s.include? 'admin' %>
-        <li class="nav-item w-100">
-          <a class="nav-link" href="<%= teachers_path %>">
-            <i class="fe fe-users fe-16"></i>
-            <span class="ml-3 item-text">Docentes</span>
-          </a>
-        </li>
-        <li class="nav-item w-100">
-          <a class="nav-link" href="<%= courses_path %>">
-            <i class="fe fe-list fe-16"></i>
-            <span class="ml-3 item-text">Cursos</span>
-          </a>
-        </li>
-      <% end %>
     </ul>
 
     <% if @profiles_s.include? 'ideializer' %>
@@ -54,12 +40,6 @@
           </li>
         <% end %>
         <% if @profiles_s.include? 'admin' %>
-          <li class="nav-item w-100">
-            <a class="nav-link" href="<%= idea_categories_path %>">
-              <i class="fe fe-list fe-16"></i>
-              <span class="ml-3 item-text">Categorias de ideias</span>
-            </a>
-          </li>
           <li class="nav-item w-100">
             <a class="nav-link" href="<%= dashboard_ideas_path %>">
               <i class="fe fe-pie-chart fe-16"></i>
@@ -81,16 +61,34 @@
         <span>Administração</span>
       </p>
       <ul class="navbar-nav flex-fill w-100 mb-2">
-        <li class="nav-item">
-          <a class="nav-link pl-3" href="<%= users_path %>">
-            <i class="fe fe-users fe-16"></i>
-            <span class="ml-1 item-text">Usuários</span>
+        <li class="nav-item w-100">
+          <a class="nav-link" href="<%= profiles_path %>">
+            <i class="fe fe-tool fe-16"></i>
+            <span class="ml-3 item-text">Perfis</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link pl-3" href="<%= profiles_path %>">
-            <i class="fe fe-tool fe-16"></i>
-            <span class="ml-1 item-text">Perfis</span>
+        <li class="nav-item w-100">
+          <a class="nav-link" href="<%= users_path %>">
+            <i class="fe fe-users fe-16"></i>
+            <span class="ml-3 item-text">Usuários</span>
+          </a>
+        </li>
+        <li class="nav-item w-100">
+          <a class="nav-link" href="<%= teachers_path %>">
+            <i class="fe fe-list fe-16"></i>
+            <span class="ml-3 item-text">Docentes</span>
+          </a>
+        </li>
+        <li class="nav-item w-100">
+          <a class="nav-link" href="<%= courses_path %>">
+            <i class="fe fe-list fe-16"></i>
+            <span class="ml-3 item-text">Cursos</span>
+          </a>
+        </li>
+        <li class="nav-item w-100">
+          <a class="nav-link" href="<%= idea_categories_path %>">
+            <i class="fe fe-list fe-16"></i>
+            <span class="ml-3 item-text">Categorias de ideias</span>
           </a>
         </li>
       </ul>
