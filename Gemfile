@@ -48,6 +48,13 @@ group :development do
   gem 'pry-remote'
   gem 'pry-byebug'
   gem 'dotenv-rails'
+
+  # gems for deploy digital ocean
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-bundler', '~> 2.0'
+  gem "capistrano-rails", "~> 1.6", require: false
 end
 
 group :test do
