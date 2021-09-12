@@ -45,3 +45,14 @@ append :linked_dirs, "storage", "log", "tmp/pids", "tmp/cache", "tmp/sockets", "
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
+# set :default_env, {
+#   # path: '/usr/local/rbenv/plugins/ruby-build/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH',
+#   path: '$HOME/.rbenv/plugins/ruby-build/bin:$PATH',
+#   # rbenv_root: '/usr/local/rbenv',
+#   rbenv_root: '$PATH'
+# }
+# set :rbenv_roles, :all
+# set :rbenv_ruby, '2.5.1'
+# # set :rbenv_ruby_dir, '/usr/local/rbenv/versions/2.5.1'
+# set :rbenv_ruby_dir, '/usr/local/rbenv/versions/2.5.1'
+# set :rbenv_custom_path, '/usr/local/rbenv'
