@@ -5,7 +5,6 @@ Software desenvolvido com Ruby on Rails para o TCC do curso de Sistemas de Infor
     * Postgres
     * Botstrap (template: [TinyDash](https://usebootstrap.com/theme/tinydash))
 
-
 Link para a documentação do sistema: [aqui](#).
 
 Link para o sistema: [aqui](#).
